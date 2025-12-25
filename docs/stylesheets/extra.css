@@ -93,7 +93,7 @@
 /* Code block styling */
 .md-typeset pre {
   border-radius: 6px;
-  font-size: 0.65rem;
+  font-size: 0.55rem;
 }
 
 .md-typeset pre code {
@@ -122,22 +122,22 @@ header .md-header__title {
 
 /* Make navigation menu items smaller */
 .md-nav__item {
-  font-size: 0.55rem !important;
+  font-size: 0.5rem !important;
 }
 
 .md-nav__link {
-  font-size: 0.55rem !important;
+  font-size: 0.5rem !important;
 }
 
 .md-nav--primary .md-nav__item {
-  font-size: 0.6rem !important;
+  font-size: 0.52rem !important;
 }
 
 .md-nav--primary .md-nav__link {
-  font-size: 0.6rem !important;
+  font-size: 0.52rem !important;
 }
 
 /* Section headers in nav */
 .md-nav__item--section > .md-nav__link {
-  font-size: 0.65rem !important;
+  font-size: 0.55rem !important;
 }
