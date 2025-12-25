@@ -1,7 +1,7 @@
 /* Larger font sizes for better readability */
 
 :root {
-  --md-text-font-size: 1.0rem;  /* Base font size (default: 0.8rem) */
+  --md-text-font-size: 1.0rem;
 }
 
 /* Body text */
@@ -100,13 +100,22 @@
   padding: 1em;
 }
 
-/* Make site title bigger and bold */
-.md-header__title {
-  font-size: 1.5rem !important;
-  font-weight: 700 !important;
+/* Make site title/logo MUCH bigger and bold - aggressive approach */
+.md-header__title,
+.md-header__topic,
+.md-header__ellipsis,
+.md-ellipsis {
+  font-size: 1.8rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.02em !important;
 }
 
-.md-header__topic {
-  font-size: 1.5rem !important;
-  font-weight: 700 !important;
+.md-header__button.md-logo {
+  font-size: 2rem !important;
+}
+
+/* Override all header title elements */
+header .md-header__title {
+  font-size: 1.8rem !important;
+  font-weight: 900 !important;
 }
