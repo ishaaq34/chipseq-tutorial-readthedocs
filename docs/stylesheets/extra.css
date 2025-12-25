@@ -62,26 +62,26 @@
 
 /* EXTREME navigation targeting - SUPER specific selectors */
 html body .md-container .md-sidebar .md-sidebar__scrollwrap .md-sidebar__inner .md-nav .md-nav__list .md-nav__item .md-nav__link {
-  font-size: 0.4rem !important;
+  font-size: 0.85rem !important;
 }
 
 html body .md-nav,
 html body .md-nav * {
-  font-size: 0.4rem !important;
+  font-size: 0.85rem !important;
 }
 
 html body [class*="md-nav"] {
-  font-size: 0.4rem !important;
+  font-size: 0.85rem !important;
 }
 
 html body [class*="md-nav"] a,
 html body [class*="md-nav"] span,
 html body [class*="md-nav"] label {
-  font-size: 0.4rem !important;
+  font-size: 0.85rem !important;
 }
 
 .md-tabs__link {
-  font-size: 0.5rem !important;
+  font-size: 0.9rem !important;
 }
 
 .md-content {
