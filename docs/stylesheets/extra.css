@@ -64,13 +64,45 @@
   font-size: 0.95rem;
 }
 
-/* Navigation */
+/* ALL Navigation - make super small */
 .md-nav {
-  font-size: 0.4rem;
+  font-size: 0.4rem !important;
 }
 
+.md-nav__item {
+  font-size: 0.4rem !important;
+}
+
+.md-nav__link {
+  font-size: 0.4rem !important;
+  padding: 0.3rem 0.6rem !important;
+}
+
+.md-nav--primary .md-nav__item {
+  font-size: 0.4rem !important;
+}
+
+.md-nav--primary .md-nav__link {
+  font-size: 0.4rem !important;
+}
+
+/* Section headers in nav */
+.md-nav__item--section > .md-nav__link {
+  font-size: 0.44rem !important;
+}
+
+/* Tab navigation */
 .md-tabs__link {
-  font-size: 0.5rem;
+  font-size: 0.5rem !important;
+}
+
+/* Sidebar navigation */
+.md-sidebar__scrollwrap {
+  font-size: 0.4rem !important;
+}
+
+.md-sidebar--primary .md-nav__link {
+  font-size: 0.4rem !important;
 }
 
 /* Content width */
@@ -93,14 +125,14 @@
 /* Code block styling */
 .md-typeset pre {
   border-radius: 6px;
-  font-size: 0.44rem;
+  font-size: 0.85rem;
 }
 
 .md-typeset pre code {
   padding: 1em;
 }
 
-/* Make site title/logo MUCH bigger and bold - aggressive approach */
+/* Make site title/logo MUCH bigger and bold */
 .md-header__title,
 .md-header__topic,
 .md-header__ellipsis,
@@ -118,26 +150,4 @@
 header .md-header__title {
   font-size: 1.8rem !important;
   font-weight: 900 !important;
-}
-
-/* Make navigation menu items smaller */
-.md-nav__item {
-  font-size: 0.4rem !important;
-}
-
-.md-nav__link {
-  font-size: 0.4rem !important;
-}
-
-.md-nav--primary .md-nav__item {
-  font-size: 0.42rem !important;
-}
-
-.md-nav--primary .md-nav__link {
-  font-size: 0.42rem !important;
-}
-
-/* Section headers in nav */
-.md-nav__item--section > .md-nav__link {
-  font-size: 0.44rem !important;
 }
