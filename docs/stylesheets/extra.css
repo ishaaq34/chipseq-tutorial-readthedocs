@@ -72,3 +72,30 @@
 .md-tabs__link {
   font-size: 0.95rem;
 }
+
+/* Content width */
+.md-content {
+  max-width: 900px;
+}
+
+/* Paragraph spacing */
+.md-typeset p {
+  line-height: 1.7;
+}
+
+/* Header top margins */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  margin-top: 2.2em;
+}
+
+/* Code block styling */
+.md-typeset pre {
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.md-typeset pre code {
+  padding: 1em;
+}
