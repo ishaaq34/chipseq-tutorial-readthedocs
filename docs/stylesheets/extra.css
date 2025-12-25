@@ -144,3 +144,8 @@ header .md-header__title {
 [data-md-color-scheme="slate"] .md-typeset {
   color: #ffffff !important;
 }
+
+/* Justify body text */
+.md-typeset p {
+  text-align: justify !important;
+}
