@@ -2,12 +2,12 @@
 /* Version: v2 */
 
 :root {
-  --md-text-font-size: 1.0rem;
+  --md-text-font-size: 0.95rem;
 }
 
 .md-typeset {
-  font-size: 1.0rem;
-  line-height: 1.5;
+  font-size: 0.95rem;
+  line-height: 1.65;
 }
 
 .md-typeset h1 {
@@ -92,7 +92,7 @@ html body [class*="md-nav"] label {
 }
 
 .md-typeset p {
-  line-height: 1.5;
+  line-height: 1.65;
 }
 
 .md-typeset h1,
