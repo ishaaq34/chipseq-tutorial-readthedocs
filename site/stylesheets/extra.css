@@ -1,0 +1,121 @@
+/* Larger font sizes for better readability */
+
+:root {
+  --md-text-font-size: 1.0rem;
+}
+
+/* Body text */
+.md-typeset {
+  font-size: 1.0rem;
+  line-height: 1.7;
+}
+
+/* Headings - Black color, normal weight */
+.md-typeset h1 {
+  font-size: 2.2rem;
+  margin-top: 0;
+  color: #000000 !important;
+}
+
+.md-typeset h2 {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  color: #000000 !important;
+}
+
+.md-typeset h3 {
+  font-size: 1.4rem;
+  margin-top: 1.5rem;
+  color: #000000 !important;
+}
+
+.md-typeset h4 {
+  font-size: 1.2rem;
+  color: #000000 !important;
+}
+
+.md-typeset h5,
+.md-typeset h6 {
+  color: #000000 !important;
+}
+
+/* Dark mode: white headers */
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3,
+[data-md-color-scheme="slate"] .md-typeset h4,
+[data-md-color-scheme="slate"] .md-typeset h5,
+[data-md-color-scheme="slate"] .md-typeset h6 {
+  color: #ffffff !important;
+}
+
+/* Code blocks */
+.md-typeset code {
+  font-size: 0.95rem;
+}
+
+.md-typeset pre code {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Tables */
+.md-typeset table {
+  font-size: 0.95rem;
+}
+
+/* Navigation */
+.md-nav {
+  font-size: 0.9rem;
+}
+
+.md-tabs__link {
+  font-size: 0.95rem;
+}
+
+/* Content width */
+.md-content {
+  max-width: 900px;
+}
+
+/* Paragraph spacing */
+.md-typeset p {
+  line-height: 1.7;
+}
+
+/* Header top margins */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  margin-top: 2.2em;
+}
+
+/* Code block styling */
+.md-typeset pre {
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+.md-typeset pre code {
+  padding: 1em;
+}
+
+/* Make site title/logo MUCH bigger and bold - aggressive approach */
+.md-header__title,
+.md-header__topic,
+.md-header__ellipsis,
+.md-ellipsis {
+  font-size: 1.8rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.02em !important;
+}
+
+.md-header__button.md-logo {
+  font-size: 2rem !important;
+}
+
+/* Override all header title elements */
+header .md-header__title {
+  font-size: 1.8rem !important;
+  font-weight: 900 !important;
+}
