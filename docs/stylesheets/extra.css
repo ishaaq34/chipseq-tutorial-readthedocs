@@ -342,3 +342,15 @@ header .md-header__title {
   font-weight: 400 !important;
   border: none !important;
 }
+
+/* Organize keywords/tags better - inline code that appears in groups */
+.md-typeset code {
+  display: inline-block !important;
+  margin: 0.2em 0.3em !important;
+  white-space: nowrap !important;
+}
+
+/* When code elements are in a paragraph together, space them nicely */
+.md-typeset p code + code {
+  margin-left: 0.5em !important;
+}
