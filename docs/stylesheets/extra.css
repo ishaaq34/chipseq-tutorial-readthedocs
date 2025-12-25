@@ -218,3 +218,73 @@ header .md-header__title {
 [data-md-color-scheme="slate"] .md-typeset table tr:hover {
   background-color: #1a3a38 !important;
 }
+
+/* Refined admonition boxes */
+.md-typeset .admonition {
+  border-radius: 6px !important;
+  border-left: 4px solid !important;
+  padding: 1rem 1.2rem !important;
+  margin: 1.5em 0 !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.md-typeset .admonition-title {
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+/* Important admonition - Red */
+.md-typeset .admonition.important {
+  border-left-color: #d32f2f !important;
+  background-color: #ffebee !important;
+}
+
+.md-typeset .admonition.important > .admonition-title {
+  color: #d32f2f !important;
+}
+
+/* Note admonition - Blue */
+.md-typeset .admonition.note {
+  border-left-color: #1976d2 !important;
+  background-color: #e3f2fd !important;
+}
+
+.md-typeset .admonition.note > .admonition-title {
+  color: #1976d2 !important;
+}
+
+/* Warning admonition - Orange */
+.md-typeset .admonition.warning {
+  border-left-color: #f57c00 !important;
+  background-color: #fff3e0 !important;
+}
+
+.md-typeset .admonition.warning > .admonition-title {
+  color: #f57c00 !important;
+}
+
+/* Tip admonition - Green */
+.md-typeset .admonition.tip {
+  border-left-color: #388e3c !important;
+  background-color: #e8f5e9 !important;
+}
+
+.md-typeset .admonition.tip > .admonition-title {
+  color: #388e3c !important;
+}
+
+/* Admonition text */
+.md-typeset .admonition p {
+  color: #000000 !important;
+  margin: 0.3em 0 !important;
+}
+
+/* Dark mode admonitions */
+[data-md-color-scheme="slate"] .md-typeset .admonition {
+  background-color: #2d2d2d !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition p {
+  color: #ffffff !important;
+}
