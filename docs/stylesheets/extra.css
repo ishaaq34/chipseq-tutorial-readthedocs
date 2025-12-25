@@ -53,3 +53,23 @@
 .md-tabs__link {
   font-size: 0.95rem;
 }
+
+/* Make headings bold and black instead of gray */
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4,
+.md-typeset h5,
+.md-typeset h6 {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+/* Dark mode: white headers */
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3,
+[data-md-color-scheme="slate"] .md-typeset h4 {
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
