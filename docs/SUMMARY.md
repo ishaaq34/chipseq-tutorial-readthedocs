@@ -1,0 +1,24 @@
+# Summary
+
+- [Welcome](./00_introduction.md)
+- [Setup Environment](./01_setup_environment.md)
+- [Bash Automation](./02_bash_automation.md)
+- [GEO Fastq Download](./03_geo_fastq_download.md)
+- [Fastq Concepts](./04_fastq_concepts.md)
+- [Alignment with Bowtie2](./05_alignment_bowtie2.md)
+- [Duplicate Removal & QC](./06_duplicate_removal_qc.md)
+- [Library Complexity](./07_library_complexity.md)
+- [BAM Quality Metrics](./08_bam_quality_metrics.md)
+- [Strand Cross Correlation](./09_strand_cross_correlation.md)
+- [BAM Summary & Fingerprint](./10_bam_summary_fingerprint.md)
+- [MACS3 Peak Calling](./11_macs3_peak_calling.md)
+- [Quality Metrics - FRiP](./12_frip_quality_metrics.md)
+- [Reproducibility Analysis (IDR)](./13_idr_consensus_motifs_rk_corrected.md)
+- [BigWig Generation](./14_bigwig_generation.md)
+- [Visualization Heatmaps](./15_visualization_heatmaps.md)
+- [Annotation with ChIPseeker](./16_chipseeker_annotation.md)
+- [Appendix: How We Built This Book](./tutorial_book_creation.md)
+
+---
+
+- [Contributors](./CONTRIBUTORS.md)
