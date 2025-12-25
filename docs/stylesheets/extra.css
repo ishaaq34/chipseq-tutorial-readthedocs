@@ -119,3 +119,25 @@ header .md-header__title {
   font-size: 1.8rem !important;
   font-weight: 900 !important;
 }
+
+/* Make navigation menu items smaller */
+.md-nav__item {
+  font-size: 0.75rem !important;
+}
+
+.md-nav__link {
+  font-size: 0.75rem !important;
+}
+
+.md-nav--primary .md-nav__item {
+  font-size: 0.8rem !important;
+}
+
+.md-nav--primary .md-nav__link {
+  font-size: 0.8rem !important;
+}
+
+/* Section headers in nav */
+.md-nav__item--section > .md-nav__link {
+  font-size: 0.85rem !important;
+}
