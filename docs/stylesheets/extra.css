@@ -322,7 +322,7 @@ header .md-header__title {
   padding: 0.2em 0.4em !important;
   border-radius: 4px !important;
   font-weight: 600 !important;
-  border: 1px solid #e0e0e0 !important;
+  border: 1px solid #333333 !important;
 }
 
 /* Dark mode inline code */
@@ -351,7 +351,7 @@ header .md-header__title {
 
 /* Add borders to code blocks */
 .md-typeset .highlight pre, .md-typeset pre {
-  border: 1px solid #e0e0e0 !important;
+  border: 1px solid #333333 !important;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
 }
 
