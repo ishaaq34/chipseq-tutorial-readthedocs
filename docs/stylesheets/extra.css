@@ -128,3 +128,19 @@ header .md-header__title {
   font-size: 1.8rem !important;
   font-weight: 900 !important;
 }
+
+/* Make body text black instead of grey */
+.md-typeset p,
+.md-typeset li,
+.md-typeset td,
+.md-typeset {
+  color: #000000 !important;
+}
+
+/* Dark mode: white text */
+[data-md-color-scheme="slate"] .md-typeset p,
+[data-md-color-scheme="slate"] .md-typeset li,
+[data-md-color-scheme="slate"] .md-typeset td,
+[data-md-color-scheme="slate"] .md-typeset {
+  color: #ffffff !important;
+}
