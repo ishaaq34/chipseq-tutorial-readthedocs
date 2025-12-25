@@ -54,6 +54,8 @@ markdown_extensions:
   - pymdownx.details
 
 extra:
+  stylesheets:
+    - stylesheets/extra.css
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ishaaq34
