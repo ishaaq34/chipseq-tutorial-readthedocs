@@ -348,3 +348,14 @@ header .md-header__title {
 }
 
 }
+
+/* Add borders to code blocks */
+.md-typeset pre {
+  border: 1px solid #e0e0e0 !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
+}
+
+/* Dark mode code blocks */
+[data-md-color-scheme="slate"] .md-typeset pre {
+  border-color: #444 !important;
+}
