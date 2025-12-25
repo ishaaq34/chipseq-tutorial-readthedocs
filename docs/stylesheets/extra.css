@@ -149,3 +149,8 @@ header .md-header__title {
 .md-typeset p {
   text-align: justify !important;
 }
+
+/* Hide table of contents */
+.md-sidebar--secondary {
+  display: none !important;
+}
