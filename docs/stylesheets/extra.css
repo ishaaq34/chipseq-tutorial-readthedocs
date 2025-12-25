@@ -154,3 +154,20 @@ header .md-header__title {
 .md-sidebar--secondary {
   display: none !important;
 }
+
+/* Push navigation items to the left */
+.md-nav__link {
+  padding-left: 0.3rem !important;
+}
+
+.md-nav__item {
+  padding-left: 0 !important;
+}
+
+.md-nav--primary .md-nav__item {
+  padding-left: 0 !important;
+}
+
+.md-nav__list {
+  padding-left: 0 !important;
+}
