@@ -288,3 +288,28 @@ header .md-header__title {
 [data-md-color-scheme="slate"] .md-typeset .admonition p {
   color: #ffffff !important;
 }
+
+/* Style GitHub-style callouts that aren't converted to admonitions */
+.md-typeset blockquote {
+  border-left: 4px solid #1976d2 !important;
+  background-color: #e3f2fd !important;
+  padding: 1rem 1.2rem !important;
+  margin: 1.5em 0 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+}
+
+.md-typeset blockquote p {
+  color: #000000 !important;
+  margin: 0.3em 0 !important;
+}
+
+/* Dark mode blockquotes */
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  background-color: #2d2d2d !important;
+  border-left-color: #64b5f6 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset blockquote p {
+  color: #ffffff !important;
+}
