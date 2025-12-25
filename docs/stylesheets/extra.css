@@ -1,16 +1,15 @@
-/* Larger font sizes for better readability */
+/* Force CSS version update */
+/* Version: v2 */
 
 :root {
   --md-text-font-size: 1.0rem;
 }
 
-/* Body text */
 .md-typeset {
   font-size: 1.0rem;
   line-height: 1.7;
 }
 
-/* Headings - Black color, normal weight */
 .md-typeset h1 {
   font-size: 2.2rem;
   margin-top: 0;
@@ -39,7 +38,6 @@
   color: #000000 !important;
 }
 
-/* Dark mode: white headers */
 [data-md-color-scheme="slate"] .md-typeset h1,
 [data-md-color-scheme="slate"] .md-typeset h2,
 [data-md-color-scheme="slate"] .md-typeset h3,
@@ -49,7 +47,6 @@
   color: #ffffff !important;
 }
 
-/* Code blocks */
 .md-typeset code {
   font-size: 0.95rem;
 }
@@ -59,70 +56,48 @@
   line-height: 1.6;
 }
 
-/* Tables */
 .md-typeset table {
   font-size: 0.95rem;
 }
 
-/* ALL Navigation - make super small */
-.md-nav {
+/* EXTREME navigation targeting - SUPER specific selectors */
+html body .md-container .md-sidebar .md-sidebar__scrollwrap .md-sidebar__inner .md-nav .md-nav__list .md-nav__item .md-nav__link {
   font-size: 0.4rem !important;
 }
 
-.md-nav__item {
+html body .md-nav,
+html body .md-nav * {
   font-size: 0.4rem !important;
 }
 
-.md-nav__link {
-  font-size: 0.4rem !important;
-  padding: 0.3rem 0.6rem !important;
-}
-
-.md-nav--primary .md-nav__item {
+html body [class*="md-nav"] {
   font-size: 0.4rem !important;
 }
 
-.md-nav--primary .md-nav__link {
+html body [class*="md-nav"] a,
+html body [class*="md-nav"] span,
+html body [class*="md-nav"] label {
   font-size: 0.4rem !important;
 }
 
-/* Section headers in nav */
-.md-nav__item--section > .md-nav__link {
-  font-size: 0.44rem !important;
-}
-
-/* Tab navigation */
 .md-tabs__link {
   font-size: 0.5rem !important;
 }
 
-/* Sidebar navigation */
-.md-sidebar__scrollwrap {
-  font-size: 0.4rem !important;
-}
-
-.md-sidebar--primary .md-nav__link {
-  font-size: 0.4rem !important;
-}
-
-/* Content width */
 .md-content {
   max-width: 900px;
 }
 
-/* Paragraph spacing */
 .md-typeset p {
   line-height: 1.7;
 }
 
-/* Header top margins */
 .md-typeset h1,
 .md-typeset h2,
 .md-typeset h3 {
   margin-top: 2.2em;
 }
 
-/* Code block styling */
 .md-typeset pre {
   border-radius: 6px;
   font-size: 0.85rem;
@@ -132,7 +107,6 @@
   padding: 1em;
 }
 
-/* Make site title/logo MUCH bigger and bold */
 .md-header__title,
 .md-header__topic,
 .md-header__ellipsis,
@@ -146,7 +120,6 @@
   font-size: 2rem !important;
 }
 
-/* Override all header title elements */
 header .md-header__title {
   font-size: 1.8rem !important;
   font-weight: 900 !important;
