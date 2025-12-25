@@ -157,7 +157,7 @@ header .md-header__title {
 
 /* Push navigation items to the left */
 .md-nav__link {
-  padding-left: 0.3rem !important;
+  padding-left: 0.6rem !important;
 }
 
 .md-nav__item {
