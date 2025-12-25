@@ -26,8 +26,8 @@ theme:
         name: Switch to light mode
   
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Inter
+    code: JetBrains Mono
   
   features:
     - navigation.instant
@@ -53,9 +53,6 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.details
 
-extra:
-  stylesheets:
-    - stylesheets/extra.css
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ishaaq34
@@ -83,5 +80,7 @@ nav:
     - Visualization Heatmaps: 15_visualization_heatmaps.md
     - Annotation with ChIPseeker: 16_chipseeker_annotation.md
   - Reference:
-    - How We Built This Book: tutorial_book_creation.md
     - Contributors: CONTRIBUTORS.md
+
+extra_css:
+  - stylesheets/extra.css
