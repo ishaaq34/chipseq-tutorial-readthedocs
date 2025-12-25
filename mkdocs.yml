@@ -1,31 +1,40 @@
 site_name: ChIP-seq Analysis Tutorial
-site_description: A comprehensive, hands-on tutorial for ChIP-seq data analysis
+site_description: A comprehensive, hands-on tutorial for ChIP-seq data analysis  
 site_author: Raja Ishaq Nabi Khan
 site_url: https://ishaaq34.github.io/Chipseq_analysis_tutorial_mkdocs/
 
 repo_name: ishaaq34/Chipseq_analysis_tutorial_mkdocs
 repo_url: https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs
 
+copyright: Copyright &copy; 2025 Raja Ishaq Nabi Khan
+
 theme:
   name: material
+  language: en
   palette:
     - scheme: default
-      primary: indigo
-      accent: indigo
+      primary: blue grey
+      accent: cyan
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: blue grey
+      accent: cyan
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+  
+  font:
+    text: Roboto
+    code: Roboto Mono
+  
   features:
+    - navigation.instant
+    - navigation.tracking
     - navigation.tabs
     - navigation.sections
     - navigation.top
-    - navigation.tracking
     - search.suggest
     - search.highlight
     - content.code.copy
@@ -34,15 +43,20 @@ plugins:
   - search
 
 markdown_extensions:
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.superfences
-  - pymdownx.details
   - admonition
   - attr_list
   - tables
   - toc:
       permalink: true
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.details
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ishaaq34
 
 nav:
   - Home: 00_introduction.md
@@ -66,6 +80,6 @@ nav:
     - BigWig Generation: 14_bigwig_generation.md
     - Visualization Heatmaps: 15_visualization_heatmaps.md
     - Annotation with ChIPseeker: 16_chipseeker_annotation.md
-  - Appendix:
+  - Reference:
     - How We Built This Book: tutorial_book_creation.md
     - Contributors: CONTRIBUTORS.md
