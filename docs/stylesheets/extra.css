@@ -10,24 +10,43 @@
   line-height: 1.7;
 }
 
-/* Headings */
+/* Headings - Black color, normal weight */
 .md-typeset h1 {
   font-size: 2.2rem;
   margin-top: 0;
+  color: #000000 !important;
 }
 
 .md-typeset h2 {
   font-size: 1.8rem;
   margin-top: 2rem;
+  color: #000000 !important;
 }
 
 .md-typeset h3 {
   font-size: 1.4rem;
   margin-top: 1.5rem;
+  color: #000000 !important;
 }
 
 .md-typeset h4 {
   font-size: 1.2rem;
+  color: #000000 !important;
+}
+
+.md-typeset h5,
+.md-typeset h6 {
+  color: #000000 !important;
+}
+
+/* Dark mode: white headers */
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2,
+[data-md-color-scheme="slate"] .md-typeset h3,
+[data-md-color-scheme="slate"] .md-typeset h4,
+[data-md-color-scheme="slate"] .md-typeset h5,
+[data-md-color-scheme="slate"] .md-typeset h6 {
+  color: #ffffff !important;
 }
 
 /* Code blocks */
@@ -52,24 +71,4 @@
 
 .md-tabs__link {
   font-size: 0.95rem;
-}
-
-/* Make headings bold and black instead of gray */
-.md-typeset h1,
-.md-typeset h2,
-.md-typeset h3,
-.md-typeset h4,
-.md-typeset h5,
-.md-typeset h6 {
-  color: #000000 !important;
-  font-weight: 700 !important;
-}
-
-/* Dark mode: white headers */
-[data-md-color-scheme="slate"] .md-typeset h1,
-[data-md-color-scheme="slate"] .md-typeset h2,
-[data-md-color-scheme="slate"] .md-typeset h3,
-[data-md-color-scheme="slate"] .md-typeset h4 {
-  color: #ffffff !important;
-  font-weight: 700 !important;
 }
