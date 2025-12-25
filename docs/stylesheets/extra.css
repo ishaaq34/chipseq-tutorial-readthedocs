@@ -99,3 +99,14 @@
 .md-typeset pre code {
   padding: 1em;
 }
+
+/* Make site title bigger and bold */
+.md-header__title {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+}
+
+.md-header__topic {
+  font-size: 1.5rem !important;
+  font-weight: 700 !important;
+}
