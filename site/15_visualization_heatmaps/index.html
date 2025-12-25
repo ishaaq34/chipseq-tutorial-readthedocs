@@ -1,0 +1,2320 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A comprehensive, hands-on tutorial for ChIP-seq data analysis">
+      
+      
+        <meta name="author" content="Raja Ishaq Nabi Khan">
+      
+      
+        <link rel="canonical" href="https://ishaaq34.github.io/Chipseq_analysis_tutorial_mkdocs/15_visualization_heatmaps/">
+      
+      
+        <link rel="prev" href="../14_bigwig_generation/">
+      
+      
+        <link rel="next" href="../16_chipseeker_annotation/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Visualization Heatmaps - ChIP-seq Analysis Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#visualization-with-deeptools-creating-signal-heatmaps" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ChIP-seq Analysis Tutorial" class="md-header__button md-logo" aria-label="ChIP-seq Analysis Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ChIP-seq Analysis Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Visualization Heatmaps
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ishaaq34/Chipseq_analysis_tutorial_mkdocs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00_introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../01_setup_environment/" class="md-tabs__link">
+          
+  
+  
+  Setup & Data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../05_alignment_bowtie2/" class="md-tabs__link">
+          
+  
+  
+  Alignment & QC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../11_macs3_peak_calling/" class="md-tabs__link">
+          
+  
+  
+  Peak Calling
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../14_bigwig_generation/" class="md-tabs__link">
+          
+  
+  
+  Visualization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tutorial_book_creation/" class="md-tabs__link">
+          
+  
+  
+  Appendix
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ChIP-seq Analysis Tutorial" class="md-nav__button md-logo" aria-label="ChIP-seq Analysis Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ChIP-seq Analysis Tutorial
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ishaaq34/Chipseq_analysis_tutorial_mkdocs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_setup_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_bash_automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bash Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_geo_fastq_download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEO Fastq Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_fastq_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastq Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alignment & QC
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Alignment & QC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_alignment_bowtie2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alignment with Bowtie2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_duplicate_removal_qc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Duplicate Removal & QC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_library_complexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Library Complexity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_bam_quality_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAM Quality Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_strand_cross_correlation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strand Cross Correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_bam_summary_fingerprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAM Summary & Fingerprint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peak Calling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Peak Calling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_macs3_peak_calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MACS3 Peak Calling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_frip_quality_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Metrics - FRiP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_idr_consensus_motifs_rk_corrected/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducibility Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Visualization
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_bigwig_generation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BigWig Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization Heatmaps
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization Heatmaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-basic-concept-camera-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Basic Concept (Camera Modes)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-blueprint-the-photo-basic-requirement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Blueprint &amp; The Photo - Basic requirement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. The Blueprint &amp; The Photo - Basic requirement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-download-reference-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Download Reference Annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-extract-tss-regions-portrait-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Extract TSS Regions (Portrait Mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-extract-gene-bodies-panorama-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Extract Gene Bodies (Panorama Mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-output-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create Output Directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-build-the-matrix-the-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Build the Matrix (The Blueprint)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-plotting-the-photo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Plotting (The Photo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-the-pictures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading the Pictures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reading the Pictures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tss-centered-profiles-individual-replicates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TSS-Centered Profiles: Individual Replicates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tsstes-metagene-profiles-genome-wide-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TSS/TES Metagene Profiles: Genome-Wide Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#average-signal-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Average Signal Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Average Signal Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#average-bigwigs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Average BigWigs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#normalization-to-input-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalization to Input Controls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualization-with-normalized-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualization with Normalized Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualization with Normalized Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tss-centered-profile-with-log2ipinput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TSS-Centered Profile with log2(IP/Input)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gene-body-profile-with-averaged-signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gene Body Profile with Averaged Signal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cebpa-peak-focused-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEBPA Peak-Focused Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CEBPA Peak-Focused Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-identify-promoters-overlapping-cebpa-peaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Identify Promoters Overlapping CEBPA Peaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-tss-centered-heatmap-for-cebpa-bound-promoters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create TSS-Centered Heatmap for CEBPA-Bound Promoters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heatmap-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heatmap Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-chromatin-state-analysis-at-cebpa-bound-promoters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Chromatin State Analysis at CEBPA-Bound Promoters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile Plot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure-after-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure After Visualization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_chipseeker_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation with ChIPseeker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendix
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial_book_creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How We Built This Book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTORS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-basic-concept-camera-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Basic Concept (Camera Modes)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-the-blueprint-the-photo-basic-requirement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. The Blueprint &amp; The Photo - Basic requirement
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. The Blueprint &amp; The Photo - Basic requirement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-download-reference-annotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Download Reference Annotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-extract-tss-regions-portrait-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Extract TSS Regions (Portrait Mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-extract-gene-bodies-panorama-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Extract Gene Bodies (Panorama Mode)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-create-output-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Create Output Directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-build-the-matrix-the-blueprint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Build the Matrix (The Blueprint)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-plotting-the-photo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Plotting (The Photo)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reading-the-pictures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reading the Pictures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reading the Pictures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tss-centered-profiles-individual-replicates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TSS-Centered Profiles: Individual Replicates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tsstes-metagene-profiles-genome-wide-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TSS/TES Metagene Profiles: Genome-Wide Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#average-signal-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Average Signal Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Average Signal Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#average-bigwigs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Average BigWigs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#normalization-to-input-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normalization to Input Controls
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visualization-with-normalized-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Visualization with Normalized Data
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Visualization with Normalized Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tss-centered-profile-with-log2ipinput" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TSS-Centered Profile with log2(IP/Input)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gene-body-profile-with-averaged-signal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gene Body Profile with Averaged Signal
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cebpa-peak-focused-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CEBPA Peak-Focused Analysis
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CEBPA Peak-Focused Analysis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-identify-promoters-overlapping-cebpa-peaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Identify Promoters Overlapping CEBPA Peaks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-create-tss-centered-heatmap-for-cebpa-bound-promoters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Create TSS-Centered Heatmap for CEBPA-Bound Promoters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heatmap-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heatmap Visualization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-chromatin-state-analysis-at-cebpa-bound-promoters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Chromatin State Analysis at CEBPA-Bound Promoters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#profile-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Profile Plot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heatmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heatmap
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure-after-visualization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure After Visualization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="visualization-with-deeptools-creating-signal-heatmaps">Visualization with deepTools (Creating Signal Heatmaps)<a class="headerlink" href="#visualization-with-deeptools-creating-signal-heatmaps" title="Permanent link">&para;</a></h1>
+<h2 id="1-basic-concept-camera-modes">1. Basic Concept (Camera Modes)<a class="headerlink" href="#1-basic-concept-camera-modes" title="Permanent link">&para;</a></h2>
+<p>We want to visualize the "Average" pattern of our protein across all genes. To do this, we need to choose our <strong>Camera Mode</strong>:</p>
+<ol>
+<li>
+<p><strong>Portrait Mode (Reference-Point):</strong></p>
+<ul>
+<li><strong>Focus:</strong> One specific point (e.g., the Transcription Start Site, <strong>TSS</strong>).</li>
+<li><strong>Action:</strong> We stand at the TSS and look 3kb upstream and 10kb downstream.</li>
+<li><strong>Use Case:</strong> Great for seeing promoter activity (H3K9ac, Transcription Factors).</li>
+</ul>
+</li>
+<li>
+<p><strong>Panorama Mode (Scale-Regions):</strong></p>
+<ul>
+<li><strong>Focus:</strong> The entire gene body.</li>
+<li><strong>Action:</strong> Since genes are different lengths (short vs long), we stretch or compress them all to fit the same "frame" (e.g., 5000bp).</li>
+<li><strong>Use Case:</strong> Great for seeing broad marks that cover the whole gene (H3K27me3, H3K36me3).</li>
+</ul>
+</li>
+</ol>
+<p><strong>The Process:</strong></p>
+<ol>
+<li><strong>Prepare the Map (BED):</strong> Define where the genes are.</li>
+<li><strong>Create the Blueprint (Matrix):</strong> <code>computeMatrix</code> calculates the numbers.</li>
+<li><strong>Take the Photo (Plot):</strong> <code>plotHeatmap</code> or <code>plotProfile</code> draws the picture.</li>
+</ol>
+<hr />
+<h2 id="2-the-blueprint-the-photo-basic-requirement">2. The Blueprint &amp; The Photo - Basic requirement<a class="headerlink" href="#2-the-blueprint-the-photo-basic-requirement" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-download-reference-annotation">Step 1: Download Reference Annotation<a class="headerlink" href="#step-1-download-reference-annotation" title="Permanent link">&para;</a></h3>
+<p>We need the GENCODE human genome annotation to define TSS and gene body regions.</p>
+<p><strong>Download the GENCODE v49 GTF file:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Download GENCODE basic annotation (primary assembly)</span>
+wget<span class="w"> </span>https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_49/gencode.v49.primary_assembly.basic.annotation.gtf.gz
+
+<span class="c1"># Decompress</span>
+gunzip<span class="w"> </span>gencode.v49.primary_assembly.basic.annotation.gtf.gz
+</code></pre></div>
+<p>This GTF file contains comprehensive gene annotations including transcript start sites (TSS), gene bodies, and other genomic features.</p>
+<h3 id="step-2-extract-tss-regions-portrait-mode">Step 2: Extract TSS Regions (Portrait Mode)<a class="headerlink" href="#step-2-extract-tss-regions-portrait-mode" title="Permanent link">&para;</a></h3>
+<p>Run this <code>awk</code> script to get a 1bp position for every Transcript Start Site from the GTF:</p>
+<div class="highlight"><pre><span></span><code>awk<span class="w"> </span><span class="s1">&#39;BEGIN{OFS=&quot;\t&quot;} $3==&quot;transcript&quot; {                 </span>
+<span class="s1">  if($7==&quot;+&quot;)                                         </span>
+<span class="s1">    print $1, $4-1, $4, $12, &quot;.&quot;, $7;                </span>
+<span class="s1">  else                                               </span>
+<span class="s1">    print $1, $5-1, $5, $12, &quot;.&quot;, $7                 </span>
+<span class="s1">}&#39;</span><span class="w"> </span>gencode.v49.annotation.gtf<span class="w"> </span><span class="p">|</span><span class="w">  </span>
+tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;&quot;;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w">                                        </span>
+sort<span class="w"> </span>-k1,1V<span class="w"> </span>-k2,2n<span class="w"> </span>&gt;<span class="w"> </span>tss.bed<span class="w">                        </span>
+</code></pre></div>
+<p>This command extracts the <strong>transcription start site (TSS)</strong> for each transcript from the GTF annotation file. The script identifies whether each transcript is on the forward (+) or reverse (-) strand: for forward-strand transcripts, the TSS is the start coordinate (column 4), while for reverse-strand transcripts, it's the end coordinate (column 5).
+. The output <code>tss.bed</code> is a BED file containing chromosome, TSS position (as a 1bp interval), transcript name, and strand information for every annotated transcript.</p>
+<h3 id="step-3-extract-gene-bodies-panorama-mode">Step 3: Extract Gene Bodies (Panorama Mode)<a class="headerlink" href="#step-3-extract-gene-bodies-panorama-mode" title="Permanent link">&para;</a></h3>
+<p>Run this to get the full gene intervals from the same GTF file:</p>
+<div class="highlight"><pre><span></span><code>awk<span class="w"> </span><span class="s1">&#39;BEGIN{OFS=&quot;\t&quot;} $3==&quot;gene&quot; {                     </span>
+<span class="s1">  print $1, $4-1, $5, $10, &quot;.&quot;, $7                    </span>
+<span class="s1">}&#39;</span><span class="w"> </span>gencode.v49.annotation.gtf<span class="w"> </span><span class="p">|</span><span class="w"> </span>
+tr<span class="w"> </span>-d<span class="w"> </span><span class="s1">&#39;&quot;;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w">                                          </span>
+sort<span class="w"> </span>-k1,1V<span class="w"> </span>-k2,2n<span class="w"> </span>&gt;<span class="w"> </span>genes.bed
+</code></pre></div>
+<h3 id="step-4-create-output-directories">Step 4: Create Output Directories<a class="headerlink" href="#step-4-create-output-directories" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create directories for matrices and plots</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>deeptools_viz/matrices
+mkdir<span class="w"> </span>-p<span class="w"> </span>deeptools_viz/plots
+</code></pre></div>
+<h3 id="step-5-build-the-matrix-the-blueprint">Step 5: Build the Matrix (The Blueprint)<a class="headerlink" href="#step-5-build-the-matrix-the-blueprint" title="Permanent link">&para;</a></h3>
+<p>This command calculates the coverage scores for plotting.</p>
+<p><strong>Mode A: Reference-Point (TSS)</strong></p>
+<div class="highlight"><pre><span></span><code>computeMatrix<span class="w"> </span>reference-point<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--referencePoint<span class="w"> </span>TSS<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-R<span class="w"> </span>tss.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-S<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>bigwigs/H3K9ac_ENCFF534IPX.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>bigwigs/H3K9ac_ENCFF193NPE.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-b<span class="w"> </span><span class="m">3000</span><span class="w"> </span>-a<span class="w"> </span><span class="m">3000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--binSize<span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--numberOfProcessors<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>deeptools_viz/matrices/H3K9ac_TSS.mat.gz
+</code></pre></div>
+<p><strong>Mode B: Scale-Regions (Gene Body)</strong></p>
+<div class="highlight"><pre><span></span><code>computeMatrix<span class="w"> </span>scale-regions<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-R<span class="w"> </span>genes.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-S<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>bigwigs/H3K9ac_ENCFF534IPX.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>bigwigs/H3K9ac_ENCFF193NPE.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--regionBodyLength<span class="w"> </span><span class="m">5000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-b<span class="w"> </span><span class="m">3000</span><span class="w"> </span>-a<span class="w"> </span><span class="m">3000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--binSize<span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--numberOfProcessors<span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>deeptools_viz/matrices/H3K9ac_genes.mat.gz
+</code></pre></div>
+<h3 id="step-6-plotting-the-photo">Step 6: Plotting (The Photo)<a class="headerlink" href="#step-6-plotting-the-photo" title="Permanent link">&para;</a></h3>
+<p>Now we turn the matrices into plots.</p>
+<div class="highlight"><pre><span></span><code>plotProfile<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>deeptools_viz/matrices/H3K9ac_TSS.mat.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--perGroup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-out<span class="w"> </span>deeptools_viz/plots/H3K9ac_TSS_profile.pdf
+</code></pre></div>
+<p><strong>Generating plots for all samples:</strong></p>
+<p>Repeat the above <code>computeMatrix</code> and <code>plotProfile</code> commands for all your samples (Input, H3K27me3, CEBPA) to create comprehensive visualization of ChIP-seq signal patterns.</p>
+<hr />
+<h2 id="reading-the-pictures">Reading the Pictures<a class="headerlink" href="#reading-the-pictures" title="Permanent link">&para;</a></h2>
+<h3 id="tss-centered-profiles-individual-replicates">TSS-Centered Profiles: Individual Replicates<a class="headerlink" href="#tss-centered-profiles-individual-replicates" title="Permanent link">&para;</a></h3>
+<p>The following plots show average ChIP-seq signal around transcription start sites (TSS ±3 kb) for individual replicates of Input, H3K27me3, and H3K9ac:</p>
+<hr />
+<p><img alt="image" src="../images/bw1.png"/></p>
+<hr />
+<p>Each panel shows average signal around transcription start sites (±3 kb), and the differences between tracks are clear.</p>
+<p>The input tracks show low, smooth signal with no sharp peak at the TSS. This is what background looks like and confirms there is no real promoter-specific enrichment in the inputs.</p>
+<p>The H3K27me3 tracks show broader enrichment across the promoter region. The signal rises gradually toward the TSS and spreads over several kilobases, which fits a repressive chromatin mark that acts over domains rather than sharply at promoters.</p>
+<p>The H3K9ac tracks are very different. They show strong, narrow peaks centered exactly at the TSS, with signal far higher than all other tracks. This reflects active promoter-associated acetylation and clear separation from background.</p>
+<hr />
+<h3 id="tsstes-metagene-profiles-genome-wide-patterns">TSS/TES Metagene Profiles: Genome-Wide Patterns<a class="headerlink" href="#tsstes-metagene-profiles-genome-wide-patterns" title="Permanent link">&para;</a></h3>
+<p>The following plots show average ChIP-seq signal across transcription start sites (TSS) and transcription end sites (TES):</p>
+<p><img alt="Screenshot 2025-12-10 at 12 14 14 PM" src="../images/bw2.png" /></p>
+<hr />
+<p>The genome-wide metagene profiles show clear differences between input, CEBP, and histone marks across transcription start sites (TSS) and transcription end sites (TES).</p>
+<p>The input tracks show low-amplitude signal with mild structure around both TSS and TES, consistent with background chromatin features and technical biases rather than true enrichment. There is no sharp localization to either boundary.</p>
+<p>In contrast, H3K27me3 shows broad enrichment centered near the TSS that extends across the gene body and decays toward the TES. The signal is moderate in amplitude and spread over several kilobases, consistent with its role as a repressive chromatin mark acting over domains rather than forming sharp peaks.</p>
+<p>H3K9ac displays strong, sharp enrichment precisely at the TSS, with signal levels far exceeding input and transcription factor profiles. The signal decreases steadily across the gene body and approaches baseline near the TES, consistent with promoter-focused acetylation associated with active transcription.</p>
+<hr />
+<h2 id="average-signal-analysis">Average Signal Analysis<a class="headerlink" href="#average-signal-analysis" title="Permanent link">&para;</a></h2>
+<p>These are individual replicates of the different IPs. Now let's see how they look cumulatively.</p>
+<h3 id="average-bigwigs">Average BigWigs<a class="headerlink" href="#average-bigwigs" title="Permanent link">&para;</a></h3>
+<p>To reduce noise and create consensus signal tracks, we average the replicate BigWig files for each mark:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create output directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>bw_mean
+
+<span class="c1"># Average H3K9ac replicates</span>
+bigwig<span class="w"> </span>Average<span class="w"> </span>-b<span class="w"> </span>bigwigs/H3K9ac_ENCFF193NPE.bw<span class="w"> </span>bigwigs/H3K9ac_ENCFF534IPX.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>bw_mean/H3K9ac_mean.bw<span class="w"> </span>-p<span class="w"> </span><span class="m">6</span>
+
+<span class="c1"># Average H3K27me3 replicates</span>
+bigwigAverage<span class="w"> </span>-b<span class="w"> </span>bigwigs/H3K27me3_ENCFF164ALR.bw<span class="w"> </span>bigwigs/H3K27me3_ENCFF532DQH.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>bw_mean/H3K27me3_mean.bw<span class="w"> </span>-p<span class="w"> </span><span class="m">6</span>
+
+<span class="c1"># Average Input replicates</span>
+bigwigAverage<span class="w"> </span>-b<span class="w"> </span>bigwigs/Input_ENCFF110SOB.bw<span class="w"> </span>bigwigs/Input_ENCFF919XCV.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>bw_mean/Input_mean.bw<span class="w"> </span>-p<span class="w"> </span><span class="m">6</span>
+</code></pre></div>
+<h2 id="normalization-to-input-controls">Normalization to Input Controls<a class="headerlink" href="#normalization-to-input-controls" title="Permanent link">&para;</a></h2>
+<p>After averaging, we normalize IP signals to Input controls using log2 ratio to reveal true enrichment:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Create output directory</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>bw_log2
+
+<span class="c1"># Normalize H3K9ac to Input (log2 ratio)</span>
+bigwigCompare<span class="w"> </span>-b1<span class="w"> </span>bw_mean/H3K9ac_mean.bw<span class="w"> </span>-b2<span class="w"> </span>bw_mean/Input_mean.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--operation<span class="w"> </span>log2<span class="w"> </span>--pseudocount<span class="w"> </span><span class="m">1</span><span class="w"> </span>-p<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>bw_log2/H3K9ac_log2IPoverInput.bw
+
+<span class="c1"># Normalize H3K27me3 to Input (log2 ratio)</span>
+bigwigCompare<span class="w"> </span>-b1<span class="w"> </span>bw_mean/H3K27me3_mean.bw<span class="w"> </span>-b2<span class="w"> </span>bw_mean/Input_mean.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--operation<span class="w"> </span>log2<span class="w"> </span>--pseudocount<span class="w"> </span><span class="m">1</span><span class="w"> </span>-p<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>bw_log2/H3K27me3_log2IPoverInput.bw
+</code></pre></div>
+<p><strong>What is pseudocount?</strong></p>
+<p>The <code>--pseudocount 1</code> parameter adds 1 to all signal values before calculating the log2 ratio. This prevents two critical mathematical problems:</p>
+<ol>
+<li><strong>Division by zero</strong>: When Input signal is 0, we'd calculate log2(IP/0) which is undefined</li>
+<li><strong>Log of zero</strong>: When IP signal is 0, we'd calculate log2(0/Input) which is also undefined</li>
+</ol>
+<p>By adding 1 to both values, we calculate <code>log2((IP+1)/(Input+1))</code> instead. This gives meaningful results even in regions with no signal while minimally affecting regions with strong signal (where adding 1 to large numbers like 100 has negligible impact).</p>
+<hr />
+<h2 id="visualization-with-normalized-data">Visualization with Normalized Data<a class="headerlink" href="#visualization-with-normalized-data" title="Permanent link">&para;</a></h2>
+<h3 id="tss-centered-profile-with-log2ipinput">TSS-Centered Profile with log2(IP/Input)<a class="headerlink" href="#tss-centered-profile-with-log2ipinput" title="Permanent link">&para;</a></h3>
+<p>Create profile plots using the log2-normalized BigWig files:</p>
+<div class="highlight"><pre><span></span><code>computeMatrix<span class="w"> </span>reference-point<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--referencePoint<span class="w"> </span>TSS<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-b<span class="w"> </span><span class="m">3000</span><span class="w"> </span>-a<span class="w"> </span><span class="m">3000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--binSize<span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-R<span class="w"> </span>tss.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-S<span class="w"> </span>bw_log2/H3K9ac_log2IPoverInput.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--skipZeros<span class="w"> </span>--missingDataAsZero<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>deeptools_viz/matrices/H3K9ac_TSS_log2.mat.gz
+
+plotProfile<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>deeptools_viz/matrices/H3K9ac_TSS_log2.mat.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--refPointLabel<span class="w"> </span>TSS<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--yAxisLabel<span class="w"> </span><span class="s2">&quot;log2(IP/Input)&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotTitle<span class="w"> </span><span class="s2">&quot;H3K9ac log2(IP/Input)&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-out<span class="w"> </span>deeptools_viz/plots/H3K9ac_TSS_log2_profile.pdf
+</code></pre></div>
+<p><img alt="Additional visualization" src="../images/bw2b.png" /></p>
+<h3 id="gene-body-profile-with-averaged-signal">Gene Body Profile with Averaged Signal<a class="headerlink" href="#gene-body-profile-with-averaged-signal" title="Permanent link">&para;</a></h3>
+<p>Visualize signal across gene bodies using the averaged (non-normalized) BigWigs:</p>
+<div class="highlight"><pre><span></span><code>computeMatrix<span class="w"> </span>scale-regions<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-b<span class="w"> </span><span class="m">3000</span><span class="w"> </span>-a<span class="w"> </span><span class="m">3000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--regionBodyLength<span class="w"> </span><span class="m">5000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--binSize<span class="w"> </span><span class="m">250</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-R<span class="w"> </span>genes.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-S<span class="w"> </span>bw_mean/H3K9ac_mean.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--skipZeros<span class="w"> </span>--missingDataAsZero<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>deeptools_viz/matrices/H3K9ac_genes_mean.mat.gz
+
+plotProfile<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>deeptools_viz/matrices/H3K9ac_genes_mean.mat.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--yAxisLabel<span class="w"> </span><span class="s2">&quot;Average signal&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotTitle<span class="w"> </span><span class="s2">&quot;H3K9ac gene-body (averaged replicates)&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-out<span class="w"> </span>deeptools_viz/plots/H3K9ac_genes_profile.pdf
+</code></pre></div>
+<hr />
+<h2 id="cebpa-peak-focused-analysis">CEBPA Peak-Focused Analysis<a class="headerlink" href="#cebpa-peak-focused-analysis" title="Permanent link">&para;</a></h2>
+<p>Now, to focus on peaks identified by MACS3 and validated by IDR, we'll identify promoters overlapping CEBPA consensus peaks.</p>
+<h3 id="step-1-identify-promoters-overlapping-cebpa-peaks">Step 1: Identify Promoters Overlapping CEBPA Peaks<a class="headerlink" href="#step-1-identify-promoters-overlapping-cebpa-peaks" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Count total CEBPA IDR-passed peaks</span>
+wc<span class="w"> </span>-l<span class="w"> </span>ceb_idr_passed.bed
+<span class="c1"># Output: 9468 ceb_idr_passed.bed</span>
+
+<span class="c1"># Find promoters that overlap with CEBPA peaks</span>
+bedtools<span class="w"> </span>intersect<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-a<span class="w"> </span>tss.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-b<span class="w"> </span>ceb_idr_passed.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span>&gt;<span class="w"> </span>cebpa_peak_promoters.bed
+
+wc<span class="w"> </span>-l<span class="w"> </span>cebpa_peak_promoters.bed
+<span class="c1"># Output: 5792 cebpa_peak_promoters.bed</span>
+</code></pre></div>
+<p>This identifies 5,792 promoters (out of all TSS) that are bound by CEBPA.</p>
+<h3 id="step-2-create-tss-centered-heatmap-for-cebpa-bound-promoters">Step 2: Create TSS-Centered Heatmap for CEBPA-Bound Promoters<a class="headerlink" href="#step-2-create-tss-centered-heatmap-for-cebpa-bound-promoters" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Compute matrix for CEBPA signal at CEBPA-bound promoters</span>
+computeMatrix<span class="w"> </span>reference-point<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--referencePoint<span class="w"> </span>TSS<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-b<span class="w"> </span><span class="m">2000</span><span class="w"> </span>-a<span class="w"> </span><span class="m">2000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-R<span class="w"> </span>cebpa_peak_promoters.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-S<span class="w"> </span>bw_log2/ceb_log2IPoverInput.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--binSize<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--skipZeros<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>deeptools_viz/matrices/ceb_idr_TSS.mat.gz
+
+<span class="c1"># Plot heatmap</span>
+plotHeatmap<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>deeptools_viz/matrices/ceb_idr_TSS.mat.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colorMap<span class="w"> </span>RdBu_r<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--refPointLabel<span class="w"> </span>TSS<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dpi<span class="w"> </span><span class="m">600</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-out<span class="w"> </span>deeptools_viz/plots/cebpa_peakPromoters_heatmap.pdf
+</code></pre></div>
+<h3 id="heatmap-visualization">Heatmap Visualization<a class="headerlink" href="#heatmap-visualization" title="Permanent link">&para;</a></h3>
+<p><img alt="CEBPA heatmap at bound promoters" src="../images/bw3.png" /></p>
+<hr />
+<h3 id="step-3-chromatin-state-analysis-at-cebpa-bound-promoters">Step 3: Chromatin State Analysis at CEBPA-Bound Promoters<a class="headerlink" href="#step-3-chromatin-state-analysis-at-cebpa-bound-promoters" title="Permanent link">&para;</a></h3>
+<p><strong>Objective:</strong> Use the CEBPA-peak promoter bed file (<code>cebpa_peak_promoters.bed</code>) to identify enrichment of H3K9ac (active mark) and H3K27me3 (repressive mark) at CEBPA binding sites.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Compute matrix using CEBPA-peak promoters as regions</span>
+<span class="c1"># This shows H3K9ac and H3K27me3 enrichment at sites where CEBPA binds</span>
+computeMatrix<span class="w"> </span>reference-point<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--referencePoint<span class="w"> </span>TSS<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-b<span class="w"> </span><span class="m">2000</span><span class="w"> </span>-a<span class="w"> </span><span class="m">2000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-R<span class="w"> </span>cebpa_peak_promoters.bed<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-S<span class="w"> </span>bw_log2/ceb_log2IPoverInput.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>bw_log2/H3K9ac_log2IPoverInput.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">     </span>bw_log2/H3K27me3_log2IPoverInput.bw<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--binSize<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-p<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>deeptools_viz/matrices/cebpa_multimark_TSS.mat.gz
+
+<span class="c1"># Profile plot: shows average enrichment across all CEBPA-bound promoters</span>
+plotProfile<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>deeptools_viz/matrices/cebpa_multimark_TSS.mat.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--perGroup<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--plotTitle<span class="w"> </span><span class="s2">&quot;CEBPA-bound promoters: Chromatin state&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dpi<span class="w"> </span><span class="m">600</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-out<span class="w"> </span>deeptools_viz/plots/cebpa_multimark_profile.pdf
+
+<span class="c1"># Heatmap: shows enrichment at individual CEBPA-bound promoters</span>
+plotHeatmap<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-m<span class="w"> </span>deeptools_viz/matrices/cebpa_multimark_TSS.mat.gz<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--colorMap<span class="w"> </span>RdBu_r<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dpi<span class="w"> </span><span class="m">600</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-out<span class="w"> </span>deeptools_viz/plots/cebpa_multimark_heatmap.pdf
+</code></pre></div>
+<p><strong>What this reveals:</strong></p>
+<ul>
+<li>H3K9ac enrichment at CEBPA peaks indicates active chromatin</li>
+<li>H3K27me3 depletion at CEBPA peaks confirms absence of repressive marks</li>
+<li>CEBPA binds preferentially to active (H3K9ac+, H3K27me3-) promoters</li>
+</ul>
+<hr />
+<h3 id="profile-plot">Profile Plot<a class="headerlink" href="#profile-plot" title="Permanent link">&para;</a></h3>
+<p><img alt="Multi-mark profile at CEBPA-bound promoters" src="../images/bw4.png" /></p>
+<hr />
+<h3 id="heatmap">Heatmap<a class="headerlink" href="#heatmap" title="Permanent link">&para;</a></h3>
+<p><img alt="Multi-mark heatmap at CEBPA-bound promoters" src="../images/bw5.png" /></p>
+<hr />
+<h2 id="directory-structure-after-visualization">Directory Structure After Visualization<a class="headerlink" href="#directory-structure-after-visualization" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>chipseq_tutorial/
+├── bigwigs/                    ← Normalized BigWig files from Tutorial 14
+├── bw_mean/                    ← **NEW: Averaged BigWig files**
+│   ├── H3K9ac_mean.bw
+│   ├── H3K27me3_mean.bw
+│   └── Input_mean.bw
+├── bw_log2/                    ← **NEW: Log2(IP/Input) normalized files**
+│   ├── H3K9ac_log2IPoverInput.bw
+│   └── H3K27me3_log2IPoverInput.bw
+├── deeptools_viz/              ← **NEW: deepTools visualization outputs**
+│   ├── matrices/               # Computed matrices
+│   │   ├── H3K9ac_TSS.mat.gz
+│   │   ├── H3K9ac_genes.mat.gz
+│   │   └── cebpa_multimark_TSS.mat.gz
+│   └── plots/                  # Generated plots
+│       ├── H3K9ac_TSS_profile.pdf
+│       ├── H3K9ac_genes_profile.pdf
+│       └── cebpa_multimark_heatmap.pdf
+├── tss.bed                     ← **NEW: TSS annotation (1bp positions)**
+├── genes.bed                   ← **NEW: Gene body annotation**
+└── cebpa_peak_promoters.bed    ← **NEW: CEBPA-bound promoters**
+</code></pre></div>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>CEBPA-bound promoters are enriched for active chromatin (H3K9ac) and depleted for repressive chromatin (H3K27me3).</p>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

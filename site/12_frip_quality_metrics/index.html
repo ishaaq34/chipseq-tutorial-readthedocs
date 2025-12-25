@@ -1,0 +1,1741 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A comprehensive, hands-on tutorial for ChIP-seq data analysis">
+      
+      
+        <meta name="author" content="Raja Ishaq Nabi Khan">
+      
+      
+        <link rel="canonical" href="https://ishaaq34.github.io/Chipseq_analysis_tutorial_mkdocs/12_frip_quality_metrics/">
+      
+      
+        <link rel="prev" href="../11_macs3_peak_calling/">
+      
+      
+        <link rel="next" href="../13_idr_consensus_motifs_rk_corrected/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Quality Metrics - FRiP - ChIP-seq Analysis Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#quality-metrics-frip-fraction-of-reads-in-peaks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ChIP-seq Analysis Tutorial" class="md-header__button md-logo" aria-label="ChIP-seq Analysis Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ChIP-seq Analysis Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quality Metrics - FRiP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ishaaq34/Chipseq_analysis_tutorial_mkdocs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00_introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../01_setup_environment/" class="md-tabs__link">
+          
+  
+  
+  Setup & Data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../05_alignment_bowtie2/" class="md-tabs__link">
+          
+  
+  
+  Alignment & QC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../11_macs3_peak_calling/" class="md-tabs__link">
+          
+  
+  
+  Peak Calling
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../14_bigwig_generation/" class="md-tabs__link">
+          
+  
+  
+  Visualization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tutorial_book_creation/" class="md-tabs__link">
+          
+  
+  
+  Appendix
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ChIP-seq Analysis Tutorial" class="md-nav__button md-logo" aria-label="ChIP-seq Analysis Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ChIP-seq Analysis Tutorial
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ishaaq34/Chipseq_analysis_tutorial_mkdocs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_setup_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_bash_automation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bash Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_geo_fastq_download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEO Fastq Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_fastq_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastq Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alignment & QC
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Alignment & QC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_alignment_bowtie2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alignment with Bowtie2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_duplicate_removal_qc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Duplicate Removal & QC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_library_complexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Library Complexity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_bam_quality_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAM Quality Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_strand_cross_correlation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strand Cross Correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_bam_summary_fingerprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAM Summary & Fingerprint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peak Calling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Peak Calling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_macs3_peak_calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MACS3 Peak Calling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Metrics - FRiP
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Metrics - FRiP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-frip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is FRiP?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is FRiP?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculating-frip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calculating FRiP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-frip-calculation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete FRiP Calculation Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpreting-these-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpreting These Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frip-quality-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FRiP Quality Standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure-after-frip-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure After FRiP Calculation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure-after-frip-calculation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure After FRiP Calculation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_idr_consensus_motifs_rk_corrected/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducibility Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Visualization
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_bigwig_generation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BigWig Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_visualization_heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization Heatmaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_chipseeker_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation with ChIPseeker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendix
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial_book_creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How We Built This Book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTORS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#background" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Background
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-what-is-frip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What is FRiP?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What is FRiP?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#calculating-frip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Calculating FRiP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#complete-frip-calculation-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete FRiP Calculation Script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-output" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected Output
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpreting-these-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpreting These Results
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frip-quality-standards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FRiP Quality Standards
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure-after-frip-calculation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure After FRiP Calculation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-structure-after-frip-calculation_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Directory Structure After FRiP Calculation
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="quality-metrics-frip-fraction-of-reads-in-peaks">Quality Metrics - FRiP (Fraction of Reads in Peaks)<a class="headerlink" href="#quality-metrics-frip-fraction-of-reads-in-peaks" title="Permanent link">&para;</a></h1>
+<p><code>FRiP</code> <code>quality-control</code> <code>ChIP-seq</code> <code>ENCODE-standards</code> <code>peak-calling</code> <code>QC-metrics</code></p>
+<h2 id="background">Background<a class="headerlink" href="#background" title="Permanent link">&para;</a></h2>
+<p>Having called peaks with MACS3, we now quantify ChIP enrichment quality using <strong>FRiP</strong> (Fraction of Reads in Peaks). FRiP measures the proportion of sequencing reads that overlap called peak regions versus background.</p>
+<p>In successful ChIP-seq experiments, immunoprecipitation selectively enriches DNA fragments bound by the target protein, causing a substantial fraction of reads to concentrate in peak regions. The remainder represents genomic background from non-specific binding or incomplete washing. By contrast, failed experiments show most reads distributed evenly across the genome, yielding low FRiP values.</p>
+<p>FRiP thus provides a rapid, quantitative metric for immunoprecipitation efficiency—high FRiP indicates successful enrichment, while low FRiP flags potential technical problems before investing effort in downstream analysis.</p>
+<hr />
+<h2 id="1-what-is-frip">1. What is FRiP?<a class="headerlink" href="#1-what-is-frip" title="Permanent link">&para;</a></h2>
+<p>FRiP measures how much of your ChIP signal is concentrated in called peaks. It's a key ENCODE quality metric.</p>
+<h3 id="calculating-frip">Calculating FRiP<a class="headerlink" href="#calculating-frip" title="Permanent link">&para;</a></h3>
+<p><strong>Formula:</strong> FRiP = (Reads in peaks) / (Total mapped reads)</p>
+<p><strong>Input files:</strong></p>
+<ul>
+<li>BAM file: <code>encode_bam/ceb_ENCFF327JFG.bam</code> (deduplicated, MAPQ filtered)</li>
+<li>Peak file: <code>macs3_results/ceb_ENCFF327JFG_peaks.narrowPeak</code></li>
+</ul>
+<p><strong>Complete FRiP calculation script:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Step 1: Count total mapped reads</span>
+<span class="nv">TOTAL_READS</span><span class="o">=</span><span class="k">$(</span>samtools<span class="w"> </span>view<span class="w"> </span>-c<span class="w"> </span>encode_bam/ceb_ENCFF327JFG.bam<span class="k">)</span>
+</code></pre></div>
+<p>This command counts the total number of alignments in the BAM file. Since the BAM is already deduplicated and MAPQ-filtered, this value represents the total number of mapped reads, which serves as the denominator in the FRiP calculation.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Step 2: Merge overlapping peak regions (avoid double-counting)</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>frip_analysis
+sort<span class="w"> </span>-k1,1<span class="w"> </span>-k2,2n<span class="w"> </span>macs3_results/ceb_ENCFF327JFG_peaks.narrowPeak<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>bedtools<span class="w"> </span>merge<span class="w"> </span>-i<span class="w"> </span>stdin<span class="w"> </span>&gt;<span class="w"> </span>frip_analysis/ceb_ENCFF327JFG.peaks.merged.bed
+</code></pre></div>
+<p>MACS3 peak files may contain overlapping or adjacent peak regions. To avoid double-counting reads that overlap multiple nearby peaks, all peak intervals are first sorted and then merged into a non-redundant set of regions. This step ensures that each read contributes at most once to the FRiP numerator.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Step 3: Count reads overlapping peaks (unique reads only)</span>
+<span class="nv">READS_IN_PEAKS</span><span class="o">=</span><span class="k">$(</span>
+<span class="w">  </span>samtools<span class="w"> </span>view<span class="w"> </span>-b<span class="w"> </span>encode_bam/ceb_ENCFF327JFG.bam<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>bedtools<span class="w"> </span>intersect<span class="w"> </span>-u<span class="w"> </span>-a<span class="w"> </span>stdin<span class="w"> </span>-b<span class="w"> </span>frip_analysis/ceb_ENCFF327JFG.peaks.merged.bed<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>samtools<span class="w"> </span>view<span class="w"> </span>-c
+<span class="k">)</span>
+</code></pre></div>
+<p>Aligned reads from the BAM file are intersected with the merged peak regions. The <code>-u</code> option ensures that each read is counted only once, even if it overlaps more than one peak interval. The resulting count corresponds to the number of unique reads that fall within CEBPA peak regions.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Step 4: Calculate the FRiP score</span>
+<span class="nv">FRIP</span><span class="o">=</span><span class="k">$(</span>awk<span class="w"> </span>-v<span class="w"> </span><span class="nv">n</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">READS_IN_PEAKS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">d</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">TOTAL_READS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s1">&#39;BEGIN {printf &quot;%.5f&quot;, n/d}&#39;</span><span class="k">)</span>
+</code></pre></div>
+<p>The FRiP score is calculated as the ratio of reads overlapping peak regions to the total number of mapped reads. The result is formatted to five decimal places for clarity and consistency.</p>
+<h3 id="complete-frip-calculation-script">Complete FRiP Calculation Script<a class="headerlink" href="#complete-frip-calculation-script" title="Permanent link">&para;</a></h3>
+<p>For convenience, here's the complete executable script combining all steps:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1"># Complete FRiP calculation for ceb_ENCFF327JFG</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span>frip_analysis
+
+<span class="c1"># Count total reads</span>
+<span class="nv">TOTAL_READS</span><span class="o">=</span><span class="k">$(</span>samtools<span class="w"> </span>view<span class="w"> </span>-c<span class="w"> </span>encode_bam/ceb_ENCFF327JFG.bam<span class="k">)</span>
+
+<span class="c1"># Merge overlapping peaks</span>
+sort<span class="w"> </span>-k1,1<span class="w"> </span>-k2,2n<span class="w"> </span>macs3_results/ceb_ENCFF327JFG_peaks.narrowPeak<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>bedtools<span class="w"> </span>merge<span class="w"> </span>-i<span class="w"> </span>stdin<span class="w"> </span>&gt;<span class="w"> </span>frip_analysis/ceb_ENCFF327JFG.peaks.merged.bed
+
+<span class="c1"># Count reads in peaks</span>
+<span class="nv">READS_IN_PEAKS</span><span class="o">=</span><span class="k">$(</span>samtools<span class="w"> </span>view<span class="w"> </span>-b<span class="w"> </span>encode_bam/ceb_ENCFF327JFG.bam<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>bedtools<span class="w"> </span>intersect<span class="w"> </span>-u<span class="w"> </span>-a<span class="w"> </span>stdin<span class="w"> </span>-b<span class="w"> </span>frip_analysis/ceb_ENCFF327JFG.peaks.merged.bed<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>samtools<span class="w"> </span>view<span class="w"> </span>-c<span class="k">)</span>
+
+<span class="c1"># Calculate FRiP</span>
+<span class="nv">FRIP</span><span class="o">=</span><span class="k">$(</span>awk<span class="w"> </span>-v<span class="w"> </span><span class="nv">n</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">READS_IN_PEAKS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>-v<span class="w"> </span><span class="nv">d</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">TOTAL_READS</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="s1">&#39;BEGIN {printf &quot;%.5f&quot;, n/d}&#39;</span><span class="k">)</span>
+
+<span class="c1"># Report results</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Sample: ceb_ENCFF327JFG&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Total mapped reads : </span><span class="si">${</span><span class="nv">TOTAL_READS</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Reads in peaks     : </span><span class="si">${</span><span class="nv">READS_IN_PEAKS</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;FRiP               : </span><span class="si">${</span><span class="nv">FRIP</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<hr />
+<h3 id="expected-output">Expected Output<a class="headerlink" href="#expected-output" title="Permanent link">&para;</a></h3>
+<p><strong>Results we got:</strong></p>
+<div class="highlight"><pre><span></span><code>sample total_reads reads_in_peaks FRiP
+ceb_ENCFF327JFG 27863042 1511077 0.05423
+ceb_ENCFF744SVA 16814770 1187486 0.07062
+H3K27me3_ENCFF164ALR 39952273 11528033 0.28855
+H3K27me3_ENCFF532DQH 35184227 10987930 0.31230
+H3K9ac_ENCFF193NPE 34567738 14283991 0.41322
+H3K9ac_ENCFF534IPX 39792428 6625200 0.16649
+</code></pre></div>
+<h3 id="interpreting-these-results">Interpreting These Results<a class="headerlink" href="#interpreting-these-results" title="Permanent link">&para;</a></h3>
+<p><strong>Key Observations:</strong></p>
+<ul>
+<li><strong>H3K9ac:</strong> Replicate discordance (41% vs 17%) needs IDR validation</li>
+<li><strong>H3K27me3:</strong> Excellent concordance (~30%) indicates robust data  </li>
+<li><strong>CEBPA:</strong> Low (5-7%) but acceptable for sparse transcription factors</li>
+</ul>
+<hr />
+<h3 id="frip-quality-standards">FRiP Quality Standards<a class="headerlink" href="#frip-quality-standards" title="Permanent link">&para;</a></h3>
+<p>ENCODE guidelines (<a href="https://doi.org/10.1101/gr.136184.111">Landt et al. 2012</a>) flag transcription factor experiments with FRiP below ~1%, as such values often reflect weak enrichment or technical failure, while well-defined point-source factors like CTCF or REST frequently achieve FRiP values of 20–50%. These expectations are not universal: factors with few binding sites or low occupancy can yield FRiP &lt;1% yet remain biologically valid.</p>
+<p>Histone marks generally show higher FRiP due to their broader genomic coverage, though acceptable values differ markedly between narrow and broad marks.</p>
+<p>Because FRiP depends strongly on sequencing depth, peak-calling parameters, and the biological target, it should always be interpreted in conjunction with complementary QC metrics such as fingerprint plots, strand cross-correlation, and coverage profiles, not in isolation.</p>
+<hr />
+<h2 id="directory-structure-after-frip-calculation">Directory Structure After FRiP Calculation<a class="headerlink" href="#directory-structure-after-frip-calculation" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>chipseq_tutorial/
+├── encode_bam/                  ← Input BAM files
+│   ├── ceb_ENCFF327JFG.bam
+│   └── ...
+├── macs3_results/               ← Peak files from MACS3
+│   ├── ceb_ENCFF327JFG_peaks.narrowPeak
+│   ├── H3K9ac_ENCFF534IPX_peaks.narrowPeak
+│   └── ...
+└── frip_analysis/               ← FRiP working files (optional)
+    ├── ceb_ENCFF327JFG.peaks.merged.bed
+    └── frip_scores.txt
+</code></pre></div>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p>You've learned how to:</p>
+<ul>
+<li>Calculate FRiP (Fraction of Reads in Peaks) quality metrics</li>
+<li>Interpret FRiP values according to ENCODE guidelines</li>
+<li>Understand what constitutes good vs. poor ChIP-seq data</li>
+</ul>
+<blockquote>
+<p>[!NOTE]
+<strong>Up Next:</strong> Assess reproducibility between replicates using IDR (Irreproducible Discovery Rate) and identify consensus peaks for downstream motif analysis.</p>
+</blockquote>
+<hr />
+<hr />
+<h2 id="directory-structure-after-frip-calculation_1">Directory Structure After FRiP Calculation<a class="headerlink" href="#directory-structure-after-frip-calculation_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>chipseq_tutorial/
+├── bam_files_final/            ← Filtered BAM files
+├── macs3_results/              ← Peak files
+│   ├── H3K9ac_ENCFF534IPX_peaks.narrowPeak
+│   ├── H3K9ac_ENCFF193NPE_peaks.narrowPeak
+│   ├── H3K27me3_ENCFF164ALR_peaks.broadPeak
+│   └── H3K27me3_ENCFF532DQH_peaks.broadPeak
+└── frip_results/               ← **NEW: FRiP metrics**
+    ├── H3K9ac_ENCFF534IPX_frip.txt
+    ├── H3K9ac_ENCFF193NPE_frip.txt
+    ├── H3K27me3_ENCFF164ALR_frip.txt
+    └── H3K27me3_ENCFF532DQH_frip.txt
+</code></pre></div>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,2248 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A comprehensive, hands-on tutorial for ChIP-seq data analysis">
+      
+      
+        <meta name="author" content="Raja Ishaq Nabi Khan">
+      
+      
+        <link rel="canonical" href="https://ishaaq34.github.io/Chipseq_analysis_tutorial_mkdocs/02_bash_automation/">
+      
+      
+        <link rel="prev" href="../01_setup_environment/">
+      
+      
+        <link rel="next" href="../03_geo_fastq_download/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Bash Automation - ChIP-seq Analysis Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bash-automation-your-digital-robot" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="ChIP-seq Analysis Tutorial" class="md-header__button md-logo" aria-label="ChIP-seq Analysis Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ChIP-seq Analysis Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bash Automation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ishaaq34/Chipseq_analysis_tutorial_mkdocs
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../00_introduction/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_setup_environment/" class="md-tabs__link">
+          
+  
+  
+  Setup & Data
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../05_alignment_bowtie2/" class="md-tabs__link">
+          
+  
+  
+  Alignment & QC
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../11_macs3_peak_calling/" class="md-tabs__link">
+          
+  
+  
+  Peak Calling
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../14_bigwig_generation/" class="md-tabs__link">
+          
+  
+  
+  Visualization
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../tutorial_book_creation/" class="md-tabs__link">
+          
+  
+  
+  Appendix
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="ChIP-seq Analysis Tutorial" class="md-nav__button md-logo" aria-label="ChIP-seq Analysis Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    ChIP-seq Analysis Tutorial
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ishaaq34/Chipseq_analysis_tutorial_mkdocs
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00_introduction/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setup & Data
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Setup & Data
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_setup_environment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment Setup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bash Automation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bash Automation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-why-learn-bash-for-bioinformatics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction: Why Learn Bash for Bioinformatics?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-foundation-setting-up-safe-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Foundation: Setting Up Safe Scripts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run-bash-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Run Bash Scripts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Run Bash Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-save-and-execute-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Save and Execute (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-using-bash-command-without-chmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: Using bash Command (Without chmod)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-understanding-sample-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 1: Understanding Sample Lists
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1: Understanding Sample Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-roll-call-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The "Roll Call" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-creating-your-sample-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2: Creating Your Sample List
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2: Creating Your Sample List">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-verify-your-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Verify Your Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-extract-clean-sample-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Extract Clean Sample Names
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Extract Clean Sample Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-a-single-end-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario A: Single-End Reads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-1-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Step-by-step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-one-line-command-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: One-line command (recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-b-paired-end-reads-most-common" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario B: Paired-End Reads (Most Common)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-using-your-sample-list-in-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3: Using Your Sample List in Automation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3: Using Your Sample List in Automation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding the Concept
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-1-basic-loop-to-verify-file-pairs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Basic Loop to Verify File Pairs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-adding-directory-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Adding Directory Paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-complete-workflow-with-input-and-output-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Complete Workflow with Input and Output Directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_geo_fastq_download/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    GEO Fastq Download
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_fastq_concepts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fastq Concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alignment & QC
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Alignment & QC
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_alignment_bowtie2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Alignment with Bowtie2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06_duplicate_removal_qc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Duplicate Removal & QC
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07_library_complexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Library Complexity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08_bam_quality_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAM Quality Metrics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09_strand_cross_correlation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Strand Cross Correlation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_bam_summary_fingerprint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BAM Summary & Fingerprint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Peak Calling
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Peak Calling
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_macs3_peak_calling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MACS3 Peak Calling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_frip_quality_metrics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quality Metrics - FRiP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_idr_consensus_motifs_rk_corrected/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reproducibility Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Visualization
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_bigwig_generation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BigWig Generation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_visualization_heatmaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Visualization Heatmaps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_chipseeker_annotation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Annotation with ChIPseeker
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Appendix
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Appendix
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial_book_creation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How We Built This Book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTORS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contributors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction-why-learn-bash-for-bioinformatics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction: Why Learn Bash for Bioinformatics?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-foundation-setting-up-safe-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Foundation: Setting Up Safe Scripts
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run-bash-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How to Run Bash Scripts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="How to Run Bash Scripts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#method-1-save-and-execute-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Save and Execute (Recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-using-bash-command-without-chmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: Using bash Command (Without chmod)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-1-understanding-sample-lists" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 1: Understanding Sample Lists
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 1: Understanding Sample Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-roll-call-analogy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The "Roll Call" Analogy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-creating-your-sample-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2: Creating Your Sample List
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2: Creating Your Sample List">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-verify-your-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Verify Your Files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-extract-clean-sample-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Extract Clean Sample Names
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 2: Extract Clean Sample Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-a-single-end-reads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario A: Single-End Reads
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-1-step-by-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 1: Step-by-step
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#method-2-one-line-command-recommended" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Method 2: One-line command (recommended)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-b-paired-end-reads-most-common" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario B: Paired-End Reads (Most Common)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-using-your-sample-list-in-automation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3: Using Your Sample List in Automation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3: Using Your Sample List in Automation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#understanding-the-concept" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Understanding the Concept
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-1-basic-loop-to-verify-file-pairs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 1: Basic Loop to Verify File Pairs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2-adding-directory-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 2: Adding Directory Paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-3-complete-workflow-with-input-and-output-directories" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example 3: Complete Workflow with Input and Output Directories
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="bash-automation-your-digital-robot">Bash Automation (Your Digital Robot)<a class="headerlink" href="#bash-automation-your-digital-robot" title="Permanent link">&para;</a></h1>
+<p><code>bash</code> <code>shell-scripting</code> <code>loops</code> <code>automation</code> <code>while-loops</code> <code>for-loops</code> <code>variables</code> <code>command-line</code> <code>batch-processing</code></p>
+<h2 id="introduction-why-learn-bash-for-bioinformatics">Introduction: Why Learn Bash for Bioinformatics?<a class="headerlink" href="#introduction-why-learn-bash-for-bioinformatics" title="Permanent link">&para;</a></h2>
+<p><strong>What is Bash?</strong></p>
+<p>Bash is a way to control a computer using text commands instead of clicking through menus. It lets you run programs, manage files, and automate tasks by writing simple commands or scripts.</p>
+<p><strong>Why is this essential for bioinformatics?</strong></p>
+<p>In bioinformatics, you work with large datasets and many specialized tools that must run in a specific sequence. Bash makes these workflows <strong>repeatable</strong> by allowing you to run the same analysis on new data with one command. It keeps them <strong>transparent</strong> so you can see exactly what was done in plain text. Most importantly, Bash workflows are <strong>reliable</strong> because they're less prone to manual errors from repetitive clicking. Without Bash automation, analyses become harder to track, reproduce, and trust.</p>
+<hr />
+<h2 id="the-foundation-setting-up-safe-scripts">The Foundation: Setting Up Safe Scripts<a class="headerlink" href="#the-foundation-setting-up-safe-scripts" title="Permanent link">&para;</a></h2>
+<p>Every reliable Bash script should start with these two critical lines:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+</code></pre></div>
+<p><strong>What do these lines do?</strong></p>
+<ol>
+<li>
+<p><strong><code>#!/bin/bash</code></strong> – This "shebang" line tells your computer to use the Bash shell. It ensures your script behaves the same way on any system.</p>
+</li>
+<li>
+<p><strong><code>set -euo pipefail</code></strong> – This changes Bash's default behavior from "keep going even if something breaks" to "stop immediately when an error occurs."</p>
+</li>
+</ol>
+<p>This single choice separates casual scripting from <strong>defensible scientific analysis</strong>. You want your script to fail loudly if something goes wrong, not silently produce incorrect results.</p>
+<p><strong>Adding practical elements:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>output
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Script started&quot;</span>
+</code></pre></div>
+<ul>
+<li>
+<p><strong><code>mkdir -p output</code></strong> – Creates a directory called <code>output</code> if it doesn't exist. The <code>-p</code> flag prevents errors if the directory is already there. This establishes a predictable place for your results.</p>
+</li>
+<li>
+<p><strong><code>echo "Script started"</code></strong> – Prints a message to confirm the script is running. This is helpful for logging and debugging, especially when scripts run unattended.</p>
+</li>
+</ul>
+<hr />
+<h2 id="how-to-run-bash-scripts">How to Run Bash Scripts<a class="headerlink" href="#how-to-run-bash-scripts" title="Permanent link">&para;</a></h2>
+<p>Now that you understand what goes inside a script, let's learn <strong>how to actually run it</strong>.</p>
+<h3 id="method-1-save-and-execute-recommended">Method 1: Save and Execute (Recommended)<a class="headerlink" href="#method-1-save-and-execute-recommended" title="Permanent link">&para;</a></h3>
+<p><strong>Step 1: Create the script file</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Open a text editor (nano, vim, or any editor)</span>
+nano<span class="w"> </span>my_script.sh
+</code></pre></div>
+<p><strong>Step 2: Paste your script content</strong></p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+
+mkdir<span class="w"> </span>-p<span class="w"> </span>output
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Script started&quot;</span>
+</code></pre></div>
+<p><strong>Step 3: Save and exit</strong></p>
+<ul>
+<li>In <code>nano</code>: Press <code>Ctrl+O</code> (save), then <code>Ctrl+X</code> (exit)</li>
+<li>In <code>vim</code>: Press <code>ESC</code>, type <code>:wq</code>, press <code>Enter</code></li>
+</ul>
+<p><strong>Step 4: Make the script executable</strong></p>
+<div class="highlight"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>my_script.sh
+</code></pre></div>
+<p><strong>What <code>chmod +x</code> does:</strong> This command gives the file "execute" permission, allowing you to run it as a program.</p>
+<p><strong>Step 5: Run the script</strong></p>
+<div class="highlight"><pre><span></span><code>./my_script.sh
+</code></pre></div>
+<p><strong>Why the <code>./</code> prefix?</strong> The <code>./</code> tells Bash to look for the script in the current directory.</p>
+<hr />
+<h3 id="method-2-using-bash-command-without-chmod">Method 2: Using <code>bash</code> Command (Without chmod)<a class="headerlink" href="#method-2-using-bash-command-without-chmod" title="Permanent link">&para;</a></h3>
+<p>If you don't want to make the file executable, you can still run it:</p>
+<div class="highlight"><pre><span></span><code>bash<span class="w"> </span>my_script.sh
+</code></pre></div>
+<p>This works even without <code>chmod +x</code>, but the preferred method is still to use <code>chmod +x</code> and <code>./script.sh</code>.</p>
+<hr />
+<h2 id="part-1-understanding-sample-lists">Part 1: Understanding Sample Lists<a class="headerlink" href="#part-1-understanding-sample-lists" title="Permanent link">&para;</a></h2>
+<h3 id="the-roll-call-analogy">The "Roll Call" Analogy<a class="headerlink" href="#the-roll-call-analogy" title="Permanent link">&para;</a></h3>
+<p>Imagine grading 100 students. You don't want to type <code>"Student_John_Doe_Homework_Final_v2.docx"</code> every single time. You just want a simple list:</p>
+<ul>
+<li>John</li>
+<li>Sarah</li>
+<li>Mike</li>
+</ul>
+<p>In bioinformatics, we feel the same way about our sequencing files.</p>
+<p><strong>The Problem:</strong></p>
+<p>Our sequencing files have long, complex names like:</p>
+<div class="highlight"><pre><span></span><code>Control_A_H3K9ac_R1.fastq.gz
+Control_B_H3K9ac_R1.fastq.gz
+</code></pre></div>
+<p><strong>The Goal:</strong></p>
+<p>Create a clean list of sample IDs (like a "roll call") that we can feed into automated scripts:</p>
+<div class="highlight"><pre><span></span><code>Control_A_H3K9ac
+Control_B_H3K9ac
+</code></pre></div>
+<p><strong>Why do we need this?</strong></p>
+<p>This simple text file will allow our computer to automatically loop through every sample and process them one by one. Instead of typing commands 100 times, we type it once and let the loop do the work.</p>
+<hr />
+<h2 id="part-2-creating-your-sample-list">Part 2: Creating Your Sample List<a class="headerlink" href="#part-2-creating-your-sample-list" title="Permanent link">&para;</a></h2>
+<h3 id="step-1-verify-your-files">Step 1: Verify Your Files<a class="headerlink" href="#step-1-verify-your-files" title="Permanent link">&para;</a></h3>
+<p>Before creating any list, always check what files you actually have.</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>*.fastq.gz<span class="w"> </span>
+</code></pre></div>
+<p><strong>What this does:</strong></p>
+<ul>
+<li><code>ls</code> = "list" command</li>
+<li><code>*.fastq.gz</code> = show only files ending in <code>.fastq.gz</code></li>
+</ul>
+<p>This explicitly targets FASTQ files and is useful at the very start of any sequencing workflow (RNA-seq, ChIP-seq, ATAC-seq, CUT&amp;RUN) to quickly verify that your input files are named correctly and consistently.</p>
+<hr />
+<h3 id="step-2-extract-clean-sample-names">Step 2: Extract Clean Sample Names<a class="headerlink" href="#step-2-extract-clean-sample-names" title="Permanent link">&para;</a></h3>
+<p>Now we need to remove the messy file extensions to get clean sample IDs. We'll use a tool called <code>sed</code> (Stream Editor) for this.</p>
+<hr />
+<h4 id="scenario-a-single-end-reads">Scenario A: Single-End Reads<a class="headerlink" href="#scenario-a-single-end-reads" title="Permanent link">&para;</a></h4>
+<p>If you have <strong>single-end sequencing data</strong> , use this approach:</p>
+<h4 id="method-1-step-by-step">Method 1: Step-by-step<a class="headerlink" href="#method-1-step-by-step" title="Permanent link">&para;</a></h4>
+<p>This method breaks down the process into individual steps so you can see what's happening at each stage.</p>
+<blockquote>
+<p><strong>Note:</strong> In real workflows, your FASTQ files are typically stored in a subdirectory like <code>raw/</code> or <code>fastq_raw/</code>. It is better to create the sample list in the <code>raw/</code> folder and copy that list to working directory</p>
+</blockquote>
+<p><strong>Step 1: List all FASTQ files from the raw folder and save to a text file</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>raw/
+ls<span class="w"> </span>*.fastq.gz<span class="w"> </span>&gt;<span class="w"> </span>samples.txt
+</code></pre></div>
+<p>This command finds all files ending in <code>.fastq.gz</code> inside the <code>raw/</code> folder and saves their names to <code>samples.txt</code>.</p>
+<p><strong>Step 2: Check what got saved</strong></p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>samples.txt
+</code></pre></div>
+<p>This displays the contents of <code>samples.txt</code> so you can verify the filenames. You should see:</p>
+<div class="highlight"><pre><span></span><code>Control_A_H3K9ac.fastq.gz
+Control_B_H3K9ac.fastq.gz
+</code></pre></div>
+<p><strong>Step 3: Remove the path and <code>.fastq.gz</code> extension from each line</strong></p>
+<div class="highlight"><pre><span></span><code>sed<span class="w"> </span><span class="s1">&#39;s/.fastq.gz//&#39;</span><span class="w"> </span>samples.txt<span class="w"> </span>&gt;<span class="w"> </span>sample_id.txt
+</code></pre></div>
+<p><strong>What this does:</strong></p>
+<ul>
+<li>Second <code>sed 's/.fastq.gz//'</code> = Remove the <code>.fastq.gz</code> extension</li>
+<li><code>&gt;</code> = Redirect the final output to a new file</li>
+<li><code>sample_id.txt</code> = Save the cleaned names here</li>
+</ul>
+<p><strong>Step 4: Verify the final result</strong></p>
+<div class="highlight"><pre><span></span><code>cat<span class="w"> </span>sample_id.txt
+</code></pre></div>
+<p>Now you should see clean sample IDs without paths or extensions:</p>
+<div class="highlight"><pre><span></span><code>Control_A_H3K9ac
+Control_B_H3K9ac
+</code></pre></div>
+<hr />
+<h4 id="method-2-one-line-command-recommended">Method 2: One-line command (recommended)<a class="headerlink" href="#method-2-one-line-command-recommended" title="Permanent link">&para;</a></h4>
+<p>Once you understand the steps above, you can combine them into one efficient command:</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>*.fastq.gz<span class="w"> </span><span class="p">|</span><span class="w">  </span>sed<span class="w"> </span><span class="s1">&#39;s/.fastq.gz//&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>sample_id.txt
+</code></pre></div>
+<p><strong>What the pipe (<code>|</code>) does:</strong></p>
+<p>Instead of saving to intermediate files, the pipe passes output directly from one command to the next:</p>
+<ol>
+<li><code>ls *.fastq.gz</code> lists the files</li>
+<li><code>sed</code> removes the <code>.fastq.gz</code> extension  </li>
+<li>Final result is saved to <code>sample_id.txt</code></li>
+</ol>
+<p>This is faster and cleaner than the step-by-step method.  Then moving the sample_id.txt to working directory.</p>
+<div class="highlight"><pre><span></span><code>cd ..
+mv raw/sample_id.txt .
+</code></pre></div>
+<hr />
+<h4 id="scenario-b-paired-end-reads-most-common">Scenario B: Paired-End Reads (Most Common)<a class="headerlink" href="#scenario-b-paired-end-reads-most-common" title="Permanent link">&para;</a></h4>
+<p>Most ChIP-seq experiments use <strong>paired-end sequencing</strong>, which produces <em>two</em> files per sample:</p>
+<div class="highlight"><pre><span></span><code>Control_A_H3K9ac_R1.fastq.gz
+Control_A_H3K9ac_R2.fastq.gz
+Control_B_H3K9ac_R1.fastq.gz
+Control_B_H3K9ac_R2.fastq.gz
+</code></pre></div>
+<p><strong>The challenge:</strong> We don't want <code>Control_A_H3K9ac</code> to appear twice in our list. We only want each sample name <em>once</em>.</p>
+<p><strong>The solution:</strong> Target only the <code>_R1</code> files.</p>
+<div class="highlight"><pre><span></span><code>ls<span class="w"> </span>*_R1.fastq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span><span class="s1">&#39;s/_R1.fastq.gz//&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>sample_id.txt
+</code></pre></div>
+<p><strong>Why look for R1?</strong></p>
+<p>By listing only the <code>_R1</code> files, we get exactly one entry per sample. We then strip off the <code>_R1.fastq.gz</code> suffix to get the clean sample name.</p>
+<p>The script will automatically know to look for both <code>_R1</code> and <code>_R2</code> files later when we use this list.</p>
+<hr />
+<h2 id="part-3-using-your-sample-list-in-automation">Part 3: Using Your Sample List in Automation<a class="headerlink" href="#part-3-using-your-sample-list-in-automation" title="Permanent link">&para;</a></h2>
+<p>Now that we have <code>sample_id.txt</code>, we can use it to automate processing of all samples.</p>
+<h3 id="understanding-the-concept">Understanding the Concept<a class="headerlink" href="#understanding-the-concept" title="Permanent link">&para;</a></h3>
+<p>Since we know the sample ID (e.g., <code>Control_A_H3K9ac</code>), we can tell our script:</p>
+<blockquote>
+<p>"For each sample ID, look for two files: the sample name plus <code>_R1.fastq.gz</code> and the sample name plus <code>_R2.fastq.gz</code>"</p>
+</blockquote>
+<p>The computer can construct these filenames automatically.</p>
+<hr />
+<h3 id="example-1-basic-loop-to-verify-file-pairs">Example 1: Basic Loop to Verify File Pairs<a class="headerlink" href="#example-1-basic-loop-to-verify-file-pairs" title="Permanent link">&para;</a></h3>
+<p>This script reads your sample list and prints out the paired filenames:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+
+<span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>sample<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sample_id: </span><span class="nv">$sample</span><span class="s2">&quot;</span>
+
+<span class="w">  </span><span class="nv">fq1</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="s2">_R1.fastq.gz&quot;</span>
+<span class="w">  </span><span class="nv">fq2</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="s2">_R2.fastq.gz&quot;</span>
+
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;paired end: </span><span class="nv">$fq1</span><span class="s2"> : </span><span class="nv">$fq2</span><span class="s2">&quot;</span>
+<span class="k">done</span><span class="w"> </span>&lt;<span class="w"> </span>sample_id.txt
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code>sample_id: Control_A_H3K9ac
+paired end:  Control_A_H3K9ac_R1.fastq.gz  :  Control_A_H3K9ac_R2.fastq.gz
+
+sample_id: Control_B_H3K9ac
+paired end:    Control_B_H3K9ac_R1.fastq.gz  :  Control_B_H3K9ac_R2.fastq.gz
+</code></pre></div>
+<p><strong>What this script does:</strong></p>
+<ul>
+<li><code>while read -r sample</code> – Reads one line (sample ID) at a time from <code>sample_id.txt</code></li>
+<li><code>fq1="${sample}_R1.fastq.gz"</code> – Constructs the forward read filename</li>
+<li><code>fq2="${sample}_R2.fastq.gz"</code> – Constructs the reverse read filename</li>
+<li><code>echo</code> – Prints the results so you can verify</li>
+</ul>
+<hr />
+<h3 id="example-2-adding-directory-paths">Example 2: Adding Directory Paths<a class="headerlink" href="#example-2-adding-directory-paths" title="Permanent link">&para;</a></h3>
+<p>In real workflows, your raw FASTQ files are usually in a specific folder. Let's account for that:</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+
+<span class="nv">RAW_DIR</span><span class="o">=</span><span class="s2">&quot;fastq_raw&quot;</span>
+
+<span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>sample<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sample_id: </span><span class="nv">$sample</span><span class="s2">&quot;</span>
+
+<span class="w">  </span><span class="nv">fq1</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">RAW_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="s2">_R1.fastq.gz&quot;</span>
+<span class="w">  </span><span class="nv">fq2</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">RAW_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="s2">_R2.fastq.gz&quot;</span>
+
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;inputs:&quot;</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  </span><span class="nv">$fq1</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  </span><span class="nv">$fq2</span><span class="s2">&quot;</span>
+
+<span class="k">done</span><span class="w"> </span>&lt;<span class="w"> </span>sample_id.txt
+</code></pre></div>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code>sample_id: Control_A_H3K9ac
+inputs:
+  fastq_raw/Control_A_H3K9ac_R1.fastq.gz
+  fastq_raw/Control_A_H3K9ac_R2.fastq.gz
+
+sample_id: Control_B_H3K9ac
+inputs:
+  fastq_raw/Control_B_H3K9ac_R1.fastq.gz
+  fastq_raw/Control_B_H3K9ac_R2.fastq.gz
+</code></pre></div>
+<p><strong>Key change:</strong></p>
+<ul>
+<li><code>RAW_DIR="fastq_raw"</code> – Defines where your input files are located</li>
+<li><code>${RAW_DIR}/${sample}_R1.fastq.gz</code> – Constructs the full path to each file</li>
+</ul>
+<hr />
+<h3 id="example-3-complete-workflow-with-input-and-output-directories">Example 3: Complete Workflow with Input and Output Directories<a class="headerlink" href="#example-3-complete-workflow-with-input-and-output-directories" title="Permanent link">&para;</a></h3>
+<p>This example shows a real bioinformatics workflow pattern: reading files from an <strong>input directory</strong> and writing results to an <strong>output directory</strong>.</p>
+<div class="highlight"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="nb">set</span><span class="w"> </span>-euo<span class="w"> </span>pipefail
+
+<span class="nv">RAW_DIR</span><span class="o">=</span><span class="s2">&quot;fastq_raw&quot;</span>
+<span class="nv">OUT_DIR</span><span class="o">=</span><span class="s2">&quot;bowtie_align&quot;</span>
+
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OUT_DIR</span><span class="s2">&quot;</span>
+
+<span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>sample<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sample_id: </span><span class="nv">$sample</span><span class="s2">&quot;</span>
+
+<span class="w">  </span><span class="nv">fq1</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">RAW_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="s2">_R1.fastq.gz&quot;</span>
+<span class="w">  </span><span class="nv">fq2</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">RAW_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="s2">_R2.fastq.gz&quot;</span>
+<span class="w">  </span><span class="nv">bam</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">OUT_DIR</span><span class="si">}</span><span class="s2">/</span><span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="s2">.sorted.bam&quot;</span>
+
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;inputs:&quot;</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  </span><span class="nv">$fq1</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  </span><span class="nv">$fq2</span><span class="s2">&quot;</span>
+
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;output:&quot;</span>
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;  </span><span class="nv">$bam</span><span class="s2">&quot;</span>
+
+<span class="w">  </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;bowtie2 command: bowtie2 -x hg38_index -1 </span><span class="nv">$fq1</span><span class="s2"> -2 </span><span class="nv">$fq2</span><span class="s2"> | samtools sort -o </span><span class="nv">$bam</span><span class="s2">&quot;</span>
+<span class="w">  </span><span class="nb">echo</span>
+<span class="k">done</span><span class="w"> </span>&lt;<span class="w"> </span>sample_id.txt
+</code></pre></div>
+<p><strong>Understanding the directory structure:</strong></p>
+<p>This script follows a crucial bioinformatics principle: <strong>separate input data from output results</strong>.</p>
+<ul>
+<li><strong>Input directory</strong> (<code>RAW_DIR="fastq_raw"</code>): Where your raw sequencing files are stored. This should be read-only to preserve original data.</li>
+<li><strong>Output directory</strong> (<code>OUT_DIR="bowtie_align"</code>): Where processed results will be saved. Created automatically if it doesn't exist.</li>
+</ul>
+<p><strong>Breaking down the script:</strong></p>
+<ol>
+<li>
+<p><strong><code>mkdir -p "$OUT_DIR"</code></strong> – Creates the output directory before processing starts. The <code>-p</code> flag means "don't error if it already exists."</p>
+</li>
+<li>
+<p><strong>Input file construction:</strong></p>
+</li>
+<li><code>fq1="${RAW_DIR}/${sample}_R1.fastq.gz"</code> – Forward reads from the raw data folder</li>
+<li>
+<p><code>fq2="${RAW_DIR}/${sample}_R2.fastq.gz"</code> – Reverse reads from the raw data folder</p>
+</li>
+<li>
+<p><strong>Output file construction:</strong></p>
+</li>
+<li>
+<p><code>bam="${OUT_DIR}/${sample}.sorted.bam"</code> – Aligned, sorted BAM file will go in the output folder</p>
+</li>
+<li>
+<p><strong>The command preview:</strong></p>
+</li>
+<li>Shows what the actual bowtie2 alignment command would be</li>
+<li><code>bowtie2 -x hg38_index</code> – Uses the human genome reference</li>
+<li><code>-1 $fq1 -2 $fq2</code> – Paired-end input files</li>
+<li><code>| samtools sort -o $bam</code> – Pipes output to samtools to create sorted BAM</li>
+</ol>
+<p><strong>Output:</strong></p>
+<div class="highlight"><pre><span></span><code>sample_id: Control_A_H3K9ac
+inputs:
+  fastq_raw/Control_A_H3K9ac_R1.fastq.gz
+  fastq_raw/Control_A_H3K9ac_R2.fastq.gz
+output:
+  bowtie_align/Control_A_H3K9ac.sorted.bam
+bowtie2 command: bowtie2 -x hg38_index -1 fastq_raw/Control_A_H3K9ac_R1.fastq.gz -2 fastq_raw/Control_A_H3K9ac_R2.fastq.gz | samtools sort -o bowtie_align/Control_A_H3K9ac.sorted.bam
+
+sample_id: Control_B_H3K9ac
+inputs:
+  fastq_raw/Control_B_H3K9ac_R1.fastq.gz
+  fastq_raw/Control_B_H3K9ac_R2.fastq.gz
+output:
+  bowtie_align/Control_B_H3K9ac.sorted.bam
+bowtie2 command: bowtie2 -x hg38_index -1 fastq_raw/Control_B_H3K9ac_R1.fastq.gz -2 fastq_raw/Control_B_H3K9ac_R2.fastq.gz | samtools sort -o bowtie_align/Control_B_H3K9ac.sorted.bam
+</code></pre></div>
+<p><strong>Why organize this way?</strong></p>
+<p>This directory structure keeps your project clean and organized:</p>
+<div class="highlight"><pre><span></span><code>your_project/
+├── fastq_raw/              ← Original data (never modified)
+│   ├── Control_A_H3K9ac_R1.fastq.gz
+│   ├── Control_A_H3K9ac_R2.fastq.gz
+│   └── ...
+├── bowtie_align/           ← Alignment results (can regenerate)
+│   ├── Control_A_H3K9ac.sorted.bam
+│   └── ...
+├── sample_id.txt           ← Sample list
+└── analysis_script.sh      ← This script
+</code></pre></div>
+<p>If something goes wrong with alignment, you can safely delete the <code>bowtie_align/</code> folder and rerun the script without touching your original raw data.</p>
+<hr />
+<p><strong>Best Practice: Separate Folders for Each Process</strong></p>
+<p>In real ChIP-seq analysis, you should create a <strong>separate output folder for each processing step and file type</strong>. This keeps your project organized and makes troubleshooting easier. A typical ChIP-seq project might have folders like:</p>
+<ul>
+<li><code>fastq_raw/</code> - Original FASTQ files from sequencing</li>
+<li><code>fastqc_reports/</code> - Quality control reports</li>
+<li><code>trimmed_fastq/</code> - Adapter-trimmed reads (if needed)</li>
+<li><code>bowtie_align/</code> - Aligned BAM files</li>
+<li><code>dedup_bam/</code> - Deduplicated BAM files</li>
+<li><code>peaks/</code> - Peak calling results from MACS2</li>
+<li><code>bigwig/</code> - Coverage tracks for genome browsers</li>
+<li><code>qc_metrics/</code> - deepTools quality metrics</li>
+</ul>
+<p>This folder structure makes it easy to: (1) track which processing stage created which files, (2) quickly find the data you need, (3) delete and regenerate intermediate files without affecting earlier steps, and (4) share your work with collaborators who can immediately understand your project organization.</p>
+<hr />
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<p><strong>What you learned:</strong></p>
+<ol>
+<li><strong>Safe scripting:</strong> Start every script with <code>#!/bin/bash</code> and <code>set -euo pipefail</code></li>
+<li><strong>Sample list creation:</strong> Use <code>ls</code> and <code>sed</code> to extract clean sample IDs from messy filenames</li>
+<li><strong>Single-end:</strong> <code>ls *.fastq.gz | sed 's/.fastq.gz//' &gt; sample_id.txt</code></li>
+<li><strong>Paired-end:</strong> <code>ls *_R1.fastq.gz | sed 's/_R1.fastq.gz//' &gt; sample_id.txt</code></li>
+<li><strong>Automation:</strong> Use <code>while read</code> loops to process all samples automatically</li>
+</ol>
+<p><strong>The key insight:</strong>
+This simple text file (<code>sample_id.txt</code>) acts as a "roll call" or "attendance sheet" for your entire analysis pipeline. It's the foundation that makes large-scale automation possible.</p>
+<blockquote>
+<p>[!NOTE]
+<strong>Up Next:</strong> Now that you understand Bash automation, we'll use these skills to download real ChIP-seq data from public databases.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.tracking", "search.suggest", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
