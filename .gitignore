@@ -24,3 +24,6 @@ __pycache__/
 *.bed
 *.narrowPeak
 *.broadPeak
+
+# MkDocs
+site/
