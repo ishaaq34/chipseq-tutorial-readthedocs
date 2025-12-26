@@ -36,6 +36,7 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
+    - content.action.view
 
 plugins:
   - search
@@ -57,6 +58,9 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ishaaq34
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/in/raja-khan-b3a77a289
+      name: LinkedIn Profile
 
 extra_css:
   - stylesheets/extra.css
