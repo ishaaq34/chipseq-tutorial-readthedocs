@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v3 */
+/* Version: v4 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -102,20 +102,32 @@ html body [class*="md-nav"] label {
   margin-top: 2.2em;
 }
 
-.md-typeset .highlight pre, .md-typeset pre {
-  border-radius: 8px !important;
-  font-size: 0.88rem !important;
+/* Highlight/Code Block Demarcation */
+.md-typeset .highlight,
+.md-typeset pre {
   background-color: #f1f3f5 !important;
-  border: 1px solid #d1d9e0 !important;
-  border-left: 5px solid #009688 !important;
+  border: 1px solid #ced4da !important;
+  border-left: 6px solid #009688 !important;
+  border-radius: 8px !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
-  margin: 1.8em 0 !important;
-  overflow: auto !important;
+  margin: 2em 0 !important;
+  overflow: hidden !important; /* Ensure child pre doesn't overflow rounded corners */
+}
+
+.md-typeset .highlight pre,
+.md-typeset pre {
+  margin: 0 !important;
+  background-color: transparent !important;
+  border: none !important;
+  border-left: none !important;
+  box-shadow: none !important;
 }
 
 .md-typeset pre code {
   padding: 1.5em !important;
   display: block !important;
+  font-size: 0.88rem !important;
+  line-height: 1.6 !important;
 }
 
 .md-header__title,
@@ -354,10 +366,14 @@ header .md-header__title {
 /* .md-typeset code {} - Placeholder removed */
 
 /* Dark mode code blocks */
-[data-md-color-scheme="slate"] .md-typeset .highlight pre, 
+[data-md-color-scheme="slate"] .md-typeset .highlight,
 [data-md-color-scheme="slate"] .md-typeset pre {
   background-color: #0d1117 !important;
   border-color: #30363d !important;
   border-left-color: #009688 !important;
   box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .highlight pre {
+  background-color: transparent !important;
 }
