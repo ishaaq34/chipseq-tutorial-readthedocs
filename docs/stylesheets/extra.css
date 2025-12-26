@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v14 */
+/* Version: v15 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -342,7 +342,7 @@ header .md-header__title {
   color: #0550ae !important;
   padding: 0.25em 0.5em !important;
   border-radius: 4px !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
   border: 1px solid #addcff !important;
 }
 
@@ -351,7 +351,7 @@ header .md-header__title {
   background-color: #132639 !important;
   color: #79c0ff !important;
   border-color: #2188ff !important;
-  font-weight: 700 !important;
+  font-weight: 400 !important;
 }
 
 /* Code blocks should NOT use inline code styling */
