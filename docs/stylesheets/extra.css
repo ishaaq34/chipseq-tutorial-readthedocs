@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v11 */
+/* Version: v12 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -7,7 +7,7 @@
 
 .md-typeset {
   font-size: 0.95rem;
-  line-height: 1.65;
+  line-height: 1.5;
 }
 
 .md-typeset h1 {
