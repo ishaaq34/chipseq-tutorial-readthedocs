@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v4 */
+/* Version: v5 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -99,7 +99,7 @@ html body [class*="md-nav"] label {
 .md-typeset h2,
 .md-typeset h3 {
   font-weight: 700 !important;
-  margin-top: 2.2em;
+  margin-top: 1em !important;
 }
 
 /* Highlight/Code Block Demarcation */
