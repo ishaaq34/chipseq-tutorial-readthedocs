@@ -1,5 +1,5 @@
 site_name: ChIP-seq Analysis Tutorial
-site_description: A comprehensive, hands-on tutorial for ChIP-seq data analysis  
+site_description: A comprehensive, hands-on tutorial for ChIP-seq data analysis
 site_author: Raja Ishaq Nabi Khan
 site_url: https://ishaaq34.github.io/Chipseq_analysis_tutorial_mkdocs/
 
@@ -60,26 +60,26 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - Home: 00_introduction.md
+  - Home: index.md
   - Setup & Data:
-    - Environment Setup: 01_setup_environment.md
-    - Bash Automation: 02_bash_automation.md
-    - GEO Fastq Download: 03_geo_fastq_download.md
-    - Fastq Concepts: 04_fastq_concepts.md
+      - Environment Setup: 01_setup_environment.md
+      - Bash Automation: 02_bash_automation.md
+      - GEO Fastq Download: 03_geo_fastq_download.md
+      - Fastq Concepts: 04_fastq_concepts.md
   - Alignment & QC:
-    - Alignment with Bowtie2: 05_alignment_bowtie2.md
-    - Duplicate Removal & QC: 06_duplicate_removal_qc.md
-    - Library Complexity: 07_library_complexity.md
-    - BAM Quality Metrics: 08_bam_quality_metrics.md
-    - Strand Cross Correlation: 09_strand_cross_correlation.md
-    - BAM Summary & Fingerprint: 10_bam_summary_fingerprint.md
+      - Alignment with Bowtie2: 05_alignment_bowtie2.md
+      - Duplicate Removal & QC: 06_duplicate_removal_qc.md
+      - Library Complexity: 07_library_complexity.md
+      - BAM Quality Metrics: 08_bam_quality_metrics.md
+      - Strand Cross Correlation: 09_strand_cross_correlation.md
+      - BAM Summary & Fingerprint: 10_bam_summary_fingerprint.md
   - Peak Calling:
-    - MACS3 Peak Calling: 11_macs3_peak_calling.md
-    - Quality Metrics - FRiP: 12_frip_quality_metrics.md
-    - Reproducibility Analysis: 13_idr_consensus_motifs_rk_corrected.md
+      - MACS3 Peak Calling: 11_macs3_peak_calling.md
+      - Quality Metrics - FRiP: 12_frip_quality_metrics.md
+      - Reproducibility Analysis: 13_idr_consensus_motifs_rk_corrected.md
   - Visualization:
-    - BigWig Generation: 14_bigwig_generation.md
-    - Visualization Heatmaps: 15_visualization_heatmaps.md
-    - Annotation with ChIPseeker: 16_chipseeker_annotation.md
+      - BigWig Generation: 14_bigwig_generation.md
+      - Visualization Heatmaps: 15_visualization_heatmaps.md
+      - Annotation with ChIPseeker: 16_chipseeker_annotation.md
   - Reference:
-    - Contributors: CONTRIBUTORS.md
+      - Contributors: CONTRIBUTORS.md
