@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v6 */
+/* Version: v7 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -376,4 +376,25 @@ header .md-header__title {
 
 [data-md-color-scheme="slate"] .md-typeset .highlight pre {
   background-color: transparent !important;
+}
+
+/* Custom 'Copied to clipboard' notification styling */
+.md-clipboard {
+  color: #ffffff !important;
+}
+
+/* Toast notification (appears when code is copied) */
+.md-tooltip {
+  background-color: #00897b !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(0, 137, 123, 0.3) !important;
+  border: 1px solid #00695c !important;
+}
+
+/* Dark mode toast */
+[data-md-color-scheme="slate"] .md-tooltip {
+  background-color: #26a69a !important;
+  border-color: #00897b !important;
+  box-shadow: 0 4px 16px rgba(38, 166, 154, 0.5) !important;
 }
