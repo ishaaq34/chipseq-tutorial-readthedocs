@@ -103,12 +103,16 @@ html body [class*="md-nav"] label {
 }
 
 .md-typeset .highlight pre, .md-typeset pre {
-  border-radius: 6px;
+  border-radius: 8px !important;
   font-size: 0.85rem;
+  background-color: #f8f9fa !important;
+  border: 1px solid #e0e6ed !important;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
+  margin: 1.5em 0 !important;
 }
 
 .md-typeset pre code {
-  padding: 1em;
+  padding: 1.2em !important;
 }
 
 .md-header__title,
@@ -344,18 +348,12 @@ header .md-header__title {
 }
 
 /* Organize keywords/tags better - inline code that appears in groups */
-.md-typeset code {
-}
-
-}
-
-/* Add borders to code blocks */
-.md-typeset .highlight pre, .md-typeset pre {
-  border: 1px solid #333333 !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05) !important;
-}
+/* .md-typeset code {} - Placeholder removed */
 
 /* Dark mode code blocks */
-[data-md-color-scheme="slate"] .md-typeset .highlight pre, .md-typeset pre {
-  border-color: #444 !important;
+[data-md-color-scheme="slate"] .md-typeset .highlight pre, 
+[data-md-color-scheme="slate"] .md-typeset pre {
+  background-color: #1e2124 !important;
+  border-color: #32373d !important;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3) !important;
 }
