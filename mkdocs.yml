@@ -39,6 +39,7 @@ theme:
     - search.highlight
     - content.code.copy
     - content.action.view
+    - content.action.edit
 
 plugins:
   - search
