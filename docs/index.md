@@ -99,41 +99,117 @@ The tutorial consists of 16 comprehensive chapters organized by workflow stage:
 
 ### [01. Environment Setup](01_setup_environment.md)
 
+- Basic Concept
+- Execution
+- Understanding the YAML "Recipe"
+- Managing Your Environment
+
 ### [02. Bash Automation Fundamentals](02_bash_automation.md)
+
+- Introduction: Why Learn Bash for Bioinformatics?
+- The Foundation: Setting Up Safe Scripts
+- Part 1: Understanding Sample Lists
+- Part 2: Creating Your Sample List
+- Part 3: Using Your Sample List in Automation
 
 ### [03. GEO/FASTQ Download](03_geo_fastq_download.md)
 
+- Level 1: Basic Concept
+- Level 2: Fetching the data
+- Connecting GEO to SRA
+- Technical Replicates (Multi-lane)
+
 ### [04. FASTQ Concepts & QC](04_fastq_concepts.md)
+
+- Basic Concept (The Anatomy of a Read)
+- Level 2: Execution (The Car Wash)
+- Level 3: Advanced Analysis (The Math)
 
 ### Alignment & Initial QC
 
 ### [05. Alignment with Bowtie2](05_alignment_bowtie2.md)
 
+- Basic Concept (The "Puzzle")
+- Execution (Solving It)
+- Optimization
+- Understanding BAM File Structure
+
 ### [06. Duplicate Removal & QC](06_duplicate_removal_qc.md)
+
+- Basic Concept: The "Photocopier" Analogy
+- Understanding the Details
+- Marking & Removing Duplicates: Why Picard is Unique
+- Samtools (Simple Alternative)
 
 ### [07. Library Complexity Assessment](07_library_complexity.md)
 
+- Level 1: Basic Concept (The Photographer)
+- Level 2: Execution (The Calculator)
+- Pipeline Summary: Pre-processing Workflow Complete
+- Transition to ENCODE BAM Files
+
 ### [08. BAM Quality Metrics](08_bam_quality_metrics.md)
+
+- Basic Concept (The Experiment & The File)
+- Data used in the tutorial
+- Basic Quality Checks
 
 ### [09. Strand Cross-Correlation](09_strand_cross_correlation.md)
 
+- Basic Concept (The Echo)
+- PhantomPeakQualTools
+- Level 3: Analysis (Signal vs Noise)
+
 ### [10. BAM Summary & Fingerprint Plots](10_bam_summary_fingerprint.md)
+
+- Basic Concept (The Health Check)
+- Running the QC of bam files before Peak Calling
+- Level 3: Reading the Charts
 
 ### Peak Calling & Reproducibility
 
 ### [11. MACS3 Peak Calling](11_macs3_peak_calling.md)
 
+- Basic Concept (The "Heap" Hunt)
+- Requirements
+- Execution (Step-by-Step)
+- Understanding the Outputs
+
 ### [12. FRiP Quality Metrics](12_frip_quality_metrics.md)
 
+- Background
+- What is FRiP?
+- FRiP Quality Standards
+
 ### [13. IDR & Consensus Peaks](13_idr_consensus_motifs_rk_corrected.md)
+
+- Reproducibility Analysis: IDR (Irreproducible Discovery Rate)
+- Running IDR on CEBPA Replicates
+- Motif Analysis: Finding DNA Binding Sequences
+- Motif Discovery with HOMER
 
 ### Visualization & Annotation
 
 ### [14. BigWig Generation](14_bigwig_generation.md)
 
+- Basic Concept (The Traffic Map)
+- Requirements (Effective Genome Size)
+- Execution (The Converter)
+- Fine Tuning (Under the Hood)
+
 ### [15. Visualization with deepTools](15_visualization_heatmaps.md)
 
+- Basic Concept (Camera Modes)
+- The Blueprint & The Photo - Basic requirement
+- Reading the Pictures
+- Average Signal Analysis
+- Normalization to Input Controls
+- CEBPA Peak-Focused Analysis
+
 ### [16. Peak Annotation with ChIPseeker](16_chipseeker_annotation.md)
+
+- Introduction: Decoding the Map
+- How to Interpret the Figures (Reference Guide)
 
 ---
 
