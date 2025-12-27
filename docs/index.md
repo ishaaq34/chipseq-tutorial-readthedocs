@@ -114,7 +114,6 @@ The tutorial consists of 16 comprehensive chapters organized by workflow stage:
 
 - Navigating NCBI GEO database
 - Downloading ChIP-seq datasets
-- Understanding SRA and FASTQ formats
 - Using sra-toolkit and wget
 
 **04. [FASTQ Concepts & QC](04_fastq_concepts.md)**
@@ -136,7 +135,7 @@ The tutorial consists of 16 comprehensive chapters organized by workflow stage:
 **06. [Duplicate Removal & QC](06_duplicate_removal_qc.md)**
 
 - PCR duplicate detection
-- Using Picard MarkDuplicates
+- Using Picard and samtoolsMarkDuplicates
 - Filtering for quality and uniqueness
 - Creating final analysis-ready BAM files
 
@@ -175,14 +174,10 @@ The tutorial consists of 16 comprehensive chapters organized by workflow stage:
 - Narrow vs broad peak calling
 - MACS3 parameters and options
 - Understanding peak output formats
-- Model building and interpretation
 
 **12. [FRiP Quality Metrics](12_frip_quality_metrics.md)**
 
 - Fraction of Reads in Peaks (FRiP)
-- Calculating signal-to-noise ratios
-- Quality thresholds (ENCODE standards)
-- Batch FRiP calculation scripts
 
 **13. [IDR & Consensus Peaks](13_idr_consensus_motifs_rk_corrected.md)**
 
@@ -190,7 +185,6 @@ The tutorial consists of 16 comprehensive chapters organized by workflow stage:
 - Reproducibility assessment between replicates
 - Creating consensus peak sets
 - HOMER motif discovery
-- Biological interpretation
 
 ### Visualization & Annotation
 
@@ -208,14 +202,12 @@ The tutorial consists of 16 comprehensive chapters organized by workflow stage:
 - BigWig averaging and normalization
 - Log2(IP/Input) ratios
 - Multi-mark chromatin state analysis
-- Understanding pseudocount in normalization
 
 **16. [Peak Annotation with ChIPseeker](16_chipseeker_annotation.md)**
 
 - Genomic feature annotation
 - Promoter/exon/intron distribution
 - Functional enrichment analysis
-- Biological interpretation of binding patterns
 
 ---
 
