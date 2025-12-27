@@ -91,7 +91,135 @@ By the end, you'll have the skills and the code to analyze your own ChIP-seq dat
 
 ---
 
-## 7. Dataset Used in This Tutorial
+## 7. Tutorial Structure
+
+The tutorial consists of 16 comprehensive chapters organized by workflow stage:
+
+### Setup & Data Acquisition
+
+**01. [Environment Setup](01_setup_environment.md)**
+
+- Installing required software (conda, mamba)
+- Creating the analysis environment
+- Tool verification and troubleshooting
+
+**02. [Bash Automation Fundamentals](02_bash_automation.md)**
+
+- Essential bash scripting for bioinformatics
+- Loops for batch processing
+- Creating sample ID lists from filenames
+- Automation best practices
+
+**03. [GEO/FASTQ Download](03_geo_fastq_download.md)**
+
+- Navigating NCBI GEO database
+- Downloading ChIP-seq datasets
+- Understanding SRA and FASTQ formats
+- Using sra-toolkit and wget
+
+**04. [FASTQ Concepts & QC](04_fastq_concepts.md)**
+
+- FASTQ format deep dive
+- Quality control with fastp
+- Adapter trimming and filtering
+- Batch processing multiple samples
+
+### Alignment & Initial QC
+
+**05. [Alignment with Bowtie2](05_alignment_bowtie2.md)**
+
+- Building genome indices
+- Aligning reads to reference genome
+- Understanding SAM/BAM formats
+- Sorting and indexing BAM files
+
+**06. [Duplicate Removal & QC](06_duplicate_removal_qc.md)**
+
+- PCR duplicate detection
+- Using Picard MarkDuplicates
+- Filtering for quality and uniqueness
+- Creating final analysis-ready BAM files
+
+**07. [Library Complexity Assessment](07_library_complexity.md)**
+
+- Estimating library complexity
+- Preseq analysis for saturation
+- Interpreting complexity curves
+- Quality metrics interpretation
+
+**08. [BAM Quality Metrics](08_bam_quality_metrics.md)**
+
+- Computing alignment statistics
+- MAPQ score analysis
+- Insert size distributions
+- Generating MultiQC reports
+
+**09. [Strand Cross-Correlation](09_strand_cross_correlation.md)**
+
+- Fragment length estimation
+- NSC and RSC quality metrics
+- phantompeakqualtools analysis
+- Interpreting cross-correlation plots
+
+**10. [BAM Summary & Fingerprint Plots](10_bam_summary_fingerprint.md)**
+
+- deepTools multiBamSummary
+- Fingerprint plot generation
+- Sample correlation analysis
+- PCA visualization
+
+### Peak Calling & Reproducibility
+
+**11. [MACS3 Peak Calling](11_macs3_peak_calling.md)**
+
+- Narrow vs broad peak calling
+- MACS3 parameters and options
+- Understanding peak output formats
+- Model building and interpretation
+
+**12. [FRiP Quality Metrics](12_frip_quality_metrics.md)**
+
+- Fraction of Reads in Peaks (FRiP)
+- Calculating signal-to-noise ratios
+- Quality thresholds (ENCODE standards)
+- Batch FRiP calculation scripts
+
+**13. [IDR & Consensus Peaks](13_idr_consensus_motifs_rk_corrected.md)**
+
+- Irreproducible Discovery Rate (IDR) analysis
+- Reproducibility assessment between replicates
+- Creating consensus peak sets
+- HOMER motif discovery
+- Biological interpretation
+
+### Visualization & Annotation
+
+**14. [BigWig Generation](14_bigwig_generation.md)**
+
+- BAM to BigWig conversion
+- RPGC normalization
+- Effective genome size concepts
+- Creating genome browser tracks
+
+**15. [Visualization with deepTools](15_visualization_heatmaps.md)**
+
+- TSS-centered profile plots
+- Gene body heatmaps
+- BigWig averaging and normalization
+- Log2(IP/Input) ratios
+- Multi-mark chromatin state analysis
+- Understanding pseudocount in normalization
+
+**16. [Peak Annotation with ChIPseeker](16_chipseeker_annotation.md)**
+
+- Genomic feature annotation
+- Promoter/exon/intron distribution
+- Functional enrichment analysis
+- Biological interpretation of binding patterns
+
+---
+
+## 8. Dataset Used in This Tutorial
 
 We use two datasets to teach different parts of the pipeline:
 
@@ -113,5 +241,5 @@ We use two datasets to teach different parts of the pipeline:
 
 You're ready to begin. In the next chapter, we'll set up your computational environment by installing the required tools.
 
-!!! note
+> [!NOTE]
 > **Up Next:** Before diving into analysis, we'll set up your computational environment with the bioinformatics tools you'll need throughout this tutorial.
