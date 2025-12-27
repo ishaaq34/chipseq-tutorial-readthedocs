@@ -4,8 +4,6 @@
 
 A comprehensive, hands-on tutorial for ChIP-seq (Chromatin Immunoprecipitation Sequencing) data analysis, covering the complete workflow from raw FASTQ files to publication-ready visualizations and biological insights.
 
-
-
 ## Overview
 
 This tutorial provides a practical, step-by-step guide to analyzing ChIP-seq data using established bioinformatics tools and ENCODE best practices. It's designed for researchers, graduate students, and bioinformaticians who want to learn or improve their ChIP-seq analysis skills.
@@ -25,7 +23,7 @@ The tutorial consists of 16 comprehensive chapters plus appendices:
 
 ### Setup & Data Acquisition
 
-**00. [Welcome & Introduction](docs/00_introduction.md)**
+**00. [Welcome & Introduction](docs/index.md)**
 
 - Overview of ChIP-seq technology and applications
 - Tutorial objectives and workflow outline
