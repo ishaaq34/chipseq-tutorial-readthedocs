@@ -99,117 +99,117 @@ The tutorial consists of 16 comprehensive chapters organized by workflow stage:
 
 ### [01. Environment Setup](01_setup_environment.md)
 
-- Basic Concept
-- Execution
-- Understanding the YAML "Recipe"
-- Managing Your Environment
+- [Basic Concept](01_setup_environment.md#basic-concept)
+- [Execution](01_setup_environment.md#execution)
+- [Understanding the YAML "Recipe"](01_setup_environment.md#understanding-the-yaml-recipe)
+- [Managing Your Environment](01_setup_environment.md#managing-your-environment)
 
 ### [02. Bash Automation Fundamentals](02_bash_automation.md)
 
-- Introduction: Why Learn Bash for Bioinformatics?
-- The Foundation: Setting Up Safe Scripts
-- Part 1: Understanding Sample Lists
-- Part 2: Creating Your Sample List
-- Part 3: Using Your Sample List in Automation
+- [Introduction: Why Learn Bash for Bioinformatics?](02_bash_automation.md#introduction-why-learn-bash-for-bioinformatics)
+- [The Foundation: Setting Up Safe Scripts](02_bash_automation.md#the-foundation-setting-up-safe-scripts)
+- [Part 1: Understanding Sample Lists](02_bash_automation.md#part-1-understanding-sample-lists)
+- [Part 2: Creating Your Sample List](02_bash_automation.md#part-2-creating-your-sample-list)
+- [Part 3: Using Your Sample List in Automation](02_bash_automation.md#part-3-using-your-sample-list-in-automation)
 
 ### [03. GEO/FASTQ Download](03_geo_fastq_download.md)
 
-- Level 1: Basic Concept
-- Level 2: Fetching the data
-- Connecting GEO to SRA
-- Technical Replicates (Multi-lane)
+- [Level 1: Basic Concept](03_geo_fastq_download.md#level-1-basic-concept)
+- [Level 2: Fetching the data](03_geo_fastq_download.md#level-2-fetching-the-data)
+- [Connecting GEO to SRA](03_geo_fastq_download.md#connecting-geo-to-sra)
+- [Technical Replicates (Multi-lane)](03_geo_fastq_download.md#technical-replicates-multi-lane)
 
 ### [04. FASTQ Concepts & QC](04_fastq_concepts.md)
 
-- Basic Concept (The Anatomy of a Read)
-- Level 2: Execution (The Car Wash)
-- Level 3: Advanced Analysis (The Math)
+- [Basic Concept (The Anatomy of a Read)](04_fastq_concepts.md#1-basic-concept-the-anatomy-of-a-read)
+- [Level 2: Execution (The Car Wash)](04_fastq_concepts.md#level-2-execution-the-car-wash)
+- [Level 3: Advanced Analysis (The Math)](04_fastq_concepts.md#level-3-advanced-analysis-the-math)
 
 ### Alignment & Initial QC
 
 ### [05. Alignment with Bowtie2](05_alignment_bowtie2.md)
 
-- Basic Concept (The "Puzzle")
-- Execution (Solving It)
-- Optimization
-- Understanding BAM File Structure
+- [Basic Concept (The "Puzzle")](05_alignment_bowtie2.md#basic-concept-the-puzzle)
+- [Execution (Solving It)](05_alignment_bowtie2.md#execution-solving-it)
+- [Optimization](05_alignment_bowtie2.md#optimization)
+- [Understanding BAM File Structure](05_alignment_bowtie2.md#understanding-bam-file-structure)
 
 ### [06. Duplicate Removal & QC](06_duplicate_removal_qc.md)
 
-- Basic Concept: The "Photocopier" Analogy
-- Understanding the Details
-- Marking & Removing Duplicates: Why Picard is Unique
-- Samtools (Simple Alternative)
+- [Basic Concept: The "Photocopier" Analogy](06_duplicate_removal_qc.md#1-basic-concept-the-photocopier-analogy)
+- [Understanding the Details](06_duplicate_removal_qc.md#2-understanding-the-details)
+- [Marking & Removing Duplicates: Why Picard is Unique](06_duplicate_removal_qc.md#3-marking--removing-duplicates-why-picard-is-unique)
+- [Samtools (Simple Alternative)](06_duplicate_removal_qc.md#4-samtools-simple-alternative)
 
 ### [07. Library Complexity Assessment](07_library_complexity.md)
 
-- Level 1: Basic Concept (The Photographer)
-- Level 2: Execution (The Calculator)
-- Pipeline Summary: Pre-processing Workflow Complete
-- Transition to ENCODE BAM Files
+- [Level 1: Basic Concept (The Photographer)](07_library_complexity.md#level-1-basic-concept-the-photographer)
+- [Level 2: Execution (The Calculator)](07_library_complexity.md#level-2-execution-the-calculator)
+- [Pipeline Summary: Pre-processing Workflow Complete](07_library_complexity.md#pipeline-summary-pre-processing-workflow-complete)
+- [Transition to ENCODE BAM Files](07_library_complexity.md#transition-to-encode-bam-files)
 
 ### [08. BAM Quality Metrics](08_bam_quality_metrics.md)
 
-- Basic Concept (The Experiment & The File)
-- Data used in the tutorial
-- Basic Quality Checks
+- [Basic Concept (The Experiment & The File)](08_bam_quality_metrics.md#1-basic-concept-the-experiment--the-file)
+- [Data used in the tutorial](08_bam_quality_metrics.md#2-data-used-in-the-tutorial)
+- [Basic Quality Checks](08_bam_quality_metrics.md#3-basic-quality-checks)
 
 ### [09. Strand Cross-Correlation](09_strand_cross_correlation.md)
 
-- Basic Concept (The Echo)
-- PhantomPeakQualTools
-- Level 3: Analysis (Signal vs Noise)
+- [Basic Concept (The Echo)](09_strand_cross_correlation.md#1-basic-concept-the-echo)
+- [PhantomPeakQualTools](09_strand_cross_correlation.md#2-phantompeakqualtools)
+- [Level 3: Analysis (Signal vs Noise)](09_strand_cross_correlation.md#level-3-analysis-signal-vs-noise)
 
 ### [10. BAM Summary & Fingerprint Plots](10_bam_summary_fingerprint.md)
 
-- Basic Concept (The Health Check)
-- Running the QC of bam files before Peak Calling
-- Level 3: Reading the Charts
+- [Basic Concept (The Health Check)](10_bam_summary_fingerprint.md#1-basic-concept-the-health-check)
+- [Running the QC of bam files before Peak Calling](10_bam_summary_fingerprint.md#2-running-the-qc-of-bam-files-before-peak-calling)
+- [Level 3: Reading the Charts](10_bam_summary_fingerprint.md#level-3-reading-the-charts)
 
 ### Peak Calling & Reproducibility
 
 ### [11. MACS3 Peak Calling](11_macs3_peak_calling.md)
 
-- Basic Concept (The "Heap" Hunt)
-- Requirements
-- Execution (Step-by-Step)
-- Understanding the Outputs
+- [Basic Concept (The "Heap" Hunt)](11_macs3_peak_calling.md#1-basic-concept-the-heap-hunt)
+- [Requirements](11_macs3_peak_calling.md#2-requirements)
+- [Execution (Step-by-Step)](11_macs3_peak_calling.md#3-execution-step-by-step)
+- [Understanding the Outputs](11_macs3_peak_calling.md#4-understanding-the-outputs)
 
 ### [12. FRiP Quality Metrics](12_frip_quality_metrics.md)
 
-- Background
-- What is FRiP?
-- FRiP Quality Standards
+- [Background](12_frip_quality_metrics.md#background)
+- [What is FRiP?](12_frip_quality_metrics.md#1-what-is-frip)
+- [FRiP Quality Standards](12_frip_quality_metrics.md#frip-quality-standards)
 
 ### [13. IDR & Consensus Peaks](13_idr_consensus_motifs_rk_corrected.md)
 
-- Reproducibility Analysis: IDR (Irreproducible Discovery Rate)
-- Running IDR on CEBPA Replicates
-- Motif Analysis: Finding DNA Binding Sequences
-- Motif Discovery with HOMER
+- [Reproducibility Analysis: IDR (Irreproducible Discovery Rate)](13_idr_consensus_motifs_rk_corrected.md#1-reproducibility-analysis-idr-irreproducible-discovery-rate)
+- [Running IDR on CEBPA Replicates](13_idr_consensus_motifs_rk_corrected.md#2-running-idr-on-cebpa-replicates)
+- [Motif Analysis: Finding DNA Binding Sequences](13_idr_consensus_motifs_rk_corrected.md#3-motif-analysis-finding-dna-binding-sequences)
+- [Motif Discovery with HOMER](13_idr_consensus_motifs_rk_corrected.md#4-motif-discovery-with-homer)
 
 ### Visualization & Annotation
 
 ### [14. BigWig Generation](14_bigwig_generation.md)
 
-- Basic Concept (The Traffic Map)
-- Requirements (Effective Genome Size)
-- Execution (The Converter)
-- Fine Tuning (Under the Hood)
+- [Basic Concept (The Traffic Map)](14_bigwig_generation.md#1-basic-concept-the-traffic-map)
+- [Requirements (Effective Genome Size)](14_bigwig_generation.md#2-requirements-effective-genome-size)
+- [Execution (The Converter)](14_bigwig_generation.md#3-execution-the-converter)
+- [Fine Tuning (Under the Hood)](14_bigwig_generation.md#4-fine-tuning-under-the-hood)
 
 ### [15. Visualization with deepTools](15_visualization_heatmaps.md)
 
-- Basic Concept (Camera Modes)
-- The Blueprint & The Photo - Basic requirement
-- Reading the Pictures
-- Average Signal Analysis
-- Normalization to Input Controls
-- CEBPA Peak-Focused Analysis
+- [Basic Concept (Camera Modes)](15_visualization_heatmaps.md#1-basic-concept-camera-modes)
+- [The Blueprint & The Photo - Basic requirement](15_visualization_heatmaps.md#2-the-blueprint--the-photo---basic-requirement)
+- [Reading the Pictures](15_visualization_heatmaps.md#reading-the-pictures)
+- [Average Signal Analysis](15_visualization_heatmaps.md#average-signal-analysis)
+- [Normalization to Input Controls](15_visualization_heatmaps.md#normalization-to-input-controls)
+- [CEBPA Peak-Focused Analysis](15_visualization_heatmaps.md#cebpa-peak-focused-analysis)
 
 ### [16. Peak Annotation with ChIPseeker](16_chipseeker_annotation.md)
 
-- Introduction: Decoding the Map
-- How to Interpret the Figures (Reference Guide)
+- [Introduction: Decoding the Map](16_chipseeker_annotation.md#introduction-decoding-the-map)
+- [How to Interpret the Figures (Reference Guide)](16_chipseeker_annotation.md#how-to-interpret-the-figures-reference-guide)
 
 ---
 
