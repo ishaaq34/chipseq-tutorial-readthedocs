@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v15 */
+/* Version: v16 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -240,99 +240,157 @@ header .md-header__title {
   background-color: #1a3a38 !important;
 }
 
-/* Refined admonition boxes */
+/* GitHub-style admonition boxes */
 .md-typeset .admonition {
   border-radius: 6px !important;
-  border-left: 4px solid !important;
+  border: 1px solid !important;
+  border-left: 6px solid !important;
   padding: 1rem 1.2rem !important;
   margin: 1.5em 0 !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  box-shadow: none !important;
 }
 
 .md-typeset .admonition-title {
-  font-weight: 700 !important;
+  font-weight: 600 !important;
   font-size: 0.95rem !important;
   margin-bottom: 0.5rem !important;
 }
 
-/* Important admonition - Red */
-.md-typeset .admonition.important {
-  border-left-color: #d32f2f !important;
-  background-color: #ffebee !important;
-}
-
-.md-typeset .admonition.important > .admonition-title {
-  color: #d32f2f !important;
-}
-
-/* Note admonition - Blue */
+/* NOTE - Blue (GitHub style) */
 .md-typeset .admonition.note {
-  border-left-color: #1976d2 !important;
-  background-color: #e3f2fd !important;
+  border-color: #d0d7de !important;
+  border-left-color: #54aeff !important;
+  background-color: #ddf4ff !important;
 }
 
 .md-typeset .admonition.note > .admonition-title {
-  color: #1976d2 !important;
+  color: #0969da !important;
 }
 
-/* Warning admonition - Orange */
-.md-typeset .admonition.warning {
-  border-left-color: #f57c00 !important;
-  background-color: #fff3e0 !important;
+.md-typeset .admonition.note p {
+  color: #0969da !important;
 }
 
-.md-typeset .admonition.warning > .admonition-title {
-  color: #f57c00 !important;
-}
-
-/* Tip admonition - Green */
+/* TIP - Green (GitHub style) */
 .md-typeset .admonition.tip {
-  border-left-color: #388e3c !important;
-  background-color: #e8f5e9 !important;
+  border-color: #d0d7de !important;
+  border-left-color: #4caf50 !important;
+  background-color: #d1f4d1 !important;
 }
 
 .md-typeset .admonition.tip > .admonition-title {
-  color: #388e3c !important;
+  color: #1a7f37 !important;
 }
 
-/* Admonition text */
-.md-typeset .admonition p {
-  color: #000000 !important;
-  margin: 0.3em 0 !important;
+.md-typeset .admonition.tip p {
+  color: #1a7f37 !important;
+}
+
+/* IMPORTANT - Purple (GitHub style) */
+.md-typeset .admonition.important {
+  border-color: #d0d7de !important;
+  border-left-color: #ab7df8 !important;
+  background-color: #fbefff !important;
+}
+
+.md-typeset .admonition.important > .admonition-title {
+  color: #8250df !important;
+}
+
+.md-typeset .admonition.important p {
+  color: #8250df !important;
+}
+
+/* WARNING - Orange (GitHub style) */
+.md-typeset .admonition.warning {
+  border-color: #d0d7de !important;
+  border-left-color: #ffb74d !important;
+  background-color: #fff8c5 !important;
+}
+
+.md-typeset .admonition.warning > .admonition-title {
+  color: #9a6700 !important;
+}
+
+.md-typeset .admonition.warning p {
+  color: #9a6700 !important;
+}
+
+/* CAUTION/DANGER - Red (GitHub style) */
+.md-typeset .admonition.caution,
+.md-typeset .admonition.danger {
+  border-color: #d0d7de !important;
+  border-left-color: #ff5252 !important;
+  background-color: #ffebe9 !important;
+}
+
+.md-typeset .admonition.caution > .admonition-title,
+.md-typeset .admonition.danger > .admonition-title {
+  color: #d1242f !important;
+}
+
+.md-typeset .admonition.caution p,
+.md-typeset .admonition.danger p {
+  color: #d1242f !important;
 }
 
 /* Dark mode admonitions */
 [data-md-color-scheme="slate"] .md-typeset .admonition {
-  background-color: #2d2d2d !important;
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  border-color: #30363d !important;
 }
 
-[data-md-color-scheme="slate"] .md-typeset .admonition p {
-  color: #ffffff !important;
+[data-md-color-scheme="slate"] .md-typeset .admonition.note {
+  background-color: rgba(56, 139, 253, 0.15) !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.note > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .admonition.note p {
+  color: #79c0ff !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.tip {
+  background-color: rgba(46, 160, 67, 0.15) !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.tip > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .admonition.tip p {
+  color: #7ee787 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning {
+  background-color: rgba(187, 128, 9, 0.15) !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning p {
+  color: #e3b341 !important;
 }
 
 /* Style GitHub-style callouts that aren't converted to admonitions */
 .md-typeset blockquote {
-  border-left: 4px solid #1976d2 !important;
-  background-color: #e3f2fd !important;
+  border-left: 6px solid #54aeff !important;
+  background-color: #ddf4ff !important;
   padding: 1rem 1.2rem !important;
   margin: 1.5em 0 !important;
   border-radius: 6px !important;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  box-shadow: none !important;
+  border: 1px solid #d0d7de !important;
 }
 
 .md-typeset blockquote p {
-  color: #000000 !important;
+  color: #0969da !important;
   margin: 0.3em 0 !important;
 }
 
 /* Dark mode blockquotes */
 [data-md-color-scheme="slate"] .md-typeset blockquote {
-  background-color: #2d2d2d !important;
-  border-left-color: #64b5f6 !important;
+  background-color: rgba(56, 139, 253, 0.15) !important;
+  border-color: #30363d !important;
 }
 
 [data-md-color-scheme="slate"] .md-typeset blockquote p {
-  color: #ffffff !important;
+  color: #79c0ff !important;
 }
 
 /* Refined inline code/keywords - GitHub Style */
