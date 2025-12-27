@@ -156,7 +156,7 @@ You've learned how to:
 * Interpret FRiP values according to ENCODE guidelines
 * Understand what constitutes good vs. poor ChIP-seq data
 
-!!! note
+> [!NOTE]
 > **Up Next:** Assess reproducibility between replicates using IDR (Irreproducible Discovery Rate) and identify consensus peaks for downstream motif analysis.
 
 ---

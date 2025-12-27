@@ -11,7 +11,7 @@ Imagine you are trying to read a rare, handwritten manuscript (your DNA sample).
 
 **Goal:** We want to keep the "popular pages" (real biological signal) but throw away the "accidental machine copies" (PCR duplicates) so they don't trick us into thinking a random spot is important.
 
-!!! note
+> [!NOTE]
 > **Two Tools, Same Goal:** This chapter covers two methods for duplicate removal. **Picard** (Section 3) offers fine-grained control with read groups and optical duplicate detection—ideal for complex multi-replicate studies. **Samtools** (Section 4) provides a simpler, single-pipeline approach—sufficient for most ChIP-seq analyses. Choose the method that fits your workflow.
 
 ---
@@ -135,7 +135,7 @@ samtools index picard_markdup/H3K27me3_IP_rep1.marked.bam
 * **REMOVE_DUPLICATES=false** marks duplicates but keeps all reads in the file
 * **samtools index** creates index for marked BAM file
 
-!!! important
+> [!IMPORTANT]
 > **Why keep marked files?** The Picard metrics file (`.metrics.txt`) contains duplicate rates that **MultiQC** can aggregate into summary reports. However, for **downstream analysis (peak calling, BigWig generation)**, always use the **deduplicated BAMs** to prevent PCR artifacts from inflating your signal.
 >
 > *Note:* While MACS can handle duplicates internally via `--keep-dup` options, using pre-deduplicated BAMs is the recommended practice—it gives you explicit control and avoids relying on MACS's position-based duplicate detection, which differs from Picard/samtools fragment-level detection. [[GitHub #33](https://github.com/macs3-project/MACS/issues/33)] [[Biostars](https://www.biostars.org/p/318974/#319028)]
@@ -299,5 +299,5 @@ chipseq_tutorial/
 2. **Action:** Use Picard (with read groups) or samtools to handle duplicates.
 3. **Result:** Clean, deduplicated BAM files ready for peak calling.
 
-!!! note
+> [!NOTE]
 > **Up Next:** We'll assess library complexity to understand how deeply our libraries were sequenced.

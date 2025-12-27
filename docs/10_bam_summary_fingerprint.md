@@ -16,7 +16,7 @@ We use a suite of tools called **deepTools** to generate these reports.
 
 ## 2. Running the QC of bam files before Peak Calling
 
-!!! important
+> [!IMPORTANT]
 > **About ENCODE BAM files:** The ENCODE BAM files used in this tutorial are already pre-processed (see [Section 08](./08_bam_quality_metrics.md)). They have been deduplicated and filtered for mapping quality (MAPQ ≥ 30), meaning multimappers have been removed.
 
 All outputs will be saved to the `deeptools_qc/` directory for organization.
@@ -295,5 +295,5 @@ chipseq_tutorial/
 2. **Coverage:** Confirms sequencing depth (Inputs = broad, ChIP = peaky).
 3. **PCA/Correlation:** Confirms your replicates match (Siblings cluster together).
 
-!!! note
+> [!NOTE]
 > **Up Next:** With comprehensive QC validation complete, we're ready to call peaks with MACS2 and identify protein-DNA bindin sites.
