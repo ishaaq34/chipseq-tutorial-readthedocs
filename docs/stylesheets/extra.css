@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v24 */
+/* Version: v25 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -486,6 +486,7 @@ mjx-container[display="true"] {
 .md-footer__link {
   color: #1f2937 !important;
   font-weight: 500 !important;
+  font-size: 0.85rem !important;
   transition: color 0.2s ease !important;
 }
 
