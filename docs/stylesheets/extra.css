@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v25 */
+/* Version: v26 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -485,8 +485,8 @@ mjx-container[display="true"] {
 
 .md-footer__link {
   color: #1f2937 !important;
-  font-weight: 500 !important;
-  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  font-size: 0.75rem !important;
   transition: color 0.2s ease !important;
 }
 
@@ -495,7 +495,7 @@ mjx-container[display="true"] {
 }
 
 .md-footer__title {
-  font-size: 0.85rem !important;
+  font-size: 0.75rem !important;
   color: #6b7280 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.05em !important;
@@ -503,7 +503,7 @@ mjx-container[display="true"] {
 }
 
 .md-footer__button {
-  font-size: 0.85rem !important;
+  font-size: 0.75rem !important;
   color: #1f2937 !important;
 }
 
