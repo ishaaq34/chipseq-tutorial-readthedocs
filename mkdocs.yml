@@ -58,6 +58,14 @@ markdown_extensions:
       generic: true
 
 extra:
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX # REPLACE WITH YOUR MEASUREMENT ID FROM analytics.google.com
+    # To activate:
+    # 1. Go to https://analytics.google.com
+    # 2. Create property → Get Measurement ID (starts with G-)
+    # 3. Replace G-XXXXXXXXXX above with your ID
+    # 4. Commit and push changes
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/ishaaq34
