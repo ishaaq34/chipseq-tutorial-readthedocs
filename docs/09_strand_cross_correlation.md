@@ -157,5 +157,5 @@ chipseq_tutorial/
 2. **Phantom Peak** is a background artifact at read length (Microphone Feedback).
 3. **RSC > 0.8** means your Signal (Real Peak) is louder than your Noise (Phantom Peak).
 
-> [!NOTE]
+!!! note
 > **Up Next:** We'll perform comprehensive QC using deepTools to validate enrichment and sample consistency before peak calling.

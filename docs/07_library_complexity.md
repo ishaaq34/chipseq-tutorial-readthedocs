@@ -106,7 +106,7 @@ Raw data often looks "Low Complexity" just because of PCR duplicates. This is mi
 2. **Action:** Run the NRF/PBC calculation script.
 3. **Result:** Compare your numbers against the ENCODE chart to validate your experiment.
 
-> [!NOTE]
+!!! note
 > **Up Next:** We'll dive deeper into BAM quality metrics to assess alignment quality and fragment sizes.
 
 ---
@@ -134,7 +134,7 @@ Congratulations! You have completed the core ChIP-seq pre-processing workflow fr
 
 ## Transition to ENCODE BAM Files
 
-> [!IMPORTANT]
+!!! important
 > **For downstream analysis**, we will use **pre-processed BAM files from ENCODE** instead of the files we generated during pre-processing.
 >
 > **Why?**
@@ -151,5 +151,5 @@ Congratulations! You have completed the core ChIP-seq pre-processing workflow fr
 
 The skills you learned in the pre-processing workflow are valuable for processing your own ChIP-seq data. For the remaining tutorials, we'll demonstrate downstream analysis using ENCODE's curated datasets.
 
-> [!TIP]
+!!! tip
 > **Challenge yourself!** Before moving to downstream analysis, consider applying the downstream analysis steps (peak calling, visualization, annotation) to your C. elegans H3K27me3 data from the pre-processing workflow. This hands-on practice will solidify your understanding and give you complete end-to-end ChIP-seq analysis experience. You can then compare your results with the ENCODE workflow!

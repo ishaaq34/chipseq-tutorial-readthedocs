@@ -2,7 +2,7 @@
 
 `GEO` `SRA` `FASTQ` `fasterq-dump` `sra-toolkit` `data-download` `sequencing-data` `NCBI` `public-datasets`
 
-> [!NOTE]
+!!! note
 > **Reminder:** While this tutorial teaches you how to download data from SRA, our focus is on [SRA data](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE115704).
 
 ## Level 1: Basic Concept
@@ -229,5 +229,5 @@ Sometimes, one biological sample is sequenced across multiple "lanes" of a machi
 2. **Identify:** Find the **SRR** (Run) IDs for your samples.
 3. **Download:** Use `fastq-dl` with a loop or parallel command to fetch the FASTQ files.
 
-> [!NOTE]
+!!! note
 > **Up Next:** The FASTQ files are now available. We proceed with read inspection, quality control, and trimming.

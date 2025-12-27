@@ -80,7 +80,7 @@ samtools index bowalign/H3K27me3_IP_rep1.sorted.bam
 5. **samtools sort** sorts alignments by genomic position (required for downstream analysis)
 6. **samtools index** creates an index file (.bai) for fast random access
 
-> [!NOTE]
+!!! note
 > **If you have paired-end data**, use `-1` and `-2` flags instead of `-U`:
 
 ```bash
@@ -137,7 +137,7 @@ while read -r sample; do
 done < sample_id.txt
 ```
 
-> [!NOTE]
+!!! note
 > **Paired-end while loop** (if your samples have _R1 and_R2 files):
 
 ```bash
@@ -260,7 +260,7 @@ SRR7297994.3   16    III    45123     0    76M    *    0    0    GATTACA...     
 * Bit 2048: Supplementary alignment?
 * And more... (see FLAG section below)
 
-> [!TIP]
+!!! tip
 > **Decode FLAGS:** Use [Explain SAM Flags](https://broadinstitute.github.io/picard/explain-flags.html) to understand bitwise FLAG values.
 
 ### Multimapping & The "Lost GPS"
@@ -393,7 +393,7 @@ while read -r sample; do
 done < sample_id.txt
 ```
 
-> [!NOTE]
+!!! note
 > The `-q 30` flag filters out reads with MAPQ < 30 (removes multi-mappers and low-confidence alignments). Most downstream tools (MACS2, deepTools) can also filter by MAPQ, so this step is optional but recommended for cleaner data.
 
 ---
@@ -434,5 +434,5 @@ chipseq_tutorial/
 2. **Action:** Use `bowtie2` to align and `samtools sort` to organize.
 3. **Result:** A **Sorted BAM** file (the solved puzzle), ready for peak calling.
 
-> [!NOTE]
+!!! note
 > **Up Next:** Before peak calling, we need to remove PCR duplicates and assess library quality.

@@ -112,7 +112,7 @@ Which number do we use?
 
 * Therefore, we must use the **khmer** result (`Unique Only`), because our data does not contain reads mapped to repetitive regions.
 
-> [!TIP]
+!!! tip
 > **Use this number:** `220798375`
 
 ---
@@ -198,7 +198,7 @@ If we don't fix this, Sample A will look huge just because it has more money (re
 2. **Action:** `bamCoverage` with **RPGC** normalization.
 3. **Output:** BigWig files (`bigwigs/`) ready for IGV visualization.
 
-> [!NOTE]
+!!! note
 > **Up Next:** Now that we have our signals (BigWigs) and our QC (Fingerprints) done, we are ready to call peaks! (Wait, technically we usually call peaks *before* or *parallel* to visualization, but viewing tracks helps confirm peak calls).
 
 ---

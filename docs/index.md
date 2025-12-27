@@ -113,5 +113,5 @@ We use two datasets to teach different parts of the pipeline:
 
 You're ready to begin. In the next chapter, we'll set up your computational environment by installing the required tools.
 
-> [!NOTE]
+!!! note
 > **Up Next:** Before diving into analysis, we'll set up your computational environment with the bioinformatics tools you'll need throughout this tutorial.

@@ -40,7 +40,7 @@ Before we start analyzing, we need to clean our data.
 fastp -i fastq_raw/H3K27me3_IP_rep1.fastq.gz -o fastq_cleaned/H3K27me3_IP_rep1.clean.fastq.gz
 ```
 
-> [!NOTE]
+!!! note
 > **This dataset uses single-end sequencing.** If you have paired-end data, you would use:
 >
 > ```bash
@@ -96,7 +96,7 @@ python parallel.py -i /fastq_raw -o /fastq_cleaned -r /fastp_reports -f 3 -t 2
 This automatically finds pairs and generates HTML reports for every sample.
 
 ---
-> [!IMPORTANT]
+!!! important
 > [parallel.py](https://github.com/OpenGene/fastp/blob/master/parallel.py) avoids the need to explicitly loop over `sample_id.txt` in a Bash script.
 
 ```text
@@ -122,5 +122,5 @@ chipseq_tutorial/
 2. **Action:** Always run `fastp` to trim adapters, low-quality bases, and too-short reads.
 3. **Check:** Use `wc -l` or `awk` for instant feedback on your data size.
 
-> [!NOTE]
+!!! note
 > **Up Next:** With clean reads in hand, we're ready to align them to a reference genome using Bowtie2.

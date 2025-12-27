@@ -191,7 +191,7 @@ gunzip GRCh38.primary_assembly.genome.fa.gz
 
 ### Installing HOMER
 
-> [!NOTE]
+!!! note
 > **macOS ARM64 Users:** HOMER may require manual installation. Use the provided `install_homer.sh` script for streamlined setup.
 
 ---
@@ -288,7 +288,7 @@ chipseq_tutorial/
 **Good:** Strong diagonal in rank-rank plot, ~30% IDR pass rate, expected motif in >50% peaks
 **Poor:** Scattered plot, <10% IDR pass rate, no motif enrichment
 
-> [!NOTE]
+!!! note
 > **Up Next:** Generate normalized signal tracks (BigWig files) for genome browser visualization and create publication-quality heatmaps showing enrichment patterns around genomic features.
 
 ---
