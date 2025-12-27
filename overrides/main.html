@@ -58,7 +58,7 @@
         </a>
         <a href="https://twitter.com/rajaishaaq" target="_blank" rel="noopener" title="Twitter">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-            <path d="M22.46 6c-.85.38-1.78.64-2.75.76 1-.6 1.76-1.55 2.12-2.68-.93.55-1.96.96-3.06 1.18-.88-.94-2.13-1.53-3.52-1.53-2.67 0-4.84 2.17-4.84 4.84 0 .38.04.75.13 1.1-4.02-.2-7.58-2.13-9.96-5.06-.42.72-.66 1.55-.66 2.44 0 1.68.85 3.16 2.15 4.03-.79-.03-1.53-.24-2.18-.6v.06c0 2.34 1.67 4.29 3.88 4.73-.4.11-.83.17-1.27.17-.31 0-.61-.03-.91-.08.61 1.92 2.39 3.32 4.5 3.36-1.65 1.29-3.73 2.06-5.99 2.06-.39 0-.77-.02-1.15-.07 2.13 1.37 4.66 2.17 7.38 2.17 8.86 0 13.7-7.34 13.7-13.7 0-.21 0-.42-.01-.63.94-.68 1.76-1.53 2.41-2.5z"/>
+            <path d="M22.46 6c-.85.38-1.78.64-2.75.76 1-.6 1.76-1.55 2.12-2.68-.93.55-1.96.96-3.06 1.18-.88-.94-2.13-1.53-3.52-1.53-2.67 0-4.84 2.17-4.84 4.84 0 .38.04.75.13 1.10-4.02-.2-7.58-2.13-9.96-5.06-.42.72-.66 1.55-.66 2.44 0 1.68.85 3.16 2.15 4.03-.79-.03-1.53-.24-2.18-.6v.06c0 2.34 1.67 4.29 3.88 4.73-.4.11-.83.17-1.27.17-.31 0-.61-.03-.91-.08.61 1.92 2.39 3.32 4.5 3.36-1.65 1.29-3.73 2.06-5.99 2.06-.39 0-.77-.02-1.15-.07 2.13 1.37 4.66 2.17 7.38 2.17 8.86 0 13.7-7.34 13.7-13.7 0-.21 0-.42-.01-.63.94-.68 1.76-1.53 2.41-2.5z"/>
           </svg>
         </a>
       `;
@@ -71,23 +71,37 @@
 {% block content %}
 {{ super() }}
 
-<!-- Giscus Comments Section -->
-<div class="giscus-container" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--md-default-fg-color--lightest);">
-  <h2 style="margin-bottom: 1.5rem;">💬 Comments & Discussion</h2>
-  <script src="https://giscus.app/client.js"
-          data-repo="ishaaq34/Chipseq_analysis_tutorial_mkdocs"
-          data-repo-id="R_kgDONiStJg"
-          data-category="General"
-          data-category-id="DIC_kwDONiStJs4Cl1r4"
-          data-mapping="pathname"
-          data-strict="0"
-          data-reactions-enabled="1"
-          data-emit-metadata="0"
-          data-input-position="bottom"
-          data-theme="preferred_color_scheme"
-          data-lang="en"
-          crossorigin="anonymous"
-          async>
-  </script>
+<!-- Altmetric Badge Section -->
+<div class="altmetric-container" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--md-default-fg-color--lightest); text-align: center;">
+  <h2 style="margin-bottom: 1rem;">📊 Tutorial Impact & Metrics</h2>
+  <p style="color: var(--md-default-fg-color--light); margin-bottom: 1.5rem;">
+    Track how this tutorial is being shared and discussed across the web
+  </p>
+  
+  <!-- Altmetric Badge - Replace the DOI when available -->
+  <div class="altmetric-embed" 
+       data-badge-type="donut" 
+       data-badge-popover="right"
+       data-doi="10.5281/zenodo.XXXXXXX"
+       data-hide-no-mentions="false"
+       style="display: inline-block; margin-bottom: 1rem;">
+  </div>
+  
+  <!-- GitHub Stars Badge -->
+  <div style="margin-top: 1.5rem;">
+    <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" target="_blank" rel="noopener">
+      <img src="https://img.shields.io/github/stars/ishaaq34/Chipseq_analysis_tutorial_mkdocs?style=social" alt="GitHub Stars">
+    </a>
+    <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs/fork" target="_blank" rel="noopener" style="margin-left: 1rem;">
+      <img src="https://img.shields.io/github/forks/ishaaq34/Chipseq_analysis_tutorial_mkdocs?style=social" alt="GitHub Forks">
+    </a>
+  </div>
+  
+  <p style="color: var(--md-default-fg-color--light); font-size: 0.85rem; margin-top: 1.5rem;">
+    💡 <em>Once this tutorial is published with a DOI (e.g., via Zenodo), the Altmetric donut will display mentions, citations, and social media attention.</em>
+  </p>
 </div>
+
+<!-- Altmetric Script -->
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
 {% endblock %}
