@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v17 */
+/* Version: v19 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -326,22 +326,22 @@ header .md-header__title {
   color: #e6e6e6 !important;
 }
 
-/* Refined inline code/keywords - GitHub Style */
+/* Refined inline code/keywords - Subtle style */
 .md-typeset code {
-  font-size: 0.95rem !important;
-  background-color: #ddf4ff !important;
-  color: #0550ae !important;
-  padding: 0.25em 0.5em !important;
-  border-radius: 4px !important;
+  font-size: 0.9em !important;
+  background-color: #f0f0f0 !important;
+  color: #1f2937 !important;
+  padding: 0.15em 0.4em !important;
+  border-radius: 3px !important;
   font-weight: 400 !important;
-  border: 1px solid #addcff !important;
+  border: none !important;
 }
 
-/* Dark mode inline code - GitHub Style */
+/* Dark mode inline code */
 [data-md-color-scheme="slate"] .md-typeset code {
-  background-color: #132639 !important;
-  color: #79c0ff !important;
-  border-color: #2188ff !important;
+  background-color: #374151 !important;
+  color: #d1d5db !important;
+  border: none !important;
   font-weight: 400 !important;
 }
 
