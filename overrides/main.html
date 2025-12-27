@@ -71,35 +71,101 @@
 {% block content %}
 {{ super() }}
 
-<!-- Altmetric Badge Section -->
-<div class="altmetric-container" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--md-default-fg-color--lightest); text-align: center;">
-  <h2 style="margin-bottom: 1rem;">📊 Tutorial Impact & Metrics</h2>
-  <p style="color: var(--md-default-fg-color--light); margin-bottom: 1.5rem;">
-    Track how this tutorial is being shared and discussed across the web
-  </p>
+<!-- Professional Scholarly Metrics Section -->
+<div class="metrics-container" style="margin-top: 3rem; padding: 2rem; background: var(--md-code-bg-color); border-radius: 0.5rem;">
   
-  <!-- Altmetric Badge - Replace the DOI when available -->
-  <div class="altmetric-embed" 
-       data-badge-type="donut" 
-       data-badge-popover="right"
-       data-doi="10.5281/zenodo.XXXXXXX"
-       data-hide-no-mentions="false"
-       style="display: inline-block; margin-bottom: 1rem;">
+  <!-- Header -->
+  <div style="text-align: center; margin-bottom: 2rem;">
+    <h2 style="margin-bottom: 0.5rem; font-weight: 600;">📊 Scholarly Impact & Metrics</h2>
+    <p style="color: var(--md-default-fg-color--light); font-size: 0.9rem; margin: 0;">
+      Track citations, mentions, and community engagement
+    </p>
   </div>
-  
-  <!-- GitHub Stars Badge -->
-  <div style="margin-top: 1.5rem;">
-    <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" target="_blank" rel="noopener">
-      <img src="https://img.shields.io/github/stars/ishaaq34/Chipseq_analysis_tutorial_mkdocs?style=social" alt="GitHub Stars">
-    </a>
-    <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs/fork" target="_blank" rel="noopener" style="margin-left: 1rem;">
-      <img src="https://img.shields.io/github/forks/ishaaq34/Chipseq_analysis_tutorial_mkdocs?style=social" alt="GitHub Forks">
-    </a>
+
+  <!-- Main Metrics Grid -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+    
+    <!-- Altmetric Score Card -->
+    <div style="background: var(--md-default-bg-color); padding: 1.5rem; border-radius: 0.5rem; border: 1px solid var(--md-default-fg-color--lightest); text-align: center;">
+      <h3 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--md-default-fg-color--light); margin-bottom: 1rem; font-weight: 500;">Altmetric Attention</h3>
+      <div class="altmetric-embed" 
+           data-badge-type="donut" 
+           data-badge-popover="bottom"
+           data-doi="10.5281/zenodo.XXXXXXX"
+           data-hide-no-mentions="false"
+           style="display: inline-block;">
+      </div>
+      <p style="font-size: 0.75rem; color: var(--md-default-fg-color--light); margin-top: 0.5rem;">
+        Social & news mentions
+      </p>
+    </div>
+
+    <!-- DOI & Citation Card -->
+    <div style="background: var(--md-default-bg-color); padding: 1.5rem; border-radius: 0.5rem; border: 1px solid var(--md-default-fg-color--lightest);">
+      <h3 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--md-default-fg-color--light); margin-bottom: 1rem; font-weight: 500;">Publication</h3>
+      
+      <!-- DOI Badge -->
+      <div style="margin-bottom: 1rem;">
+        <a href="https://doi.org/10.5281/zenodo.XXXXXXX" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/badge/DOI-10.5281%2Fzenodo.XXXXXXX-blue.svg" alt="DOI" style="max-width: 100%;">
+        </a>
+      </div>
+      
+      <!-- Citation Count (placeholder) -->
+      <div style="text-align: center; padding: 0.75rem; background: var(--md-code-bg-color); border-radius: 0.25rem;">
+        <div style="font-size: 1.5rem; font-weight: 700; color: var(--md-accent-fg-color);">--</div>
+        <div style="font-size: 0.75rem; color: var(--md-default-fg-color--light); text-transform: uppercase; letter-spacing: 0.05em;">Citations</div>
+      </div>
+    </div>
+
+    <!-- Repository Stats Card -->
+    <div style="background: var(--md-default-bg-color); padding: 1.5rem; border-radius: 0.5rem; border: 1px solid var(--md-default-fg-color--lightest);">
+      <h3 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--md-default-fg-color--light); margin-bottom: 1rem; font-weight: 500;">Repository</h3>
+      
+      <!-- GitHub Badges -->
+      <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+        <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/github/stars/ishaaq34/Chipseq_analysis_tutorial_mkdocs?style=flat&logo=github&label=Stars" alt="GitHub Stars" style="max-width: 100%;">
+        </a>
+        <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs/fork" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/github/forks/ishaaq34/Chipseq_analysis_tutorial_mkdocs?style=flat&logo=github&label=Forks" alt="GitHub Forks" style="max-width: 100%;">
+        </a>
+        <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs/watchers" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/github/watchers/ishaaq34/Chipseq_analysis_tutorial_mkdocs?style=flat&logo=github&label=Watchers" alt="GitHub Watchers" style="max-width: 100%;">
+        </a>
+        <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs" target="_blank" rel="noopener">
+          <img src="https://img.shields.io/github/last-commit/ishaaq34/Chipseq_analysis_tutorial_mkdocs?style=flat&logo=github&label=Updated" alt="Last Commit" style="max-width: 100%;">
+        </a>
+      </div>
+    </div>
   </div>
-  
-  <p style="color: var(--md-default-fg-color--light); font-size: 0.85rem; margin-top: 1.5rem;">
-    💡 <em>Once this tutorial is published with a DOI (e.g., via Zenodo), the Altmetric donut will display mentions, citations, and social media attention.</em>
-  </p>
+
+  <!-- Additional Badges Row -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; padding: 1.5rem; background: var(--md-default-bg-color); border-radius: 0.5rem; border: 1px solid var(--md-default-fg-color--lightest);">
+    <a href="https://zenodo.org/badge/latestdoi/XXXXXXX" target="_blank" rel="noopener">
+      <img src="https://img.shields.io/badge/Zenodo-Archive-blue?logo=zenodo" alt="Zenodo">
+    </a>
+    <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs/blob/main/LICENSE" target="_blank" rel="noopener">
+      <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
+    </a>
+    <a href="https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs/graphs/contributors" target="_blank" rel="noopener">
+      <img src="https://img.shields.io/github/contributors/ishaaq34/Chipseq_analysis_tutorial_mkdocs.svg" alt="Contributors">
+    </a>
+    <img src="https://img.shields.io/badge/Made%20with-MkDocs-1f425f.svg" alt="Made with MkDocs">
+  </div>
+
+  <!-- Citation Information -->
+  <div style="margin-top: 2rem; padding: 1.5rem; background: var(--md-default-bg-color); border-left: 4px solid var(--md-accent-fg-color); border-radius: 0.25rem;">
+    <h3 style="font-size: 0.9rem; margin-bottom: 0.75rem; font-weight: 600;">📝 How to Cite</h3>
+    <div style="background: var(--md-code-bg-color); padding: 1rem; border-radius: 0.25rem; font-family: var(--md-code-font-family); font-size: 0.85rem; overflow-x: auto;">
+      <p style="margin: 0; line-height: 1.6;">
+        Khan, R. I. N. (2025). <em>ChIP-seq Analysis Tutorial: A Practical Guide to Chromatin Immunoprecipitation Sequencing Data Analysis</em> (Version 1.0). Zenodo. <a href="https://doi.org/10.5281/zenodo.XXXXXXX" style="color: var(--md-accent-fg-color);">https://doi.org/10.5281/zenodo.XXXXXXX</a>
+      </p>
+    </div>
+    <p style="font-size: 0.75rem; color: var(--md-default-fg-color--light); margin-top: 0.75rem; margin-bottom: 0;">
+      💡 <em>Update the DOI above once this tutorial is published to Zenodo or another repository.</em>
+    </p>
+  </div>
 </div>
 
 <!-- Altmetric Script -->
