@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v26 */
+/* Version: v27 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -468,68 +468,7 @@ mjx-container[display="true"] {
   text-align: center !important;
   margin: 1em 0 !important;
 }
-/* Footer navigation styling - refined light theme */
+/* Hide footer navigation completely */
 .md-footer {
-  background-color: #f8f9fa !important;
-  border-top: 1px solid #e0e0e0 !important;
-}
-
-.md-footer-meta {
-  background-color: #ffffff !important;
-  border-top: 1px solid #e0e0e0 !important;
-}
-
-.md-footer__inner {
-  padding: 1rem 0 !important;
-}
-
-.md-footer__link {
-  color: #1f2937 !important;
-  font-weight: 400 !important;
-  font-size: 0.75rem !important;
-  transition: color 0.2s ease !important;
-}
-
-.md-footer__link:hover {
-  color: #2196f3 !important;
-}
-
-.md-footer__title {
-  font-size: 0.75rem !important;
-  color: #6b7280 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  margin-bottom: 0.25rem !important;
-}
-
-.md-footer__button {
-  font-size: 0.75rem !important;
-  color: #1f2937 !important;
-}
-
-/* Dark mode footer */
-[data-md-color-scheme="slate"] .md-footer {
-  background-color: #1c1c1c !important;
-  border-top-color: #30363d !important;
-}
-
-[data-md-color-scheme="slate"] .md-footer-meta {
-  background-color: #161616 !important;
-  border-top-color: #30363d !important;
-}
-
-[data-md-color-scheme="slate"] .md-footer__link {
-  color: #e6e6e6 !important;
-}
-
-[data-md-color-scheme="slate"] .md-footer__link:hover {
-  color: #79c0ff !important;
-}
-
-[data-md-color-scheme="slate"] .md-footer__title {
-  color: #9ca3af !important;
-}
-
-[data-md-color-scheme="slate"] .md-footer__button {
-  color: #e6e6e6 !important;
+  display: none !important;
 }
