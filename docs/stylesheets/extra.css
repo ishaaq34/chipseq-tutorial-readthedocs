@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v20 */
+/* Version: v21 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -240,53 +240,87 @@ header .md-header__title {
   background-color: #1a3a38 !important;
 }
 
-/* Clean admonition boxes - white background style */
+/* Blue-themed admonition boxes with colored title backgrounds */
 .md-typeset .admonition {
   border-radius: 6px !important;
   border: 1px solid #d0d7de !important;
   border-left: 4px solid !important;
-  padding: 1rem 1.2rem !important;
+  padding: 0 !important;
   margin: 1.5em 0 !important;
   box-shadow: none !important;
   background-color: #ffffff !important;
+  overflow: hidden !important;
 }
 
 .md-typeset .admonition-title {
   font-weight: 600 !important;
   font-size: 0.95rem !important;
-  margin-bottom: 0.5rem !important;
-  color: #000000 !important;
+  margin-bottom: 0 !important;
+  padding: 0.75rem 1.2rem !important;
+  color: #1f2937 !important;
 }
 
 .md-typeset .admonition p {
   color: #000000 !important;
-  margin: 0.3em 0 !important;
+  margin: 0.5em 0 !important;
+  padding: 0 1.2rem 1rem 1.2rem !important;
 }
 
-/* NOTE - Blue accent */
+/* NOTE - Blue theme */
 .md-typeset .admonition.note {
-  border-left-color: #0969da !important;
+  border-left-color: #2196f3 !important;
+  border-color: #e3f2fd !important;
 }
 
-/* TIP - Green accent */
+.md-typeset .admonition.note > .admonition-title {
+  background-color: #e3f2fd !important;
+  color: #1565c0 !important;
+}
+
+/* TIP - Green theme */
 .md-typeset .admonition.tip {
-  border-left-color: #1a7f37 !important;
+  border-left-color: #4caf50 !important;
+  border-color: #e8f5e9 !important;
 }
 
-/* IMPORTANT - Purple accent */
+.md-typeset .admonition.tip > .admonition-title {
+  background-color: #e8f5e9 !important;
+  color: #2e7d32 !important;
+}
+
+/* IMPORTANT - Purple theme */
 .md-typeset .admonition.important {
-  border-left-color: #8250df !important;
+  border-left-color: #9c27b0 !important;
+  border-color: #f3e5f5 !important;
 }
 
-/* WARNING - Orange accent */
+.md-typeset .admonition.important > .admonition-title {
+  background-color: #f3e5f5 !important;
+  color: #7b1fa2 !important;
+}
+
+/* WARNING - Orange theme */
 .md-typeset .admonition.warning {
-  border-left-color: #9a6700 !important;
+  border-left-color: #ff9800 !important;
+  border-color: #fff3e0 !important;
 }
 
-/* CAUTION/DANGER - Red accent */
+.md-typeset .admonition.warning > .admonition-title {
+  background-color: #fff3e0 !important;
+  color: #e65100 !important;
+}
+
+/* CAUTION/DANGER - Red theme */
 .md-typeset .admonition.caution,
 .md-typeset .admonition.danger {
-  border-left-color: #d1242f !important;
+  border-left-color: #f44336 !important;
+  border-color: #ffebee !important;
+}
+
+.md-typeset .admonition.caution > .admonition-title,
+.md-typeset .admonition.danger > .admonition-title {
+  background-color: #ffebee !important;
+  color: #c62828 !important;
 }
 
 /* Dark mode admonitions */
@@ -295,9 +329,13 @@ header .md-header__title {
   border-color: #30363d !important;
 }
 
-[data-md-color-scheme="slate"] .md-typeset .admonition-title,
-[data-md-color-scheme="slate"] .md-typeset .admonition p {
+[data-md-color-scheme="slate"] .md-typeset .admonition-title {
+  background-color: #2d2d2d !important;
   color: #e6e6e6 !important;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition p {
+  color: #d1d5db !important;
 }
 
 /* Style blockquotes - clean white background */
