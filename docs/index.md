@@ -97,43 +97,43 @@ The tutorial consists of 16 comprehensive chapters organized by workflow stage:
 
 ### Setup & Data Acquisition
 
-## [01. Environment Setup](01_setup_environment.md)
+### [01. Environment Setup](01_setup_environment.md)
 
-## [02. Bash Automation Fundamentals](02_bash_automation.md)
+### [02. Bash Automation Fundamentals](02_bash_automation.md)
 
-## [03. GEO/FASTQ Download](03_geo_fastq_download.md)
+### [03. GEO/FASTQ Download](03_geo_fastq_download.md)
 
-## [04. FASTQ Concepts & QC](04_fastq_concepts.md)
+### [04. FASTQ Concepts & QC](04_fastq_concepts.md)
 
 ### Alignment & Initial QC
 
-## [05. Alignment with Bowtie2](05_alignment_bowtie2.md)
+### [05. Alignment with Bowtie2](05_alignment_bowtie2.md)
 
-## [06. Duplicate Removal & QC](06_duplicate_removal_qc.md)
+### [06. Duplicate Removal & QC](06_duplicate_removal_qc.md)
 
-## [07. Library Complexity Assessment](07_library_complexity.md)
+### [07. Library Complexity Assessment](07_library_complexity.md)
 
-## [08. BAM Quality Metrics](08_bam_quality_metrics.md)
+### [08. BAM Quality Metrics](08_bam_quality_metrics.md)
 
-## [09. Strand Cross-Correlation](09_strand_cross_correlation.md)
+### [09. Strand Cross-Correlation](09_strand_cross_correlation.md)
 
-## [10. BAM Summary & Fingerprint Plots](10_bam_summary_fingerprint.md)
+### [10. BAM Summary & Fingerprint Plots](10_bam_summary_fingerprint.md)
 
 ### Peak Calling & Reproducibility
 
-## [11. MACS3 Peak Calling](11_macs3_peak_calling.md)
+### [11. MACS3 Peak Calling](11_macs3_peak_calling.md)
 
-## [12. FRiP Quality Metrics](12_frip_quality_metrics.md)
+### [12. FRiP Quality Metrics](12_frip_quality_metrics.md)
 
-## [13. IDR & Consensus Peaks](13_idr_consensus_motifs_rk_corrected.md)
+### [13. IDR & Consensus Peaks](13_idr_consensus_motifs_rk_corrected.md)
 
 ### Visualization & Annotation
 
-## [14. BigWig Generation](14_bigwig_generation.md)
+### [14. BigWig Generation](14_bigwig_generation.md)
 
-## [15. Visualization with deepTools](15_visualization_heatmaps.md)
+### [15. Visualization with deepTools](15_visualization_heatmaps.md)
 
-## [16. Peak Annotation with ChIPseeker](16_chipseeker_annotation.md)
+### [16. Peak Annotation with ChIPseeker](16_chipseeker_annotation.md)
 
 ---
 
