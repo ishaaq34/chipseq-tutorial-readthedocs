@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v19 */
+/* Version: v20 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -326,23 +326,23 @@ header .md-header__title {
   color: #e6e6e6 !important;
 }
 
-/* Refined inline code/keywords - Subtle style */
+/* Refined inline code/keywords - Coral/Red style */
 .md-typeset code {
   font-size: 0.9em !important;
-  background-color: #f0f0f0 !important;
-  color: #1f2937 !important;
+  background-color: #ffe5e5 !important;
+  color: #d63031 !important;
   padding: 0.15em 0.4em !important;
   border-radius: 3px !important;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
   border: none !important;
 }
 
 /* Dark mode inline code */
 [data-md-color-scheme="slate"] .md-typeset code {
-  background-color: #374151 !important;
-  color: #d1d5db !important;
+  background-color: #4a1f1f !important;
+  color: #ff7675 !important;
   border: none !important;
-  font-weight: 400 !important;
+  font-weight: 600 !important;
 }
 
 /* Code blocks should NOT use inline code styling */
