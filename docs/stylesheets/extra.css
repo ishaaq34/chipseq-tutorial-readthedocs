@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v27 */
+/* Version: v28 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -166,9 +166,14 @@ header .md-header__title {
   color: #ffffff !important;
 }
 
-/* Left-align body text (removed justification) */
-.md-typeset p {
-  text-align: left !important;
+/* Left-align body text (removed justification) */* Basic text settings */
+body {
+  text-align: justify !important;
+}
+
+/* Header title size reduction */
+.md-header__title {
+  font-size: 1.2rem !important;
 }
 
 /* Hide table of contents */
