@@ -1,9 +1,9 @@
 site_name: ChIP-seq Analysis Tutorial
 site_description: A comprehensive, hands-on tutorial for ChIP-seq data analysis
 site_author: Raja Ishaq Nabi Khan
-site_url: https://ishaaq34.github.io/Chipseq_analysis_tutorial_mkdocs/
+site_url: https://ishaaq34.github.io/chipseq-tutorial-readthedocs/
 
-repo_url: https://github.com/ishaaq34/Chipseq_analysis_tutorial_mkdocs
+repo_url: https://github.com/ishaaq34/chipseq-tutorial-readthedocs
 edit_uri: blob/main/docs/
 
 copyright: Copyright &copy; 2025 Raja Ishaq Nabi Khan
