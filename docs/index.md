@@ -237,3 +237,7 @@ You're ready to begin. In the next chapter, we'll set up your computational envi
 
 > [!NOTE]
 > **Up Next:** Before diving into analysis, we'll set up your computational environment with the bioinformatics tools you'll need throughout this tutorial.
+
+??? note "Up Next"
+    Before diving into analysis, we'll set up your computational environment with the bioinformatics tools you'll need throughout this tutorial.
+
