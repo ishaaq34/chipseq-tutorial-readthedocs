@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v31 */
+/* Version: v32 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -132,22 +132,9 @@ html body [class*="md-nav"] label {
   font-weight: 500 !important;
 }
 
-.md-header__title,
-.md-header__topic,
-.md-header__ellipsis,
-.md-ellipsis {
-  font-size: 1.8rem !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.02em !important;
-}
-
+/* Header logo button */
 .md-header__button.md-logo {
   font-size: 2rem !important;
-}
-
-header .md-header__title {
-  font-size: 1.8rem !important;
-  font-weight: 900 !important;
 }
 
 /* Make body text black instead of grey */
@@ -166,7 +153,7 @@ header .md-header__title {
   color: #ffffff !important;
 }
 
-/* Left-align body text (removed justification) */* Basic text settings */
+/* Text justification */
 body {
   text-align: justify !important;
 }
@@ -345,7 +332,6 @@ body {
 
 /* Simple blockquote styling with red highlight for first strong */
 .md-typeset blockquote {
-  border-left: 4px solid #ddd !important;
   padding: 0.6em 1em !important;
   margin: 1.5em 0 !important;
   border-radius: 4px !important;
