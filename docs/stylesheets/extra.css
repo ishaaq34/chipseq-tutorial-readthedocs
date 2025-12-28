@@ -1,5 +1,5 @@
 /* Force CSS version update */
-/* Version: v33 */
+/* Version: v32 */
 
 :root {
   --md-text-font-size: 0.95rem;
@@ -459,19 +459,7 @@ mjx-container[display="true"] {
   text-align: center !important;
   margin: 1em 0 !important;
 }
-/* Footer navigation - styled to match MkDocs official */
-.md-footer-nav {
-  background: linear-gradient(135deg, #2196f3 0%, #0d47a1 100%) !important;
-}
-
-.md-footer-nav__link {
-  color: white !important;
-}
-
-.md-footer-nav__title {
-  color: rgba(255,255,255,0.9) !important;
-}
-
-.md-footer-nav__direction {
-  color: rgba(255,255,255,0.7) !important;
+/* Hide footer navigation completely */
+.md-footer {
+  display: none !important;
 }
