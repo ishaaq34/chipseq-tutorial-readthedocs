@@ -106,8 +106,8 @@ Raw data often looks "Low Complexity" just because of PCR duplicates. This is mi
 2. **Action:** Run the NRF/PBC calculation script.
 3. **Result:** Compare your numbers against the ENCODE chart to validate your experiment.
 
-> [!NOTE]
-> **Up Next:** We'll dive deeper into BAM quality metrics to assess alignment quality and fragment sizes.
+!!! note "Up Next"
+    We'll dive deeper into BAM quality metrics to assess alignment quality and fragment sizes.
 
 ---
 
@@ -117,8 +117,8 @@ Congratulations! You have completed the core ChIP-seq pre-processing workflow fr
 
 **Pre-processing Pipeline:**
 
-* **[FASTQ Acquisition](./02_geo_fastq_download.md):** Downloaded from GEO/SRA (C. elegans H3K27me3 ChIP-seq, single-end reads)
-* **[Sample Manifest](./03_sample_list_creation.md):** Created sample ID list for batch processing
+* **[FASTQ Acquisition](./03_geo_fastq_download.md):** Downloaded from GEO/SRA (C. elegans H3K27me3 ChIP-seq, single-end reads)
+* **[Sample Manifest](./02_bash_automation.md):** Created sample ID list for batch processing
 * **[Quality Control](./04_fastq_concepts.md):** Read quality assessment and adapter trimming (fastp)
 * **[Genome Alignment](./05_alignment_bowtie2.md):** Mapped reads to reference assembly (Bowtie2, single-end mode)
 * **[Duplicate Removal](./06_duplicate_removal_qc.md):** PCR duplicate identification and removal (Picard MarkDuplicates)
@@ -134,22 +134,22 @@ Congratulations! You have completed the core ChIP-seq pre-processing workflow fr
 
 ## Transition to ENCODE BAM Files
 
-> [!IMPORTANT]
-> **For downstream analysis**, we will use **pre-processed BAM files from ENCODE** instead of the files we generated during pre-processing.
->
-> **Why?**
->
-> * ENCODE provides high-quality, standardized ChIP-seq data
-> * Files are already aligned, deduplicated, and quality-controlled
-> * This allows us to focus on downstream analysis (peak calling, visualization, annotation)
->
-> **What this means:**
->
-> * The pre-processing workflow taught you complete data preparation from raw reads to analysis-ready BAM
-> * Downstream analysis will use ENCODE BAM files for demonstration
-> * You can apply both approaches: process your own data OR use public ENCODE data
+!!! important "For Downstream Analysis"
+    We will use **pre-processed BAM files from ENCODE** instead of the files we generated during pre-processing.
+
+    **Why?**
+    
+    * ENCODE provides high-quality, standardized ChIP-seq data
+    * Files are already aligned, deduplicated, and quality-controlled
+    * This allows us to focus on downstream analysis (peak calling, visualization, annotation)
+    
+    **What this means:**
+    
+    * The pre-processing workflow taught you complete data preparation from raw reads to analysis-ready BAM
+    * Downstream analysis will use ENCODE BAM files for demonstration
+    * You can apply both approaches: process your own data OR use public ENCODE data
 
 The skills you learned in the pre-processing workflow are valuable for processing your own ChIP-seq data. For the remaining tutorials, we'll demonstrate downstream analysis using ENCODE's curated datasets.
 
-> [!TIP]
-> **Challenge yourself!** Before moving to downstream analysis, consider applying the downstream analysis steps (peak calling, visualization, annotation) to your C. elegans H3K27me3 data from the pre-processing workflow. This hands-on practice will solidify your understanding and give you complete end-to-end ChIP-seq analysis experience. You can then compare your results with the ENCODE workflow!
+!!! tip "Challenge Yourself!"
+    Before moving to downstream analysis, consider applying the downstream analysis steps (peak calling, visualization, annotation) to your C. elegans H3K27me3 data from the pre-processing workflow. This hands-on practice will solidify your understanding and give you complete end-to-end ChIP-seq analysis experience. You can then compare your results with the ENCODE workflow!

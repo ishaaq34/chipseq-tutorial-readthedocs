@@ -1,0 +1,44 @@
+/* Copy button styling for code blocks */
+.highlight {
+    position: relative;
+}
+
+.copy-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 12px;
+    background-color: #f6f8fa;
+    border: 1px solid #d0d7de;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #24292f;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.copy-button:hover {
+    background-color: #e1e4e8;
+    border-color: #b1b8c0;
+}
+
+.copy-button:active {
+    background-color: #d0d7de;
+}
+
+.copy-button.copied {
+    background-color: #2da44e;
+    border-color: #2da44e;
+    color: white;
+}
+
+.copy-button.copied::before {
+    content: "✓ ";
+}
+
+/* Ensure pre blocks have enough padding for the button */
+pre {
+    padding-top: 40px !important;
+}

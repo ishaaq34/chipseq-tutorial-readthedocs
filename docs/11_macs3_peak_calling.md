@@ -37,8 +37,8 @@ You need the following files in your workspace:
 
 **BAM files:** Located in `encode_bam/` directory
 
-> [!IMPORTANT]
-> **ENCODE Pre-processing:** These BAM files from ENCODE are already deduplicated and filtered for mapping quality (MAPQ ≥ 30). This is documented in [Tutorial 10](./10_bam_summary_fingerprint.md). You do NOT need to run additional filtering.
+!!! important "ENCODE Pre-processing"
+    These BAM files from ENCODE are already deduplicated and filtered for mapping quality (MAPQ ≥ 30). This is documented in [Tutorial 10](./10_bam_summary_fingerprint.md). You do NOT need to run additional filtering.
 
 ---
 
@@ -117,8 +117,8 @@ macs3_results/
   
 * `--nomodel --extsize <size>`: Override automatic fragment size estimation (only needed if model building fails)
 
-> [!NOTE]
-> **Summit positions for motif analysis:** This tutorial does not use `--call-summits` in MACS3 because precise summit positions will be extracted during IDR analysis , where we identify reproducible peaks and derive consensus summits for motif discovery.
+!!! note "Summit Positions for Motif Analysis"
+    This tutorial does not use `--call-summits` in MACS3 because precise summit positions will be extracted during IDR analysis , where we identify reproducible peaks and derive consensus summits for motif discovery.
 
 ### Step 3: H3K27me3 (Broad Peaks) - Both Replicates
 
@@ -293,8 +293,8 @@ You have successfully called peaks using MACS3 for:
 * Will apply IDR filtering in Tutorial 13 for stringent validation
 * No `--call-summits` here - summits extracted during IDR analysis
 
-> [!NOTE]
-> **Up Next:** Calculate FRiP (Fraction of Reads in Peaks) quality metrics to validate peak enrichment, then assess reproducibility with IDR and perform motif discovery.
+!!! note "Up Next"
+    Calculate FRiP (Fraction of Reads in Peaks) quality metrics to validate peak enrichment, then assess reproducibility with IDR and perform motif discovery.
 
 ---
 

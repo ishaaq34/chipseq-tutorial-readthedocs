@@ -32,10 +32,6 @@ If you use this tutorial in research or teaching, please cite the archived versi
 
 > Khan, R. I. N. (2025). ChIP-seq Analysis Tutorial: A Practical Guide to Chromatin Immunoprecipitation Sequencing Data Analysis (Version 1.0) [Software]. Zenodo. <https://doi.org/10.5281/zenodo.XXXXXXX>
 
-## License
-
-This project is distributed under the MIT License. See the LICENSE file for details.
-
 ---
 *Last updated: December 2025*
 *Version: 1.0*

@@ -155,7 +155,7 @@ The H3K9ac tracks are very different. They show strong, narrow peaks centered ex
 
 The following plots show average ChIP-seq signal across transcription start sites (TSS) and transcription end sites (TES):
 
-<img alt="Screenshot 2025-12-10 at 12 14 14 PM" src="../images/bw2.png" />
+<img alt="Screenshot 2025-12-10 at 12 14 14 PM" src="../images/bw2.png" />
 
 ---
 
@@ -323,7 +323,7 @@ plotHeatmap \
 
 ### Heatmap Visualization
 
-<img alt="CEBPA heatmap at bound promoters" src="../images/bw3.png" />
+<img alt="CEBPA heatmap at bound promoters" src="../images/bw3.png" width="50%" />
 
 ---
 
@@ -377,7 +377,7 @@ plotHeatmap \
 
 ### Heatmap
 
-<img alt="Multi-mark heatmap at CEBPA-bound promoters" src="../images/bw5.png" />
+<img alt="Multi-mark heatmap at CEBPA-bound promoters" src="../images/bw5.png" width="50%" />
 
 ---
 

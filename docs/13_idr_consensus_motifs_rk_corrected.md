@@ -191,8 +191,8 @@ gunzip GRCh38.primary_assembly.genome.fa.gz
 
 ### Installing HOMER
 
-> [!NOTE]
-> **macOS ARM64 Users:** HOMER may require manual installation. Use the provided `install_homer.sh` script for streamlined setup.
+!!! note "Consensus Peaks"
+    The consensus peak file contains high-confidence CEBPA binding sites that are reproducible between replicates (IDR < 0.05). These consensus peaks are ideal for downstream analyses like motif discovery and functional annotation.
 
 ---
 
@@ -288,7 +288,7 @@ chipseq_tutorial/
 **Good:** Strong diagonal in rank-rank plot, ~30% IDR pass rate, expected motif in >50% peaks
 **Poor:** Scattered plot, <10% IDR pass rate, no motif enrichment
 
-> [!NOTE]
-> **Up Next:** Generate normalized signal tracks (BigWig files) for genome browser visualization and create publication-quality heatmaps showing enrichment patterns around genomic features.
+!!! note "Up Next"
+    Create genomic coverage tracks (BigWig files) and generate visualizations of ChIP-seq signal across the genome using deepTools and IGV.
 
 ---

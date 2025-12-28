@@ -40,12 +40,12 @@ Before we start analyzing, we need to clean our data.
 fastp -i fastq_raw/H3K27me3_IP_rep1.fastq.gz -o fastq_cleaned/H3K27me3_IP_rep1.clean.fastq.gz
 ```
 
-> [!NOTE]
-> **This dataset uses single-end sequencing.** If you have paired-end data, you would use:
->
-> ```bash
-> fastp -i in.R1.fq.gz -I in.R2.fq.gz -o out.R1.fq.gz -O out.R2.fq.gz
-> ```
+!!! note "Single-End vs Paired-End"
+    This dataset uses single-end sequencing. If you have paired-end data, you would use:
+
+    ```bash
+    fastp -i in.R1.fq.gz -I in.R2.fq.gz -o out.R1.fq.gz -O out.R2.fq.gz
+    ```
 
 **What does fastp do automatically?**
 
@@ -69,23 +69,16 @@ You can use `awk` (a math tool for text) to count directly from the compressed f
 gzcat fastq_raw/H3K27me3_IP_rep1.fastq.gz | wc -l | awk '{print $1/4 " reads"}'
 ```
 
-**Count Total Bases (Coverage):**
-
-```bash
-# Sums the length of line 2 (sequence) for every record
-gzcat fastq_raw/H3K27me3_IP_rep1.fastq.gz | awk 'NR%4==2 {b+=length($0)} END{print b " bases"}'
-```
-
-* *Approximation:* If you have 100 Million bases and your genome is 3 Billion bases (Human), your coverage is roughly 0.03x.
-
 ### 3.2 Batch Processing
 
 If you have 50 files, you can use a script to run `fastp` on all of them in parallel.
 The `fastp` developers provide a handy script called  [parallel.py](https://github.com/OpenGene/fastp/blob/master/parallel.py):
 
 ```bash
+mkdir -p fastq_cleaned fastp_reports
+
 # Process 3 files at a time (-f 3), using 2 threads per file (-t 2)
-python parallel.py -i /fastq_raw -o /fastq_cleaned -r /fastp_reports -f 3 -t 2
+python parallel.py -i fastq_raw  -o fastq_cleaned  -r fastp_reports  -a '-f 3 -t 2'
 ```
 
 **Parameter explanation:**
@@ -96,8 +89,8 @@ python parallel.py -i /fastq_raw -o /fastq_cleaned -r /fastp_reports -f 3 -t 2
 This automatically finds pairs and generates HTML reports for every sample.
 
 ---
-> [!IMPORTANT]
-> [parallel.py](https://github.com/OpenGene/fastp/blob/master/parallel.py) avoids the need to explicitly loop over `sample_id.txt` in a Bash script.
+!!! important
+    [parallel.py](https://github.com/OpenGene/fastp/blob/master/parallel.py) avoids the need to explicitly loop over `sample_id.txt` in a Bash script.
 
 ```text
 chipseq_tutorial/
@@ -122,5 +115,5 @@ chipseq_tutorial/
 2. **Action:** Always run `fastp` to trim adapters, low-quality bases, and too-short reads.
 3. **Check:** Use `wc -l` or `awk` for instant feedback on your data size.
 
-> [!NOTE]
-> **Up Next:** With clean reads in hand, we're ready to align them to a reference genome using Bowtie2.
+!!! note "Up Next"
+    With clean reads in hand, we're ready to align them to a reference genome using Bowtie2.

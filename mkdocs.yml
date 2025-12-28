@@ -9,37 +9,18 @@ edit_uri: blob/main/docs/
 copyright: Copyright &copy; 2025 Raja Ishaq Nabi Khan
 
 theme:
-  name: material
-  custom_dir: overrides
-  language: en
-  palette:
-    - scheme: default
-      primary: teal
-      accent: light blue
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: teal
-      accent: light blue
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-  font:
-    text: Inter
-    code: JetBrains Mono
-  features:
-    - navigation.instant
-    - navigation.tracking
-    - navigation.tabs
-    - navigation.sections
-    - navigation.top
-    - navigation.footer
-    - search.suggest
-    - search.highlight
-    - content.code.copy
-    - content.action.view
-    - content.action.edit
+  name: readthedocs
+  highlightjs: true
+  hljs_languages:
+    - bash
+    - python
+    - yaml
+
+extra_css:
+  - stylesheets/copy-button.css
+
+extra_javascript:
+  - javascripts/copy-button.js
 
 plugins:
   - search
@@ -51,30 +32,7 @@ markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.highlight
-  - pymdownx.inlinehilite
   - pymdownx.superfences
-  - pymdownx.details
-  - pymdownx.arithmatex:
-      generic: true
-
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/ishaaq34
-      name: GitHub
-    - icon: fontawesome/brands/linkedin
-      link: https://linkedin.com/in/raja-khan-b3a77a289
-      name: LinkedIn
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/rajaishaaq
-      name: Twitter
-
-extra_css:
-  - stylesheets/extra.css
-
-extra_javascript:
-  - javascripts/mathjax.js
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 nav:
   - Home: index.md
@@ -97,6 +55,6 @@ nav:
   - Visualization:
       - BigWig Generation: 14_bigwig_generation.md
       - Visualization Heatmaps: 15_visualization_heatmaps.md
-      - Annotation with ChIPseeker: 16_chipseeker_annotation.md
+      - Annotation with ChIPseeker: 16_chipseeker_annotation.html
   - Reference:
       - Contributors: CONTRIBUTORS.md
