@@ -235,16 +235,16 @@ samtools view bowalign/H3K27me3_IP_rep1.sorted.bam | head -3
 **Example output (single-end data):**
 
 ```text
-SRR7297994.1    0    I      15200    42    76M    *    0    0    ACGTACGT...    IIIIIIII...
-SRR7297994.2    0    II     98432    30    76M    *    0    0    TGCATGCA...    IIIHHHHH...
-SRR7297994.3   16    III    45123     0    76M    *    0    0    GATTACA...     IIIHHHGG...
+SRR7297996.3814722     0    I      15200    42    76M    *    0    0    ACGTACGT...    IIIIIIII...
+SRR7297996.7661710     0    II     98432    30    76M    *    0    0    TGCATGCA...    IIIHHHHH...
+SRR7297996.11560734   16    III    45123     0    76M    *    0    0    GATTACA...     IIIHHHGG...
 ```
 
 **Column Breakdown (First 5 of 11 columns):**
 
 | Column | Name | Example | Description |
 |--------|------|---------|-------------|
-| 1 | QNAME | SRR7297994.1 | Read/Query name |
+| 1 | QNAME | SRR7297996.3814722  | Read/Query name |
 | 2 | **FLAG** | 0, 16 | **Bitwise FLAG** (flagstat reads this!) |
 | 3 | RNAME | I, II, III | Reference sequence name (chromosome) |
 | 4 | POS | 15200 | Leftmost mapping position |
@@ -293,26 +293,25 @@ samtools stats bowalign/H3K27me3_IP_rep1.sorted.bam > bowalign_qc/H3K27me3_IP_re
 **Batch processing for all samples:**
 
 ```bash
-#!/bin/bash
 set -euo pipefail
 
+THREADS=8
 mkdir -p bowalign_qc
 
 while read -r sample; do
   echo "Running QC for: $sample"
-  
-  # Generate flagstat summary
-  samtools flagstat bowalign/${sample}.sorted.bam > bowalign_qc/${sample}.flagstat.txt
-  
-  # Generate comprehensive stats (for MultiQC)
-  samtools stats bowalign/${sample}.sorted.bam > bowalign_qc/${sample}.stats.txt
-  
+
+  samtools flagstat -@ "$THREADS"  "bowalign/${sample}.sorted.bam"  > "bowalign_qc/${sample}.flagstat.txt"
+
+  samtools stats -@ "$THREADS" "bowalign/${sample}.sorted.bam"  > "bowalign_qc/${sample}.stats.txt"
+
 done < sample_id.txt
 
-# Generate MultiQC report with all QC results
 echo "Generating MultiQC report..."
 multiqc bowalign_qc/ -o bowalign_qc/ -n alignment_qc_report
+
 echo "MultiQC report saved: bowalign_qc/alignment_qc_report.html"
+
 ```
 
 This creates an interactive HTML report (`alignment_qc_report.html`) with visualizations of alignment metrics across all samples, including MAPQ distribution plots.
@@ -327,7 +326,11 @@ This creates an interactive HTML report (`alignment_qc_report.html`) with visual
 
 **The Sensitivity-Specificity Trade-off:**
 
-Multi-mapping reads critically influence the balance between sensitivity and specificity in ChIP-seq peak detection. Excluding multi-mappers, standard practice in most peak callers, improves specificity by preventing artificial signal inflation in repetitive regions but reduces sensitivity for genuine binding events within those regions ([Nakato et al., 2016](https://doi.org/10.1093/bib/bbw023)). This trade-off is acceptable for transcription factors and chromatin features predominantly in unique genomic loci. However, repetitive and transposable elements (REs/TEs) constitute significant genome portions with important regulatory roles, and discarding multi-mapped reads substantially underrepresents regulatory events in these regions ([Morrissey et al., 2024](https://doi.org/10.1101/gr.278638.123)).
+Multi-mapping reads critically influence the balance between sensitivity and specificity in ChIP-seq peak detection. Excluding multi-mappers, standard practice in most peak callers, improves specificity by preventing artificial signal inflation in repetitive regions but reduces sensitivity for genuine binding events within those regions ([Nakato et al., 2016](https://doi.org/10.1093/bib/bbw023
+        
+        )). This trade-off is acceptable for transcription factors and chromatin features predominantly in unique genomic loci. However, repetitive and transposable elements (REs/TEs) constitute significant genome portions with important regulatory roles, and discarding multi-mapped reads substantially underrepresents regulatory events in these regions ([Morrissey et al., 2024]https://doi.org/10.1101/gr.278638.123
+        
+        .
 
 #### Quick Manual MAPQ Check
 
@@ -345,21 +348,46 @@ samtools view bowalign/H3K27me3_IP_rep1.sorted.bam | awk '{print $5}' | sort -n 
 **Output format: `count` `MAPQ_score`**
 
 ```text
-123964  30  <-- Lowest score is 30 (Good confidence)
-1928 31
-20741 32
-1477 33
-4040 34
-34434 35
-14294 36
-53329 37
-30665 38
-88528 39
-77123 40
-2960636 42  <-- Highest score is 42 (Perfect confidence)
+(chip) rajaishaqnabikhan@Mac % cat  bowalign_qc/H3K27me3_IP_rep1.mapq.txt
+133889    0    # MAPQ = 0 → completely ambiguous alignments; no positional confidence
+1933336   1
+53822     2
+15117     3
+3816      4
+1830      5
+470602    6
+55346     7
+14767     8
+25440    11
+50763    12
+7006     14
+12688    15
+5168     16
+32747    17
+22396    18
+23353    21
+19845    22
+21062    23
+32201    24
+19869    25
+20007    26
+16640    27
+246444   30
+151768   31
+119155   32   # MAPQ = 32 → high-confidence, near-unique alignments (passes MAPQ ≥ 30 filter)
+6925     33
+133902   34
+129735   35
+106899   36
+126589   37
+130911   38
+150140   39
+100539   40
+18872247 42   # MAPQ = 42 → very high-confidence, uniquely mapped reads; dominant unique class
+
 ```
 
-*Verdict: This BAM file contains only uniquely mapped, high-quality reads.*
+*Verdict: This BAM file contains multimapped reads.*
 
 ---
 
@@ -384,12 +412,14 @@ samtools index bowalign_filtered/H3K27me3_IP_rep1.filtered.bam
 #!/bin/bash
 set -euo pipefail
 
+THREADS=8
+
 mkdir -p bowalign_filtered
 
 while read -r sample; do
   echo "Filtering multi-mappers for: $sample"
-  samtools view -b -q 30 bowalign/${sample}.sorted.bam > bowalign_filtered/${sample}.filtered.bam
-  samtools index bowalign_filtered/${sample}.filtered.bam
+  samtools view  -@ "$THREADS" -b -q 30 bowalign/${sample}.sorted.bam > bowalign_filtered/${sample}.filtered.bam
+  samtools index -@ "$THREADS" bowalign_filtered/${sample}.filtered.bam
 done < sample_id.txt
 ```
 
