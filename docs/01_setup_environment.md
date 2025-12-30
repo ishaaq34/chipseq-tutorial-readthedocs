@@ -46,9 +46,42 @@ channels:    # The "App Stores" where we find tools
   - conda-forge
   - bioconda
   - defaults
-dependencies: # The tools we want to install
-  - multiqc=1.31
-  - fastqc=0.12.1
+
+dependencies:
+  - python=3.10
+  - pip
+
+  # Core QC & preprocessing
+  - fastqc
+  - fastp
+  - cutadapt
+  - trim-galore
+  - fastq-dl
+  - multiqc
+
+  # Alignment & BAM handling
+  - bowtie2
+  - samtools
+  - picard
+  - bedtools
+
+  # Peak calling & ChIP-seq QC
+  - macs3
+  - phantompeakqualtools
+  - deeptools
+
+  # UCSC utilities
+  - ucsc-bedgraphtobigwig
+  - ucsc-bigwiginfo
+  - ucsc-bigwigsummary
+  - ucsc-facount
+  - ucsc-fasize
+
+  # R base (only if you actually need R in this env)
+  - r-base=4.4
+
+  # specialized
+  - khmer
   
 ```
 
