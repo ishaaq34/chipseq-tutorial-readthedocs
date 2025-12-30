@@ -259,13 +259,6 @@ while read -r sample; do
 done < sample_id.txt
 ```
 
-**Why use pipes?**
-
-```
-collate → fixmate → sort → markdup
-  ↓         ↓        ↓       ↓
- pipe     pipe     pipe    file
-```
 
 * **`-u` flag**: Outputs uncompressed BAM for faster streaming between commands
 * **`-` symbol**: Represents stdin/stdout, allowing data to flow through the pipeline
