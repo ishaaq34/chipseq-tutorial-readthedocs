@@ -38,7 +38,7 @@ mkdir -p QC_results
 
 # 1. Create a "5-prime" BED file
 # (Convert BAM to simple coordinates, keeping only the start position of each read)
-bedtools bamtobed -i picard_dedup_bam/H3K27me3_IP_rep1.dedup.bam \
+bedtools bamtobed -i samtools_dedup_bam/H3K27me3_IP_rep1.dedup.bam \
   | awk 'BEGIN{OFS="\t"} ($6=="+"){print $1,$2,$2+1} ($6=="-"){print $1,$3-1,$3}' \
   | sort -k1,1 -k2,2n \
   > QC_results/Sample1.read5.bed
@@ -62,7 +62,7 @@ cat QC_results/Sample1.pbc.txt
 ```
 
 ```text
-NRF=0.997 PBC1=0.997 PBC2=360.061
+NRF=0.967	PBC1=0.966	PBC2=28.5837
 ```
 
 ---
@@ -93,8 +93,8 @@ Raw data often looks "Low Complexity" just because of PCR duplicates. This is mi
 
 | Stage | NRF | PBC1 | PBC2 | Interpretation |
 | :--- | :--- | :--- | :--- | :--- |
-| **Before** Removal | 0.668 | 0.695 | 3.3 | Appears "Moderate/Low" quality due to duplicates. |
-| **After** Removal | **0.952** | **0.949** | **18.6** | Use these values! True library is **High Quality**. |
+| **Before** Removal | 0.451 | 0.437 | 1.6 | Appears "Moderate/Low" quality due to duplicates. |
+| **After** Removal | **0.967** | **0.966** | **28.6** | Use these values! True library is **High Quality**. |
 
 **Lesson:** Don't panic if your raw NRF is low. Remove duplicates first, then check again.
 
