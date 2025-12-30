@@ -328,10 +328,11 @@ This creates an interactive HTML report (`alignment_qc_report.html`) with visual
 
 Multi-mapping reads critically influence the balance between sensitivity and specificity in ChIP-seq peak detection. Excluding multi-mappers, standard practice in most peak callers, improves specificity by preventing artificial signal inflation in repetitive regions but reduces sensitivity for genuine binding events within those regions ([Nakato et al., 2016](https://doi.org/10.1093/bib/bbw023
         
-        )). This trade-off is acceptable for transcription factors and chromatin features predominantly in unique genomic loci. However, repetitive and transposable elements (REs/TEs) constitute significant genome portions with important regulatory roles, and discarding multi-mapped reads substantially underrepresents regulatory events in these regions ([Morrissey et al., 2024]https://doi.org/10.1101/gr.278638.123
+        )). This trade-off is acceptable for transcription factors and chromatin features predominantly in unique genomic loci. However, repetitive and transposable elements (REs/TEs) constitute significant genome portions with important regulatory roles, and discarding multi-mapped reads substantially underrepresents regulatory events in these regions ([Morrissey et al., 2024](https://doi.org/10.1101/gr.278638.123
         
-        .
-
+        )).
+        
+        
 #### Quick Manual MAPQ Check
 
 For a **quick manual inspection** of MAPQ distribution (complementary to the MultiQC visualization):
