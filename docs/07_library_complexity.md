@@ -80,7 +80,8 @@ NRF=0.967	PBC1=0.966	PBC2=28.5837
 
 How good is your library? Use this chart from ENCODE to grade your data.
 
-<img alt="Screenshot 2025-11-26 at 11 20 56 AM" src="../images/library_complexity_plot.png" />
+<img width="825" height="145" alt="Screenshot 2025-12-30 at 3 16 12 PM" src="https://github.com/user-attachments/assets/a7fd1ba1-e638-4a4d-96f2-c6df08d6658c" />
+
 
 [*Source: ENCODE Data Standards*](https://www.encodeproject.org/data-standards/terms/#library)
 
