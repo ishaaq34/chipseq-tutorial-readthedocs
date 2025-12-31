@@ -12,13 +12,20 @@ By mapping these binding locations, we learn how genes are turned on and off, wh
 
 ---
 
+!!! Note "contact"
+ishaaq.raja@gmail.com
+
 ## 2. A Brief History & Why ChIP-seq Matters
 
 Before ChIP-seq, researchers had limited options for studying protein-DNA interactions. ChIP-PCR could only examine a handful of pre-selected regions, like searching for a word in a book by checking only 10 pages. ChIP-chip improved on this by using microarrays, but it remained constrained to predefined genomic regions and offered limited resolution ([Park, 2009](https://www.nature.com/articles/nrg2641)).
 
 The arrival of next-generation sequencing in the mid-2000s changed everything. ChIP-seq enabled genome-wide, high-resolution mapping for the first time, allowing scientists to see the complete picture of protein-DNA interactions across the entire genome.
 
-This breakthrough enabled landmark discoveries. The [ENCODE Project (2012)](https://www.nature.com/articles/nature11247) used ChIP-seq extensively to demonstrate that approximately 80% of the human genome has biochemical function—fundamentally overturning the long-held "junk DNA" myth. That same year, researchers used ChIP-seq to reveal [how our 24-hour body clock is encoded in chromatin](https://www.science.org/doi/10.1126/science.1226339), explaining at the molecular level why circadian disruption increases disease risk.
+This breakthrough enabled landmark discoveries. The [ENCODE Project (2012)](https://www.nature.com/articles/nature11247) used ChIP-seq extensively to demonstrate that approximately 80% of the human genome has biochemical function—fundamentally overturning the long-held "junk DNA" myth. That same year, researchers used ChIP-seq to reveal [how our 24-hour body clock is encoded in chromatin](https://www.science.org/doi/10.1126/science.1226339
+        
+        
+        
+        ), explaining at the molecular level why circadian disruption increases disease risk.
 
 These discoveries demonstrate ChIP-seq's direct impact on personalized medicine, cancer research, and our understanding of gene regulation.
 
