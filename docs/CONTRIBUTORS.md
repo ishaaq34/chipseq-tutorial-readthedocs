@@ -10,7 +10,7 @@ Research Focus: RNA Modifications & Epigenetics
 
 ## Acknowledgments
 
-This tutorial is informed by experimental standards and analytical guidelines established by the ENCODE Consortium and makes extensive use of established open-source tools, including MACS3, HOMER, deepTools, and IDR. Publicly available ChIP-seq datasets (including SRP115709) were used for demonstration, benchmarking, and validation.
+This tutorial is informed by experimental standards and analytical guidelines established by the ENCODE Consortium and makes extensive use of established open-source tools, including MACS3, HOMER, deepTools, and IDR. Publicly available ChIP-seq datasets (including SRP115709) were used for demonstration, benchmarking, and validation. I tah
 
 ## Contributing
 
