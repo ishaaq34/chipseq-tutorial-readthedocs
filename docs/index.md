@@ -12,8 +12,8 @@ By mapping these binding locations, we learn how genes are turned on and off, wh
 
 ---
 
-!!! Note "contact"
-ishaaq.raja@gmail.com
+!!! note "contact"
+    ishaaq.raja@gmail.com
 
 ## 2. A Brief History & Why ChIP-seq Matters
 
@@ -22,8 +22,6 @@ Before ChIP-seq, researchers had limited options for studying protein-DNA intera
 The arrival of next-generation sequencing in the mid-2000s changed everything. ChIP-seq enabled genome-wide, high-resolution mapping for the first time, allowing scientists to see the complete picture of protein-DNA interactions across the entire genome.
 
 This breakthrough enabled landmark discoveries. The [ENCODE Project (2012)](https://www.nature.com/articles/nature11247) used ChIP-seq extensively to demonstrate that approximately 80% of the human genome has biochemical function—fundamentally overturning the long-held "junk DNA" myth. That same year, researchers used ChIP-seq to reveal [how our 24-hour body clock is encoded in chromatin](https://www.science.org/doi/10.1126/science.1226339
-        
-        
         
         ), explaining at the molecular level why circadian disruption increases disease risk.
 
