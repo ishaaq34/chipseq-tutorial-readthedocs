@@ -162,5 +162,4 @@ chipseq_tutorial/
 2. **Files:** BAMs are compressed alignment maps.
 3. **QC:** We use `samtools flagstat` and check **MAPQ scores** to ensure we aren't analyzing "lost" multimapping reads.
 
-> [!NOTE]
-> **Up Next:** We'll perform cross-correlation analysis to estimate fragment length and assess signal quality.
+!!! NOTE **Up Next:** We'll perform cross-correlation analysis to estimate fragment length and assess signal quality.
