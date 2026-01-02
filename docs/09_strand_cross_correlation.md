@@ -84,8 +84,8 @@ H3K9ac_ENCFF193NPE.chr11_12.bam   #1  BAM file name (input to SPP QC)
 ```
 
 ---
+<img alt="image3" src="../images/cross_correlation_plot.png" />
 
-<img alt="Screenshot 2025-12-15 at 9 23 05 PM" src="../images/fragment_length_estimate.png" />
 
 ---
 
@@ -103,8 +103,8 @@ We compare the Height of the Real Peak (Signal) to the Phantom Peak (Noise).
 ### 3.3 Interpreting the Data (Example Analysis)
 
 ---
+<img alt="Screenshot 2025-12-15 at 9 23 05 PM" src="../images/fragment_length_estimate.png" />
 
-<img alt="image3" src="../images/cross_correlation_plot.png" />
 
  ---
 
@@ -157,5 +157,4 @@ chipseq_tutorial/
 2. **Phantom Peak** is a background artifact at read length (Microphone Feedback).
 3. **RSC > 0.8** means your Signal (Real Peak) is louder than your Noise (Phantom Peak).
 
-> [!NOTE]
-> **Up Next:** We'll perform comprehensive QC using deepTools to validate enrichment and sample consistency before peak calling.
+!!! NOTE **Up Next:** We'll perform comprehensive QC using deepTools to validate enrichment and sample consistency before peak calling.
