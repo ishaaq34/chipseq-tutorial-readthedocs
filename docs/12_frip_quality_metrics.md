@@ -11,11 +11,6 @@ In successful ChIP-seq experiments, immunoprecipitation selectively enriches DNA
 FRiP thus provides a rapid, quantitative metric for immunoprecipitation efficiency—high FRiP indicates successful enrichment, while low FRiP flags potential technical problems before investing effort in downstream analysis.
 
 ---
-
-## 1. What is FRiP?
-
-FRiP measures how much of your ChIP signal is concentrated in called peaks. It's a key ENCODE quality metric.
-
 ### Calculating FRiP
 
 **Formula:** FRiP = (Reads in peaks) / (Total mapped reads)
