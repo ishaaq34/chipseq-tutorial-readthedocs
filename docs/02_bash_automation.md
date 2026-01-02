@@ -501,4 +501,4 @@ This folder structure makes it easy to: (1) track which processing stage created
 **The key insight:**
 This simple text file (`sample_id.txt`) acts as a "roll call" or "attendance sheet" for your entire analysis pipeline. It's the foundation that makes large-scale automation possible.
 
-!!! note "Up Next" Now that you understand Bash automation, we'll use these skills to download real ChIP-seq data from public databases.
+!!! note "Up Next"  Now that you understand Bash automation, we'll use these skills to download real ChIP-seq data from public databases.
