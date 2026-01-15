@@ -137,7 +137,8 @@ The following plots show average ChIP-seq signal around transcription start site
 
 ---
 
-<img alt="image" src="../images/bw1.png"/>
+<img width="833" height="174" alt="image" src="https://github.com/user-attachments/assets/5d1bd16a-c78b-4bd5-b415-6807db4e76e1" />
+
 
 ---
 
