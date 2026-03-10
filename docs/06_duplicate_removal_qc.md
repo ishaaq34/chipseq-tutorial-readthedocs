@@ -90,6 +90,23 @@ picard AddOrReplaceReadGroups \
 This configuration extends the previous one by adding the minimum required metadata to make optical duplicate detection meaningful.
 The addition of RGPU, encoding the flowcell and lane, defines the physical neighborhood in which optical duplicates can occur.
 
+Typical Illumina headers look like:
+
+```
+@A00469:123:CA0TUACXX:1:1101:1000:1000
+```
+From this header:
+
+```
+Flowcell = CA0TUACXX
+Lane     = 1
+```
+Therefore the platform unit would be:
+```
+RGPU=CA0TUACXX.1
+```
+
+
 ```bash
 picard AddOrReplaceReadGroups \
   I=bowalign_filtered/H3K27me3_IP_rep1.filtered.bam \     # Input: MAPQ-filtered BAM from section 05
@@ -99,6 +116,30 @@ picard AddOrReplaceReadGroups \
   RGPL=ILLUMINA \                        # REQUIRED for optical duplicate logic
   RGPU=CA0TUACXX.1                       # REQUIRED: flowcell.lane (from FASTQ header)
 ```
+
+**Automating RG Assignment for All Samples**
+
+Since the same read-group procedure must be applied to all ChIP and Input BAM files, the process can be automated using a simple loop instead of running the command manually for each sample.
+
+In this example, we assume that all reads originate from the same library preparation and sequencing lane. Therefore, RGLB (library) and RGPU (platform unit) are kept the same across all files.
+
+!!Note: RGPU should match the sequencing unit information in the FASTQ header. If reads originate from different flowcells or lanes, this value should be adjusted accordingly
+
+```
+for sample in H3K27me3_IP_rep1 H3K27me3_IP_rep2 Input_rep1 Input_rep2
+do
+picard AddOrReplaceReadGroups \
+ I=bowalign_filtered/${sample}.filtered.bam \
+ O=picard_rg_bam/${sample}.RG.bam \
+ RGID=${sample} \
+ RGSM=${sample%%_*} \
+ RGLB=lib1 \
+ RGPL=ILLUMINA \
+ RGPU=CA0TUACXX.1
+done
+
+```
+
 
 More from [GATK: Read Groups](https://broadinstitute.github.io/picard/command-line-overview.html#AddOrReplaceReadGroups)
            [Picard markduplicates](https://gatk.broadinstitute.org/hc/en-us/articles/360037052812-MarkDuplicates-Picard)
