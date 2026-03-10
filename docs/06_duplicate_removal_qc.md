@@ -121,24 +121,38 @@ picard AddOrReplaceReadGroups \
 
 Since the same read-group procedure must be applied to all ChIP and Input BAM files, the process can be automated using a simple loop instead of running the command manually for each sample.
 
-In this example, we assume that all reads originate from the same library preparation and sequencing lane. Therefore, RGLB (library) and RGPU (platform unit) are kept the same across all files.
+**1. Create a metadata file**
 
-!!! important "RGPU" RGPU should match the sequencing unit information in the FASTQ header. If reads originate from different flowcells or lanes, this value should be adjusted accordingly
+Create a file called samples.tsv
 
 ```
-for sample in H3K27me3_IP_rep1 H3K27me3_IP_rep2 Input_rep1 Input_rep2
+sample	RGSM	RGLB	RGPU
+H3K27me3_IP_rep1	H3K27me3	lib1	CA0TUACXX.1
+H3K27me3_IP_rep2	H3K27me3	lib1	CA0TUACXX.1
+Input_rep1	Input	lib1	CA0TUACXX.1
+Input_rep2	Input	lib1	CA0TUACXX.1
+```
+
+**2.Use a loop that reads the metadata**
+
+```
+mkdir -p picard_rg_bam
+
+tail -n +2 samples.tsv | while read sample RGSM RGLB RGPU
 do
 picard AddOrReplaceReadGroups \
  I=bowalign_filtered/${sample}.filtered.bam \
  O=picard_rg_bam/${sample}.RG.bam \
  RGID=${sample} \
- RGSM=${sample%%_*} \
- RGLB=lib1 \
+ RGSM=${RGSM} \
+ RGLB=${RGLB} \
  RGPL=ILLUMINA \
- RGPU=CA0TUACXX.1
+ RGPU=${RGPU}
 done
-
 ```
+
+!!! important "PGPU"
+     The value of RGPU should be derived from the sequencing run information in the FASTQ header (typically flowcell.lane). If the reads originate from different sequencing lanes or flowcells, this value should be adjusted accordingly. 
 
 
 More from [GATK: Read Groups](https://broadinstitute.github.io/picard/command-line-overview.html#AddOrReplaceReadGroups)
