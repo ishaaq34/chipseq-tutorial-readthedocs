@@ -75,7 +75,7 @@ picard AddOrReplaceReadGroups \
   I=bowalign_filtered/H3K27me3_IP_rep1.filtered.bam \
   O=picard_rg_bam/H3K27me3_IP_rep1.RG.bam \
   RGID=H3K27me3_IP_rep1 \
-  RGSM=H3K9ac
+  RGSM=H3K27me3
 ```
 
 **What this does:**
@@ -95,7 +95,7 @@ picard AddOrReplaceReadGroups \
   I=bowalign_filtered/H3K27me3_IP_rep1.filtered.bam \     # Input: MAPQ-filtered BAM from section 05
   O=picard_rg_bam/H3K27me3_IP_rep1.RG.bam \           # Output with RG tags
   RGID=H3K27me3_IP_rep1 \                      # Read Group ID
-  RGSM=H3K9ac \                          # Biological sample
+  RGSM=H3K27me3 \                          # Biological sample
   RGPL=ILLUMINA \                        # REQUIRED for optical duplicate logic
   RGPU=CA0TUACXX.1                       # REQUIRED: flowcell.lane (from FASTQ header)
 ```
