@@ -123,7 +123,8 @@ Since the same read-group procedure must be applied to all ChIP and Input BAM fi
 
 In this example, we assume that all reads originate from the same library preparation and sequencing lane. Therefore, RGLB (library) and RGPU (platform unit) are kept the same across all files.
 
-!!Note: RGPU should match the sequencing unit information in the FASTQ header. If reads originate from different flowcells or lanes, this value should be adjusted accordingly
+!!! Note "RGPU"
+RGPU should match the sequencing unit information in the FASTQ header. If reads originate from different flowcells or lanes, this value should be adjusted accordingly
 
 ```
 for sample in H3K27me3_IP_rep1 H3K27me3_IP_rep2 Input_rep1 Input_rep2
