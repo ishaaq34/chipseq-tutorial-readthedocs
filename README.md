@@ -1,6 +1,6 @@
 # ChIP-seq Analysis Tutorial
 
-[![Tutorial](https://img.shields.io/badge/ChIPSeqAnalysis-blue)](https://ishaaq34.github.io/chipseq-tutorial-readthedocs/)
+[![Tutorial](https://img.shields.io/badge/ChIPSeqAnalysis-blue)](https://ishaaq34.github.io/chipseq-tutorial-readthedocs/) [![Docs](https://img.shields.io/badge/docs-readthedocs-blue)](https://ishaaq34.github.io/chipseq-tutorial-readthedocs/) [![Last Updated](https://img.shields.io/badge/last%20updated-March%202026-blue)](#)
 
 A comprehensive, hands-on tutorial for ChIP-seq (Chromatin Immunoprecipitation Sequencing) data analysis, covering the complete workflow from raw FASTQ files to publication-ready visualizations and biological insights.
 
@@ -192,4 +192,4 @@ GitHub. https://github.com/ishaaq34/Chipseq_analysis_tutorial
 
 ---
 
-*Last updated: December 2025 | Version 1.0*
+*Last updated: March 2026 | Version 1.0*
